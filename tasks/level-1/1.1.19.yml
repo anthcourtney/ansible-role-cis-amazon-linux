@@ -1,0 +1,10 @@
+---
+
+# 1.1.19 - Disable Automounting
+
+- name: 1.1.19 - Disable autofs
+  service:
+    name: autofs
+    enabled: false
+  register: autofs_result
+  failed_when: "autofs_result.failed and 'no service or tool found for: autofs' not in autofs_result.msg"
