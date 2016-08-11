@@ -1,0 +1,8 @@
+---
+
+# 1.2.1 - Ensure package manager repositories are configured
+
+# The remediation actions for this recommendation are site-specific, therefore we test that
+# executing 'yum repolist' results in no errors.
+- name: 1.2.1 - Verify that repositories are configured correctly
+  command: yum repolist
