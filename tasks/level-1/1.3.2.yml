@@ -1,0 +1,14 @@
+---
+
+# 1.3.2 - Ensure filesystem integrity is regularly checked
+
+- name: Create cron entry to run aide filesystem integrity check regularly
+  cron:
+    user: "{{ cis_aide_cron_user }}"
+    job: "{{ cis_aide_cron_job }}"
+    minute: "{{ cis_aide_cron_minute }}"
+    hour: "{{ cis_aide_cron_hour }}"
+    weekday: "{{ cis_aide_cron_dow }}"
+    day: "{{ cis_aide_cron_dom }}"
+    month: "{{ cis_aide_cron_dom }}"
+    state: present
