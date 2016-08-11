@@ -43,3 +43,6 @@
   when: "'1.1.19' not in {{ cis_level_1_exclusions }}"
 - include: "{{ role_path }}/tasks/level-1/1.2.1.yml"
   when: "'1.2.1' not in {{ cis_level_1_exclusions }}"
+# TODO: 1.2.2
+- include: "{{ role_path }}/tasks/level-1/1.2.3.yml"
+  when: "'1.2.3' not in {{ cis_level_1_exclusions }}"
