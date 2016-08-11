@@ -1,0 +1,21 @@
+---
+
+# 1.4.2 - Ensure authentication required for single user mode
+
+- name: 1.4.2 - Check if sysconfig init file exists
+  stat:
+    path: "{{ cis_sysconfig_init_filename }}"
+  register: sysconfig_init
+  
+- name: 1.4.2 - Ensure authentication is required for single-user mode
+  copy:
+    dest: "{{ cis_sysconfig_init_filename }}"
+    content: "SINGLE=/sbin/sulogin\n"
+  when: sysconfig_init.stat.exists is not defined or not sysconfig_init.stat.exists
+
+- name: 1.4.2 - Ensure authentication is required for single-user mode
+  lineinfile: 
+    dest: "{{ cis_sysconfig_init_filename }}"
+    regexp: "^SINGLE=" 
+    line: "SINGLE=/sbin/sulogin" 
+  when: sysconfig_init.stat.exists is defined and sysconfig_init.stat.exists
