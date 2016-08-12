@@ -1,0 +1,14 @@
+---
+
+# 1.7.1.4 Ensure permissions on /etc/motd are configured
+
+- name: 1.7.1.4 - Ensure permissions on /etc/motd are configured
+  file:
+    path: "/etc/motd"
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - level-1
+    - 1.7.1.4
+    - not-scored
