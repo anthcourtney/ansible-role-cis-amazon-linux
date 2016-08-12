@@ -17,3 +17,6 @@ cis_aide_cron_hour: 5
 cis_aide_cron_dow: "*" # Day of week
 cis_aide_cron_dom: "*" # Day of month
 cis_aide_cron_month: "*"
+
+cis_local_login_warning_banner: "Authorized uses only. All activity may be monitored and reported.\n"
+cis_remote_login_warning_banner: "Authorized uses only. All activity may be monitored and reported.\n"

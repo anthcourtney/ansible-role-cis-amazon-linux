@@ -3,17 +3,10 @@
 # 1.7.1.2 Ensure local login warning banner is configured properly
 
 - name: 1.7.1.2 - Ensure local login warning banner is configured properly
-  replace:
-    regexp: "{{ item }}"
+  copy:
+    content: "{{ cis_local_login_warning_banner }}"
     dest: "/etc/issue"
-  with_items:
-    - "\\\\m"
-    - "\\\\r"
-    - "\\\\s"
-    - "\\\\v"
   tags:
     - level-1
     - 1.7.1.2
     - not-scored
-
-# TODO: Consider whether to filter out strings contained within /etc/os-release from /etc/issue
