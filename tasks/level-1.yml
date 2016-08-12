@@ -62,3 +62,5 @@
   when: "'1.5.3' not in {{ cis_level_1_exclusions }}"
 - include: "{{ role_path }}/tasks/level-1/1.5.4.yml"
   when: "'1.5.4' not in {{ cis_level_1_exclusions }}"
+- include: "{{ role_path }}/tasks/level-1/1.7.1.1.yml"
+  when: "'1.7.1.1' not in {{ cis_level_1_exclusions }}"

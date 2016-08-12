@@ -1,0 +1,19 @@
+---
+
+# 1.7.1.1 Ensure message of the day is configured properly
+
+- name: 1.7.1.1 - Ensure mingetty options are not used within motd
+  replace:
+    regexp: "{{ item }}"
+    dest: "/etc/motd"
+  with_items:
+    - "\\\\m"
+    - "\\\\r"
+    - "\\\\s"
+    - "\\\\v"
+  tags:
+    - level-1
+    - 1.7.1.1
+    - scored
+
+# TODO: Consider whether to filter out strings contained within /etc/os-release from /etc/motd
