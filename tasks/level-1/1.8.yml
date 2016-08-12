@@ -8,5 +8,5 @@
     state: latest
   tags:
     - level-1
-    - 1.8
+    - "1.8"
     - not-scored
