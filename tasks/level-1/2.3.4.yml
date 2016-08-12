@@ -1,0 +1,12 @@
+---
+
+# 2.3.4 Ensure telnet client is not installed
+
+- name: 2.3.4 - Ensure telnet client is not installed
+  yum:
+    name: "telnet"
+    state: absent
+  tags:
+    - level-1
+    - "2.3.4"
+    - scored

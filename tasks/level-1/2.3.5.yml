@@ -1,0 +1,12 @@
+---
+
+# 2.3.5 Ensure LDAP client is not installed
+
+- name: 2.3.5 - Ensure LDAP client is not installed
+  yum:
+    name: "openldap-clients"
+    state: absent
+  tags:
+    - level-1
+    - "2.3.5"
+    - scored
