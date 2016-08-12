@@ -1,0 +1,16 @@
+---
+
+# 2.2.7 Ensure NFS and RPC are not enabled
+
+- name: 2.2.7 - Ensure NFS and RPC are not enabled
+  service:
+    name: "{{ item }}"
+    enabled: false
+  with_items:
+    - nfs
+    - rpcbind
+  ignore_errors: true
+  tags:
+    - level-1
+    - "2.2.7"
+    - scored

@@ -1,0 +1,12 @@
+---
+
+# 2.2.2 Ensure X Window System is not installed 
+
+- name: 2.2.2 - Ensure X Window System is not installed
+  yum:
+    name: "xorg-x11*"
+    state: absent
+  tags:
+    - level-1
+    - "2.2.2"
+    - scored

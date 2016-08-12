@@ -1,0 +1,13 @@
+---
+
+# 2.2.14 Ensure SNMP Server is not enabled
+
+- name: 2.2.14 - Ensure SNMP Server is not enabled
+  service:
+    name: "snmpd"
+    enabled: false
+  ignore_errors: true
+  tags:
+    - level-1
+    - "2.2.14"
+    - scored

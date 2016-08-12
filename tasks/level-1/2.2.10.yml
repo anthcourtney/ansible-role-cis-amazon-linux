@@ -1,0 +1,19 @@
+---
+
+# 2.2.10 Ensure HTTP server is not enabled
+
+- name: 2.2.10 - Ensure HTTP server is not enabled
+  service:
+    name: "{{ item }}"
+    enabled: false
+  with_items:
+    - httpd
+    - apache
+    - apache2
+    - nginx
+    - lighttpd
+  ignore_errors: true
+  tags:
+    - level-1
+    - "2.2.10"
+    - scored

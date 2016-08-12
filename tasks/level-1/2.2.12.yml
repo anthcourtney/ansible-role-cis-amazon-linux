@@ -1,0 +1,13 @@
+---
+
+# 2.2.12 Ensure Samba is not enabled
+
+- name: 2.2.12 - Ensure Samba is not enabled
+  service:
+    name: "smb"
+    enabled: false
+  ignore_errors: true
+  tags:
+    - level-1
+    - "2.2.12"
+    - scored

@@ -1,0 +1,13 @@
+---
+
+# 2.2.4 Ensure CUPS is not enabled
+
+- name: 2.2.4 - Ensure CUPS is not enabled
+  service:
+    name: "cups"
+    enabled: false
+  ignore_errors: true
+  tags:
+    - level-1
+    - "2.2.4"
+    - scored

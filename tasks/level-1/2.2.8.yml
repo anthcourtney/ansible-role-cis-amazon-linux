@@ -1,0 +1,13 @@
+---
+
+# 2.2.8 Ensure DNS Server is not enabled
+
+- name: 2.2.8 - Ensure DNS Server is not enabled
+  service:
+    name: "named"
+    enabled: false
+  ignore_errors: true
+  tags:
+    - level-1
+    - "2.2.8"
+    - scored

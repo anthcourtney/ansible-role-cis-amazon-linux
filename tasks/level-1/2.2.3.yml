@@ -1,0 +1,13 @@
+---
+
+# 2.2.3 Ensure Avahi Server is not enabled
+
+- name: 2.2.3 - Ensure Avahi Server is not enabled
+  service:
+    name: "avahi-daemon"
+    enabled: false
+  ignore_errors: true
+  tags:
+    - level-1
+    - "2.2.3"
+    - scored

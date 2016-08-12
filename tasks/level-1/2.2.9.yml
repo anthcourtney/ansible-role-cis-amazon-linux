@@ -1,0 +1,13 @@
+---
+
+# 2.2.9 Ensure FTP Server is not enabled
+
+- name: 2.2.9 - Ensure FTP Server is not enabled
+  service:
+    name: "vsftpd"
+    enabled: false
+  ignore_errors: true
+  tags:
+    - level-1
+    - "2.2.9"
+    - scored

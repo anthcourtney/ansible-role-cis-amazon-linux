@@ -1,0 +1,13 @@
+---
+
+# 2.2.6 Ensure LDAP server is not enabled
+
+- name: 2.2.6 - Ensure LDAP server is not enabled
+  service:
+    name: "slapd"
+    enabled: false
+  ignore_errors: true
+  tags:
+    - level-1
+    - "2.2.6"
+    - scored
