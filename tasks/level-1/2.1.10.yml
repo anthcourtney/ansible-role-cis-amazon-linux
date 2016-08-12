@@ -1,0 +1,13 @@
+---
+
+# 2.1.10 Ensure rsync server is not enabled
+
+- name: 2.1.10 - Ensure rsync server is not enabled
+  service:
+    name: "rsync"
+    enabled: false
+  ignore_errors: true
+  tags:
+    - level-1
+    - "2.1.10"
+    - scored

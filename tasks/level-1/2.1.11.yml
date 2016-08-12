@@ -1,0 +1,13 @@
+---
+
+# 2.1.11 Ensure xinetd server is not enabled
+
+- name: 2.1.11 - Ensure xinetd server is not enabled
+  service:
+    name: "xinetd"
+    enabled: false
+  ignore_errors: true
+  tags:
+    - level-1
+    - "2.1.11"
+    - scored

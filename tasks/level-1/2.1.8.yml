@@ -1,0 +1,13 @@
+---
+
+# 2.1.8 Ensure telnet server is not enabled
+
+- name: 2.1.8 - Ensure telnet server is not enabled
+  service:
+    name: "telnet"
+    enabled: false
+  ignore_errors: true
+  tags:
+    - level-1
+    - "2.1.8"
+    - scored

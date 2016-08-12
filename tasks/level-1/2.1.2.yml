@@ -1,0 +1,16 @@
+---
+
+# 2.1.2 Ensure daytime services are not enabled
+
+- name: 2.1.2 - Ensure daytime services are not enabled
+  service:
+    name: "{{ item }}"
+    enabled: false
+  with_items:
+    - daytime-dgram
+    - daytime-stream
+  ignore_errors: true
+  tags:
+    - level-1
+    - "2.1.2"
+    - scored

@@ -1,0 +1,13 @@
+---
+
+# 2.1.7 Ensure talk server is not enabled
+
+- name: 2.1.7 - Ensure talk server is not enabled
+  service:
+    name: "talk"
+    enabled: false
+  ignore_errors: true
+  tags:
+    - level-1
+    - "2.1.7"
+    - scored

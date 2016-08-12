@@ -1,0 +1,17 @@
+---
+
+# 2.1.6 Ensure rsh server is not enabled
+
+- name: 2.1.6 - Ensure rsh server is not enabled
+  service:
+    name: "{{ item }}"
+    enabled: false
+  with_items:
+    - rexec
+    - rlogin
+    - rsh
+  ignore_errors: true
+  tags:
+    - level-1
+    - "2.1.6"
+    - scored
