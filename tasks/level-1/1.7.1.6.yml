@@ -1,0 +1,14 @@
+---
+
+# 1.7.1.6 Ensure permissions on /etc/issue.net are configured
+
+- name: 1.7.1.6 - Ensure permissions on /etc/issue.net are configured
+  file:
+    path: "/etc/issue.net"
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - level-1
+    - 1.7.1.6
+    - not-scored
