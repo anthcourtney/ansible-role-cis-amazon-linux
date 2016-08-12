@@ -1,0 +1,21 @@
+---
+
+# 1.4.3 - Ensure interactive boot is not enabled 
+
+- name: 1.4.3 - Check if sysconfig init file exists
+  stat:
+    path: "{{ cis_sysconfig_init_filename }}"
+  register: sysconfig_init_1_4_3
+  
+- name: 1.4.3 - Ensure interactive boot is not enabled
+  copy:
+    dest: "{{ cis_sysconfig_init_filename }}"
+    content: "PROMPT=no\n"
+  when: sysconfig_init_1_4_3.stat.exists is not defined or not sysconfig_init_1_4_3.stat.exists
+
+- name: 1.4.3 - Ensure interactive boot is not enabled
+  lineinfile: 
+    dest: "{{ cis_sysconfig_init_filename }}"
+    regexp: "^PROMPT=" 
+    line: "PROMPT=no"
+  when: sysconfig_init_1_4_3.stat.exists is defined and sysconfig_init_1_4_3.stat.exists
