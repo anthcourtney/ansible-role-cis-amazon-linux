@@ -16,6 +16,6 @@
 - name: 1.1.1.4 - Ensure mounting of hfs filesystems is disabled
   lineinfile: 
     dest: "{{ cis_modprobe_conf_filename }}"
-    regexp: "^install hfs" 
+    regexp: "^install hfs\\s+" 
     line: "install hfs /bin/true" 
   when: c.stat.exists is defined and c.stat.exists
