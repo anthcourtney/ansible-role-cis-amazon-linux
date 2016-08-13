@@ -1,0 +1,15 @@
+---
+
+# 5.1.7 Ensure permissions on /etc/cron.d are configured
+
+- name: 5.1.7 - Ensure permissions on /etc/cron.d are configured
+  file:
+    path: "/etc/cron.d"
+    owner: root
+    group: root
+    mode: 0600
+    state: directory
+  tags:
+    - level-1
+    - "5.1.7"
+    - scored

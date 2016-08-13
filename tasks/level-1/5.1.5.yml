@@ -1,0 +1,14 @@
+---
+
+# 5.1.5 Ensure permissions on /etc/cron.weekly are configured
+
+- name: 5.1.5 - Ensure permissions on /etc/cron.weekly are configured
+  file:
+    path: "/etc/cron.weekly"
+    owner: root
+    group: root
+    mode: 0600
+  tags:
+    - level-1
+    - "5.1.5"
+    - scored

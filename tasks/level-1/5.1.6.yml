@@ -1,0 +1,14 @@
+---
+
+# 5.1.6 Ensure permissions on /etc/cron.monthly are configured
+
+- name: 5.1.6 - Ensure permissions on /etc/cron.monthly are configured
+  file:
+    path: "/etc/cron.monthly"
+    owner: root
+    group: root
+    mode: 0600
+  tags:
+    - level-1
+    - "5.1.6"
+    - scored
