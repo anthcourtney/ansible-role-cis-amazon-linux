@@ -1,0 +1,27 @@
+---
+
+# 3.3.1 Ensure IPv6 router advertisements are not accepted
+
+- name: 3.3.1 - Ensure IPv6 router advertisements are not accepted
+  sysctl:
+    name: "{{ item }}" 
+    value: 0
+    state: present
+  with_items:
+    - "net.ipv6.conf.all.accept_ra"
+    - "net.ipv6.conf.default.accept_ra"
+  tags:
+    - level-1
+    - "3.3.1"
+    - scored
+
+- name: 3.3.1 - Ensure IPv6 router advertisements are not accepted by active kernel parameters
+  command: "{{ item }}"
+  with_items:
+    - "sysctl -w net.ipv6.conf.all.accept_ra=0"
+    - "sysctl -w net.ipv6.conf.default.accept_ra=0"
+    - "sysctl -w net.ipv4.route.flush=1"
+  tags:
+    - level-1
+    - "3.3.1"
+    - scored

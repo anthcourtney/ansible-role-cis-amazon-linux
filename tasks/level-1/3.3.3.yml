@@ -1,0 +1,21 @@
+---
+
+# 3.3.3 - Ensure IPv6 is disabled
+
+- name: 3.3.3 - Check if CIS modprobe configuration file exists
+  stat:
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_3_3_3
+  
+- name: 3.3.3 - Ensure IPv6 is disabled
+  copy:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    content: "options ipv6 disable=1\n"
+  when: modprobe_3_3_3.stat.exists is not defined or not modprobe_3_3_3.stat.exists
+
+- name: 3.3.3 - Ensure IPv6 is disabled
+  lineinfile: 
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^options ipv6 disable=" 
+    line: "options ipv6 disable=1" 
+  when: modprobe_3_3_3.stat.exists is defined and modprobe_3_3_3.stat.exists
