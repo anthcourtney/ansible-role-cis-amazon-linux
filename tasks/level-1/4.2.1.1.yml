@@ -1,0 +1,23 @@
+---
+
+# 4.2.1.1 Ensure rsyslog Service is enabled
+
+- name: 4.2.1.1 - Check if rsyslog is installed
+  command: yum -q list rsyslog
+  ignore_errors: true
+  register: rsyslog_4_2_1_1
+  tags:
+    - level-1
+    - "4.2.1.1"
+    - scored
+
+- name: 4.2.1.1 - Ensure rsyslog Service is enabled
+  service:
+    name: "rsyslog"
+    enabled: true
+  when: rsyslog_4_2_1_1.rc is not defined or rsyslog_4_2_1_1.rc == 0
+  ignore_errors: false
+  tags:
+    - level-1
+    - "4.2.1.1"
+    - scored
