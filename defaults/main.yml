@@ -6,6 +6,8 @@ apply_cis_level_2_profile: false   # Whether Level 2 of the benchmark should be 
 cis_level_1_exclusions: []         # A list of Level 1 reccomendations to exclude (i.e. ['1.1.1.1'])
 cis_level_2_exclusions: []         # A list of Level 2 reccomendations to exclude 
 
+fail_on_manual_remediation_actions: false  # Whether to fail when remediation items are found for reccomendations which can't be automatically fixed. True or false. If false, a debug message will be generated instead.
+
 ##############################################
 # Check specific values which can be overriden
 ##############################################

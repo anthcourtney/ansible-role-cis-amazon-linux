@@ -1,0 +1,34 @@
+---
+
+# 6.1.12 Ensure no ungrouped files or directories exist
+
+- name: 6.1.12 - Audit if any ungrouped files or directories exist
+  shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nogroup
+  register: audit_6_1_12
+  tags:
+    - level-1
+    - "6.1.12"
+    - scored
+
+- name: 6.1.12 - Ensure no ungrouped files or directories exist
+  fail:
+    msg: "{{ audit_6_1_12.stdout_lines }}"
+  when:
+    - audit_6_1_12.stdout_lines is defined and audit_6_1_12.stdout_lines|length > 0
+    - fail_on_manual_remediation_actions
+  tags:
+    - level-1
+    - "6.1.12"
+    - scored
+
+- name: 6.1.12 - Ensure no ungrouped files or directories exist
+  debug:
+    msg: "{{ audit_6_1_12.stdout_lines }}"
+  when: 
+    - audit_6_1_12.stdout_lines is defined and audit_6_1_12.stdout_lines|length > 0
+    - not fail_on_manual_remediation_actions
+  tags:
+    - level-1
+    - "6.1.12"
+    - scored
+

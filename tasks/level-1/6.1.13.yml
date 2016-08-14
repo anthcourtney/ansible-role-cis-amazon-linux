@@ -1,0 +1,33 @@
+---
+
+# 6.1.13 Audit SUID executables
+
+- name: 6.1.13 - Check if any SUID executables exist
+  shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nogroup
+  register: audit_6_1_13
+  tags:
+    - level-1
+    - "6.1.13"
+    - scored
+
+- name: 6.1.13 - Audit SUID executables
+  fail:
+    msg: "{{ audit_6_1_13.stdout_lines }}"
+  when: 
+    - audit_6_1_13.stdout_lines is defined and audit_6_1_13.stdout_lines|length > 0
+    - fail_on_manual_remediation_actions
+  tags:
+    - level-1
+    - "6.1.13"
+    - scored
+
+- name: 6.1.13 - Audit SUID executables
+  debug:
+    msg: "{{ audit_6_1_13.stdout_lines }}"
+  when:
+    - audit_6_1_13.stdout_lines is defined and audit_6_1_13.stdout_lines|length > 0
+    - not fail_on_manual_remediation_actions
+  tags:
+    - level-1
+    - "6.1.13"
+    - scored

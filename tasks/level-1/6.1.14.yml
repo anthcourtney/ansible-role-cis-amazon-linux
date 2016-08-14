@@ -1,0 +1,33 @@
+---
+
+# 6.1.14 Audit SGID executables
+
+- name: 6.1.14 - Check if any SGID executables exist
+  shell:  df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -2000
+  register: audit_6_1_14
+  tags:
+    - level-1
+    - "6.1.14"
+    - scored
+
+- name: 6.1.14 - Audit SGID executables
+  fail:
+    msg: "{{ audit_6_1_14.stdout_lines }}"
+  when: 
+    - audit_6_1_14.stdout_lines is defined and audit_6_1_14.stdout_lines|length > 0
+    - fail_on_manual_remediation_actions
+  tags:
+    - level-1
+    - "6.1.14"
+    - scored
+
+- name: 6.1.14 - Audit SGID executables
+  debug:
+    msg: "{{ audit_6_1_14.stdout_lines }}"
+  when: 
+    - audit_6_1_14.stdout_lines is defined and audit_6_1_14.stdout_lines|length > 0
+    - not fail_on_manual_remediation_actions
+  tags:
+    - level-1
+    - "6.1.14"
+    - scored
