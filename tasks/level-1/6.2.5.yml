@@ -1,0 +1,20 @@
+---
+
+# 6.2.5 Ensure root is the only UID 0 account
+
+- name: 6.2.5 - Ensure root is the only UID 0 account
+  shell: "cat /etc/passwd | awk -F: '($3 == 0) { print $1 }'"
+  register: cat_6_2_5
+  tags:
+    - level-1
+    - "6.2.5"
+    - scored
+
+- name: 6.2.5 - Fail if root is not the only UID 0 account
+  fail:
+    msg: "root is not the only UID 0 account."
+  when: cat_6_2_5.stdout_lines is defined and (cat_6_2_5.stdout_lines|length > 1 or (cat_6_2_5.stdout_lines|length == 1 and 'root' not in cat_6_2_5.stdout_lines))
+  tags:
+    - level-1
+    - "6.2.5"
+    - scored

@@ -1,0 +1,20 @@
+---
+
+# 6.2.16 Ensure no duplicate UIDs exist
+
+- name: 6.2.16 - Check if duplicate UIDs exist
+  script: "{{ role_path }}/files/audit_6.2.16.sh"
+  register: audit_6_2_16
+  tags:
+    - level-1
+    - "6.2.16"
+    - scored
+
+- name: 6.2.16 - Ensure no duplicate UIDs exist
+  fail:
+    msg: "{{ audit_6_2_16.stdout_lines }}"
+  when: audit_6_2_16.stdout_lines is defined and audit_6_2_16.stdout_lines|length > 0
+  tags:
+    - level-1
+    - "6.2.16"
+    - scored

@@ -1,0 +1,20 @@
+---
+
+# 6.2.11 Ensure no users have .forward files
+
+- name: 6.2.11 - Audit users' forward files
+  script: "{{ role_path }}/files/audit_6.2.11.sh"
+  register: audit_6_2_11
+  tags:
+    - level-1
+    - "6.2.11"
+    - scored
+
+- name: 6.2.11 - Ensure no users have .forward files
+  fail:
+    msg: "{{ audit_6_2_11.stdout_lines }}"
+  when: audit_6_2_11.stdout_lines is defined and audit_6_2_11.stdout_lines|length > 0
+  tags:
+    - level-1
+    - "6.2.11"
+    - scored

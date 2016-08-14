@@ -1,0 +1,14 @@
+---
+
+# 6.1.2 Ensure permissions on /etc/passwd are configured
+
+- name: 6.1.2 - Ensure permissions on /etc/passwd are configured
+  file:
+    path: /etc/passwd
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - level-1
+    - "6.1.2"
+    - scored

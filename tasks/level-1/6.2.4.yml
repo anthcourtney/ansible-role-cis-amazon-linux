@@ -1,0 +1,12 @@
+---
+
+# 6.2.4 Ensure no legacy "+" entries exist in /etc/group 
+
+- name: 6.2.4 - Ensure no legacy "+" entries exist in /etc/group 
+  replace:
+    dest: "/etc/group"
+    regexp: "^\\+:.*\n"
+  tags:
+    - level-1
+    - "6.2.4"
+    - scored

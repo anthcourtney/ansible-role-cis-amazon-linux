@@ -1,0 +1,20 @@
+---
+
+# 6.2.18 Ensure no duplicate user names exist
+
+- name: 6.2.18 - Check if duplicate user names exist
+  script: "{{ role_path }}/files/audit_6.2.18.sh"
+  register: audit_6_2_18
+  tags:
+    - level-1
+    - "6.2.18"
+    - scored
+
+- name: 6.2.18 - Ensure no duplicate user names exist
+  fail:
+    msg: "{{ audit_6_2_18.stdout_lines }}"
+  when: audit_6_2_18.stdout_lines is defined and audit_6_2_18.stdout_lines|length > 0
+  tags:
+    - level-1
+    - "6.2.18"
+    - scored

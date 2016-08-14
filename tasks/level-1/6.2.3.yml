@@ -1,0 +1,12 @@
+---
+
+# 6.2.3 Ensure no legacy "+" entries exist in /etc/shadow 
+
+- name: 6.2.3 - Ensure no legacy "+" entries exist in /etc/shadow 
+  replace:
+    dest: "/etc/shadow"
+    regexp: "^\\+:.*\n"
+  tags:
+    - level-1
+    - "6.2.3"
+    - scored

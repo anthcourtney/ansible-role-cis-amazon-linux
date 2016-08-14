@@ -1,0 +1,20 @@
+---
+
+# 6.2.8 Ensure users' home directories permissions are 750 or more restrictive
+
+- name: 6.2.8 - Audit users' home directories permissions
+  script: "{{ role_path }}/files/audit_6.2.8.sh"
+  register: audit_6_2_8
+  tags:
+    - level-1
+    - "6.2.8"
+    - scored
+
+- name: 6.2.8 - Ensure users' home directories permissions are 750 or more restrictive
+  fail:
+    msg: "{{ audit_6_2_8.stdout_lines }}"
+  when: audit_6_2_8.stdout_lines is defined and audit_6_2_8.stdout_lines|length > 0
+  tags:
+    - level-1
+    - "6.2.8"
+    - scored

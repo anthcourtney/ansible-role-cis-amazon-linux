@@ -1,0 +1,14 @@
+---
+
+# 6.1.8 Ensure permissions on /etc/group- are configured
+
+- name: 6.1.8 - Ensure permissions on /etc/group- are configured
+  file:
+    path: /etc/group-
+    owner: root
+    group: root
+    mode: 0600
+  tags:
+    - level-1
+    - "6.1.8"
+    - scored

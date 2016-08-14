@@ -1,0 +1,20 @@
+---
+
+# 6.2.19 Ensure no duplicate group names exist
+
+- name: 6.2.19 - Check if duplicate group names exist
+  script: "{{ role_path }}/files/audit_6.2.19.sh"
+  register: audit_6_2_19
+  tags:
+    - level-1
+    - "6.2.19"
+    - scored
+
+- name: 6.2.19 - Ensure no duplicate group names exist
+  fail:
+    msg: "{{ audit_6_2_19.stdout_lines }}"
+  when: audit_6_2_19.stdout_lines is defined and audit_6_2_19.stdout_lines|length > 0
+  tags:
+    - level-1
+    - "6.2.19"
+    - scored
