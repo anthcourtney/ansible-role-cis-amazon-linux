@@ -1,0 +1,22 @@
+---
+
+# 6.2.7 Ensure all users' home directories exist
+
+- name: 6.2.7 - Audit existence of users' home directories
+  script: "{{ role_path }}/files/audit_6.2.7.sh"
+  register: audit_6_2_7
+  tags:
+    - level-1
+    - "6.2.7"
+    - scored
+
+- name: 6.2.7 - Ensure users' home directories exist.
+  user:
+    name: "{{ item.split(':')[0] }}"
+    home: "{{ item.split(':')[1] }}"
+  when: audit_6_2_7.stdout_lines is defined and audit_6_2_7.stdout_lines|length > 0
+  with_items: "{{ audit_6_2_7.stdout_lines }}"
+  tags:
+    - level-1
+    - "6.2.7"
+    - scored
