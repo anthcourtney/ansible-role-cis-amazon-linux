@@ -1,0 +1,30 @@
+---
+
+# 5.1.8 Ensure at/cron is restricted to authorized users
+
+- name: 5.1.8 - Ensure /etc/cron.deny and /etc/at.deny do not exist
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "/etc/at.deny"
+    - "/etc/cron.deny"
+  tags:
+    - level-1
+    - "5.1.8"
+    - scored
+
+- name: 5.1.8 -  Ensure at/cron is restricted to authorized users
+  file: 
+    path: "{{ item }}"
+    state: touch
+    owner: root
+    group: root
+    mode: 0600
+  with_items:
+    - "/etc/cron.allow"
+    - "/etc/at.allow"
+  tags:
+    - level-1
+    - "5.1.8"
+    - scored
