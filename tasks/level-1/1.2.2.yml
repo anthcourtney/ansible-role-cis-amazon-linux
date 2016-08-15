@@ -1,0 +1,13 @@
+---
+
+# 1.2.2 Ensure GPG keys are configured
+
+# The remediation actions for this recommendation are site-specific, therefore we test that
+# executing the specified rpm command results in no errors.
+- name: 1.2.2 - Ensure GPG keys are configured
+  shell: rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
+  tags:
+    - level-1
+    - "1.2.2"
+    - scored
+

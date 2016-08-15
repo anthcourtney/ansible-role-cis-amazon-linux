@@ -7,6 +7,10 @@
     regexp: "^gpgcheck"
     line: "gpgcheck=1"
     dest: "/etc/yum.conf"
+  tags:
+    - level-1
+    - "1.2.3"
+    - scored
 
 - name: 1.2.3 - Verify that gpgcheck is enabled for all repositories in /etc/yum.repos.d
   replace:
@@ -15,3 +19,7 @@
     dest: "{{ item }}"
   with_fileglob:
     - /etc/yum.repos.d/*.repo
+  tags:
+    - level-1
+    - "1.2.3"
+    - scored
