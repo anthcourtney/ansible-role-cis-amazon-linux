@@ -1,21 +1,34 @@
 ---
 
-# 1.1.1.5 - Ensure mounting of squashfs filesystems is disabled 
+# 1.1.1.6 - Ensure mounting of squashfs filesystems is disabled 
 
-- name: 1.1.1.5 - Check if CIS modprobe configuration file exists
+- name: 1.1.1.6 - Check if CIS modprobe configuration file exists
   stat:
     path: "{{ cis_modprobe_conf_filename }}"
-  register: c
+  register: modprobe_1_1_1_6
+  tags:
+    - level-1
+    - "1.1.1.6"
+    - scored
   
-- name: 1.1.1.5 - Ensure mounting of squashfs filesystems is disabled 
+- name: 1.1.1.6 - Ensure mounting of squashfs filesystems is disabled 
   copy:
     dest: "{{ cis_modprobe_conf_filename }}"
     content: "install squashfs /bin/true\n"
-  when: c.stat.exists is not defined or not c.stat.exists
+  when: modprobe_1_1_1_6.stat.exists is not defined or not modprobe_1_1_1_6.stat.exists
+  tags:
+    - level-1
+    - "1.1.1.6"
+    - scored
 
-- name: 1.1.1.5 - Ensure mounting of squashfs filesystems is disabled
+- name: 1.1.1.6 - Ensure mounting of squashfs filesystems is disabled
   lineinfile: 
     dest: "{{ cis_modprobe_conf_filename }}"
     regexp: "^install squashfs" 
     line: "install squashfs /bin/true" 
-  when: c.stat.exists is defined and c.stat.exists
+  when: modprobe_1_1_1_6.stat.exists is defined and modprobe_1_1_1_6.stat.exists
+  tags:
+    - level-1
+    - "1.1.1.6"
+    - scored
+

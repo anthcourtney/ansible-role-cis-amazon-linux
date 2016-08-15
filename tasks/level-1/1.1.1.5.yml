@@ -5,17 +5,30 @@
 - name: 1.1.1.5 - Check if CIS modprobe configuration file exists
   stat:
     path: "{{ cis_modprobe_conf_filename }}"
-  register: c
+  register: modprobe_1_1_1_5
+  tags:
+    - level-1
+    - "1.1.1.5"
+    - scored
   
 - name: 1.1.1.5 - Ensure mounting of hfsplus filesystems is disabled 
   copy:
     dest: "{{ cis_modprobe_conf_filename }}"
     content: "install hfsplus /bin/true\n"
-  when: c.stat.exists is not defined or not c.stat.exists
+  when: modprobe_1_1_1_5.stat.exists is not defined or not modprobe_1_1_1_5.stat.exists
+  tags:
+    - level-1
+    - "1.1.1.5"
+    - scored
 
 - name: 1.1.1.5 - Ensure mounting of hfsplus filesystems is disabled
   lineinfile: 
     dest: "{{ cis_modprobe_conf_filename }}"
     regexp: "^install hfsplus" 
     line: "install hfsplus /bin/true" 
-  when: c.stat.exists is defined and c.stat.exists
+  when: modprobe_1_1_1_5.stat.exists is defined and modprobe_1_1_1_5.stat.exists
+  tags:
+    - level-1
+    - "1.1.1.5"
+    - scored
+
