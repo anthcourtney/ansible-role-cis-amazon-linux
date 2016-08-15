@@ -6,12 +6,20 @@
   stat:
     path: "{{ cis_security_limits_filename }}"
   register: security_limits_1_5_1
+  tags:
+    - level-1
+    - "1.5.1"
+    - scored
 
 - name: 1.5.1 - Ensure core dumps are restricted
   copy:
     dest: "{{ cis_security_limits_filename }}"
     content: "* hard core 0\n"
   when: security_limits_1_5_1.stat.exists is not defined or not security_limits_1_5_1.stat.exists
+  tags:
+    - level-1
+    - "1.5.1"
+    - scored
 
 - name: 1.5.1 - Ensure core dumps are restricted
   lineinfile:
@@ -19,10 +27,18 @@
     regexp: "^(#){0,1}\\*\\s+hard\\s+core"
     line: "* hard core 0"
   when: security_limits_1_5_1.stat.exists is defined and security_limits_1_5_1.stat.exists
+  tags:
+    - level-1
+    - "1.5.1"
+    - scored
 
 - name: 1.5.1 - Prevent suid programs from dumping core
   sysctl:
     name: fs.suid_dumpable
     value: 0
     state: present
+  tags:
+    - level-1
+    - "1.5.1"
+    - scored
 
