@@ -14,4 +14,4 @@
     replace: "gpgcheck=1"
     dest: "{{ item }}"
   with_fileglob:
-   - /etc/yum.repos.d/*.repo
+    - /etc/yum.repos.d/*.repo

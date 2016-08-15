@@ -1,0 +1,15 @@
+---
+
+# 5.2.4 - Ensure SSH X11 forwarding is disabled
+
+- name: 5.2.4 - Ensure SSH X11 forwarding is disabled
+  lineinfile:
+    regexp: "^X11Forwarding\\s+"
+    line: "X11Forwarding no"
+    dest: "/etc/ssh/sshd_config"
+  notify:
+    - Restart sshd
+  tags:
+    - level-1
+    - "5.2.4"
+    - scored

@@ -1,0 +1,15 @@
+---
+
+# 5.2.6 - Ensure SSH IgnoreRhosts is enabled 
+
+- name: 5.2.6 - Ensure SSH IgnoreRhosts is enabled 
+  lineinfile:
+    regexp: "^IgnoreRhosts\\s+"
+    line: "IgnoreRhosts yes"
+    dest: "/etc/ssh/sshd_config"
+  notify:
+    - Restart sshd
+  tags:
+    - level-1
+    - "5.2.6"
+    - scored

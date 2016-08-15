@@ -1,0 +1,15 @@
+---
+
+# 5.2.7 - Ensure SSH HostbasedAuthentication is disabled
+
+- name: 5.2.7 - Ensure SSH HostbasedAuthentication is disabled
+  lineinfile:
+    regexp: "^HostbasedAuthentication\\s+"
+    line: "HostbasedAuthentication no"
+    dest: "/etc/ssh/sshd_config"
+  notify:
+    - Restart sshd
+  tags:
+    - level-1
+    - "5.2.7"
+    - scored

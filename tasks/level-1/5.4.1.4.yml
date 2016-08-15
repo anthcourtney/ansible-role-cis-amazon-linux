@@ -1,0 +1,29 @@
+---
+
+# 5.4.1.4 Ensure inactive password lock is 30 days or less
+
+- name: 5.4.1.4 - Obtain a list of user accounts
+  shell: "egrep ^[^:]+:[^\\!*] /etc/shadow | cut -d: -f1"
+  register: egrep_5_4_1_4
+  tags:
+    - level-1
+    - "5.4.1.4"
+    - scored
+
+- name: 5.4.1.4 - Ensure inactive password lock is 30 days or less
+  lineinfile:
+    dest: "/etc/default/useradd"
+    regexp: "^INACTIVE\\s+"
+    line: "INACTIVE={{ cis_pass_inactive_lock }}"
+  tags:
+    - level-1
+    - "5.4.1.4"
+    - scored
+
+- name: 5.4.1.4 - Set inactive passowrd lock for all user accounts
+  shell: "chage --inactive {{ cis_pass_inactive_lock }} {{ item }}"
+  with_items: "{{ egrep_5_4_1_4.stdout_lines }}"
+  tags:
+    - level-1
+    - "5.4.1.4"
+    - scored

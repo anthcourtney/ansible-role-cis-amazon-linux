@@ -1,0 +1,15 @@
+---
+
+# 5.2.12 - Ensure only approved MAC algorithms are used
+
+- name: 5.2.12 - Ensure only approved MAC algorithms are used
+  lineinfile:
+    regexp: "^MACs\\s+"
+    line: "MACs {{ cis_sshd_macs }}"
+    dest: "/etc/ssh/sshd_config"
+  notify:
+    - Restart sshd
+  tags:
+    - level-1
+    - "5.2.12"
+    - scored

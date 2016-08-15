@@ -1,0 +1,15 @@
+---
+
+# 5.2.9 - Ensure SSH PermitEmptyPasswords is disabled
+
+- name: 5.2.9 - Ensure SSH PermitEmptyPasswords is disabled
+  lineinfile:
+    regexp: "^PermitEmptyPasswords\\s+"
+    line: "PermitEmptyPasswords no"
+    dest: "/etc/ssh/sshd_config"
+  notify:
+    - Restart sshd
+  tags:
+    - level-1
+    - "5.2.9"
+    - scored

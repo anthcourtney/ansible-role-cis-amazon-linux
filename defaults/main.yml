@@ -22,3 +22,29 @@ cis_aide_cron_month: "*"
 
 cis_local_login_warning_banner: "Authorized uses only. All activity may be monitored and reported.\n"
 cis_remote_login_warning_banner: "Authorized uses only. All activity may be monitored and reported.\n"
+
+# 5.2
+cis_sshd_max_auth_tries: 4
+cis_sshd_ciphers: "aes256-ctr,aes192-ctr,aes128-ctr"
+cis_sshd_macs: "hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com"
+cis_sshd_client_alive_interval: 300
+cis_sshd_client_alive_count_max: 0
+cis_sshd_login_grace_time: 60
+cis_sshd_banner: "/etc/issue.net"
+
+# 5.5
+cis_wheel_group_members: "root"
+
+# 5.4.1
+cis_pass_max_days: 90
+cis_pass_min_days: 7
+cis_pass_warn_age: 7
+cis_pass_inactive_lock: 30
+
+# 5.4.4
+cis_umask_shell_files:
+  - /etc/bashrc
+  - /etc/profile
+
+# 5.5
+cis_su_wheel_group_members: "root"

@@ -1,0 +1,15 @@
+---
+
+# 5.2.5 -  Ensure SSH MaxAuthTries is set to 4 or less
+
+- name: 5.2.5 - Ensure SSH MaxAuthTries is set to 4 or less
+  lineinfile:
+    regexp: "^MaxAuthTries\\s+"
+    line: "MaxAuthTries {{ cis_sshd_max_auth_tries }}"
+    dest: "/etc/ssh/sshd_config"
+  notify:
+    - Restart sshd
+  tags:
+    - level-1
+    - "5.2.5"
+    - scored

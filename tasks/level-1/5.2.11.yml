@@ -1,0 +1,15 @@
+---
+
+# 5.2.11 - Ensure only approved ciphers are used
+
+- name: 5.2.11 - Ensure only approved ciphers are used
+  lineinfile:
+    regexp: "^Ciphers\\s+"
+    line: "Ciphers {{ cis_sshd_ciphers }}"
+    dest: "/etc/ssh/sshd_config"
+  notify:
+    - Restart sshd
+  tags:
+    - level-1
+    - "5.2.11"
+    - scored

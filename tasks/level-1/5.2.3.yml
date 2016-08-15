@@ -1,0 +1,15 @@
+---
+
+# 5.2.3 - Ensure SSH LogLevel is set to INFO
+
+- name: 5.2.3 - Ensure SSH LogLevel is set to INFO
+  lineinfile:
+    regexp: "^LogLevel\\s+"
+    line: "LogLevel INFO"
+    dest: "/etc/ssh/sshd_config"
+  notify:
+    - Restart sshd
+  tags:
+    - level-1
+    - "5.2.3"
+    - scored

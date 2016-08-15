@@ -1,0 +1,15 @@
+---
+
+# 5.2.8 - Ensure SSH root login is disabled
+
+- name: 5.2.8 - Ensure SSH root login is disabled
+  lineinfile:
+    regexp: "^PermitRootLogin\\s+"
+    line: "PermitRootLogin no"
+    dest: "/etc/ssh/sshd_config"
+  notify:
+    - Restart sshd
+  tags:
+    - level-1
+    - "5.2.8"
+    - scored

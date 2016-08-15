@@ -1,0 +1,14 @@
+---
+
+# 5.4.4 Ensure default user umask is 027 or more restrictive
+
+- name: 5.4.4 - Ensure default user umask is 027 or more restrictive
+  lineinfile:
+    regexp: "^umask\\s+"
+    line: "umask 027"
+    dest: "{{ item }}"
+  with_items: "{{ cis_umask_shell_files }}"
+  tags:
+    - level-1
+    - "5.4.4"
+    - scored

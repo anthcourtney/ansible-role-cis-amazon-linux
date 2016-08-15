@@ -1,0 +1,15 @@
+---
+
+# 5.2.14 - Ensure SSH LoginGraceTime is set to one minute or less
+
+- name: 5.2.14 - Ensure SSH LoginGraceTime is set to one minute or less
+  lineinfile:
+    regexp: "^LoginGraceTime\\s+"
+    line: "LoginGraceTime {{ cis_sshd_login_grace_time }}"
+    dest: "/etc/ssh/sshd_config"
+  notify:
+    - Restart sshd
+  tags:
+    - level-1
+    - "5.2.14"
+    - scored
