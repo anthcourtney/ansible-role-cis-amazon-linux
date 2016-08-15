@@ -6,12 +6,20 @@
   stat:
     path: "{{ cis_sysconfig_init_filename }}"
   register: sysconfig_init_1_4_2
+  tags:
+    - level-1
+    - "1.4.2"
+    - scored
   
 - name: 1.4.2 - Ensure authentication is required for single-user mode
   copy:
     dest: "{{ cis_sysconfig_init_filename }}"
     content: "SINGLE=/sbin/sulogin\n"
   when: sysconfig_init_1_4_2.stat.exists is not defined or not sysconfig_init_1_4_2.stat.exists
+  tags:
+    - level-1
+    - "1.4.2"
+    - scored
 
 - name: 1.4.2 - Ensure authentication is required for single-user mode
   lineinfile: 
@@ -19,3 +27,8 @@
     regexp: "^SINGLE=" 
     line: "SINGLE=/sbin/sulogin" 
   when: sysconfig_init_1_4_2.stat.exists is defined and sysconfig_init_1_4_2.stat.exists
+  tags:
+    - level-1
+    - "1.4.2"
+    - scored
+
