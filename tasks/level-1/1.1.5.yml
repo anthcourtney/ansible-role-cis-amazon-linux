@@ -2,4 +2,13 @@
 
 # 1.1.5 Ensure noexec option set on /tmp partition
 
-# TODO
+- name: 1.1.5 - Ensure noexec option set on /tmp partition
+  debug:
+    msg: "WARNING - This check has not been implemented yet."
+  tags:
+    - level-1
+    - section-1
+    - "1.1.5"
+    - scored
+    - todo
+

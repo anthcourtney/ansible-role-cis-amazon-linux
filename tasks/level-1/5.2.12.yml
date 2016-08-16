@@ -11,5 +11,6 @@
     - Restart sshd
   tags:
     - level-1
+    - section-5
     - "5.2.12"
     - scored

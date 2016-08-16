@@ -6,6 +6,7 @@
   service:
     name: "smb"
     enabled: false
+    state: stopped
   ignore_errors: true
   tags:
     - level-1

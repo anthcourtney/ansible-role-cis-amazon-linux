@@ -7,6 +7,7 @@
   register: cat_6_2_5
   tags:
     - level-1
+    - section-6
     - "6.2.5"
     - scored
 
@@ -16,5 +17,6 @@
   when: cat_6_2_5.stdout_lines is defined and (cat_6_2_5.stdout_lines|length > 1 or (cat_6_2_5.stdout_lines|length == 1 and 'root' not in cat_6_2_5.stdout_lines))
   tags:
     - level-1
+    - section-6
     - "6.2.5"
     - scored

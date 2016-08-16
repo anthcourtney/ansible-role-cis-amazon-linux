@@ -6,6 +6,7 @@
   service:
     name: "{{ item }}"
     enabled: false
+    state: stopped
   with_items:
     - daytime-dgram
     - daytime-stream

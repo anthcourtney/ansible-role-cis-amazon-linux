@@ -11,6 +11,7 @@
     - "/etc/cron.deny"
   tags:
     - level-1
+    - section-5
     - "5.1.8"
     - scored
 
@@ -26,5 +27,6 @@
     - "/etc/at.allow"
   tags:
     - level-1
+    - section-5
     - "5.1.8"
     - scored

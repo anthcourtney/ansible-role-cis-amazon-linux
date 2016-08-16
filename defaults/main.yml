@@ -20,8 +20,13 @@ cis_aide_cron_dow: "*" # Day of week
 cis_aide_cron_dom: "*" # Day of month
 cis_aide_cron_month: "*"
 
+# 1.7.1.2
 cis_local_login_warning_banner: "Authorized uses only. All activity may be monitored and reported.\n"
+# 1.7.1.3
 cis_remote_login_warning_banner: "Authorized uses only. All activity may be monitored and reported.\n"
+
+# 3.4.2
+cis_hosts_allow_all_ips: "127.0.0.1"
 
 # 5.2
 cis_sshd_max_auth_tries: 4
@@ -31,9 +36,6 @@ cis_sshd_client_alive_interval: 300
 cis_sshd_client_alive_count_max: 0
 cis_sshd_login_grace_time: 60
 cis_sshd_banner: "/etc/issue.net"
-
-# 5.5
-cis_wheel_group_members: "root"
 
 # 5.4.1
 cis_pass_max_days: 90
@@ -47,4 +49,4 @@ cis_umask_shell_files:
   - /etc/profile
 
 # 5.5
-cis_su_wheel_group_members: "root"
+cis_wheel_group_members: "root"

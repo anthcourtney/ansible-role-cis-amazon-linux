@@ -1,0 +1,12 @@
+---
+
+# 3.6.3 Ensure loopback traffic is configured
+
+- name: 3.6.3 - Ensure loopback traffic is configured
+  debug:
+    msg: "WARNING - This check has not been implemented yet."
+  tags:
+    - level-1
+    - section-3
+    - "3.6.3"
+    - scored

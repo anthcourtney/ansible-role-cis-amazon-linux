@@ -8,6 +8,7 @@
   register: modprobe_1_1_1_5
   tags:
     - level-1
+    - section-1
     - "1.1.1.5"
     - scored
   
@@ -18,6 +19,7 @@
   when: modprobe_1_1_1_5.stat.exists is not defined or not modprobe_1_1_1_5.stat.exists
   tags:
     - level-1
+    - section-1
     - "1.1.1.5"
     - scored
 
@@ -29,6 +31,7 @@
   when: modprobe_1_1_1_5.stat.exists is defined and modprobe_1_1_1_5.stat.exists
   tags:
     - level-1
+    - section-1
     - "1.1.1.5"
     - scored
 

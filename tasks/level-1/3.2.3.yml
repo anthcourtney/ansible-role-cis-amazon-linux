@@ -12,6 +12,7 @@
     - "net.ipv4.conf.default.secure_redirects"
   tags:
     - level-1
+    - section-3
     - "3.2.3"
     - scored
 
@@ -23,5 +24,6 @@
     - "sysctl -w net.ipv4.route.flush=1"
   tags:
     - level-1
+    - section-3
     - "3.2.3"
     - scored

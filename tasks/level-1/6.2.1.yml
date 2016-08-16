@@ -7,6 +7,7 @@
   register: accounts_6_2_1
   tags: 
     - level-1
+    - section-6
     - "6.2.1"
     - scored
 
@@ -16,5 +17,6 @@
   when: accounts_6_2_1.stdout_lines is defined
   tags:
     - level-1
+    - section-6
     - "6.2.1"
     - scored

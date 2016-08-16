@@ -8,7 +8,7 @@
   register: which_1_5_4
   tags:
     - level-1
-    - 1.5.4
+    - "1.5.4"
     - scored
 
 - name: Restore prelinked binaries
@@ -16,7 +16,7 @@
   when: which_1_5_4.rc is defined and which_1_5_4.rc == 0
   tags:
     - level-1
-    - 1.5.4
+    - "1.5.4"
     - scored
 
 - name: Ensure prelink is disabled
@@ -25,5 +25,5 @@
     state: absent
   tags: 
     - level-1
-    - 1.5.4
+    - "1.5.4"
     - scored

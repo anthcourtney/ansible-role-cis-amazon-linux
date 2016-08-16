@@ -1,4 +1,13 @@
 ---
 
-# 5.2.15
-# TODO
+# 5.2.15 Ensure SSH access is limited
+
+- name: 5.2.15 - Ensure SSH access is limited
+  debug:
+    msg: "WARNING - This check has not been implemented yet."
+  tags:
+    - level-1
+    - section-5
+    - "5.2.15"
+    - scored
+    - todo

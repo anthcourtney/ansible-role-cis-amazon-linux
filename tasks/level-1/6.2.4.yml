@@ -8,5 +8,6 @@
     regexp: "^\\+:.*\n"
   tags:
     - level-1
+    - section-6
     - "6.2.4"
     - scored

@@ -10,5 +10,6 @@
   with_items: "{{ cis_umask_shell_files }}"
   tags:
     - level-1
+    - section-5
     - "5.4.4"
     - scored

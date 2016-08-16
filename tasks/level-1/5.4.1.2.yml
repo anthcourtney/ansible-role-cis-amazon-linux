@@ -7,6 +7,7 @@
   register: egrep_5_4_1_2
   tags:
     - level-1
+    - section-5
     - "5.4.1.2"
     - scored
 
@@ -17,6 +18,7 @@
     line: "PASS_MIN_DAYS {{ cis_pass_min_days }}"
   tags:
     - level-1
+    - section-5
     - "5.4.1.2"
     - scored
 
@@ -25,5 +27,6 @@
   with_items: "{{ egrep_5_4_1_2.stdout_lines }}"
   tags:
     - level-1
+    - section-5
     - "5.4.1.2"
     - scored

@@ -1,0 +1,11 @@
+---
+
+# 4.2.4 Ensure permissions on all logfiles are configured
+
+- name: 4.2.4 - Ensure permissions on all logfiles are configured
+  shell: "ind /var/log -type f -exec chmod g-wx,o-rwx {} +"
+  tags:
+    - level-1
+    - section-4
+    - "4.2.4"
+    - scored

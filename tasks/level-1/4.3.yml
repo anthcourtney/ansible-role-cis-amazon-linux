@@ -1,0 +1,12 @@
+---
+
+# 4.3 Ensure logrotate is configured
+
+- name: 4.3 - Ensure logrotate is configured
+  debug:
+    msg: "WARNING - This check has not been implemented yet."
+  tags:
+    - level-1
+    - section-4
+    - "4.3"
+    - not-scored

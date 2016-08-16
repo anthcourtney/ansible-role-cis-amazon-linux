@@ -1,0 +1,13 @@
+---
+
+# 4.2.2.5  Ensure remote syslog-ng messages are only accepted on designated log hosts
+
+- name: 4.2.2.5 - Ensure remote syslog-ng messages are only accepted on designated log hosts
+  debug:
+    msg: "WARNING - This check has not been implemented yet."
+  tags:
+    - level-1
+    - section-4
+    - "4.2.2.5"
+    - not-scored
+    - todo

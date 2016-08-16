@@ -7,6 +7,7 @@
   register: audit_6_2_16
   tags:
     - level-1
+    - section-6
     - "6.2.16"
     - scored
 
@@ -16,5 +17,6 @@
   when: audit_6_2_16.stdout_lines is defined and audit_6_2_16.stdout_lines|length > 0
   tags:
     - level-1
+    - section-6
     - "6.2.16"
     - scored

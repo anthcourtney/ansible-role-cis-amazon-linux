@@ -1,0 +1,13 @@
+---
+
+# 4.2.2.4 Ensure syslog-ng is configured to send logs to a remote log host
+
+- name: 4.2.2.4 - Ensure syslog-ng is configured to send logs to a remote log host
+  debug:
+    msg: "WARNING - This check has not been implemented yet."
+  tags:
+    - level-1
+    - section-4
+    - "4.2.2.4"
+    - not-scored
+    - todo

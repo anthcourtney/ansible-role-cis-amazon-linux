@@ -6,12 +6,22 @@
   stat:
     path: "{{ cis_modprobe_conf_filename }}"
   register: modprobe_3_5_2
+  tags:
+    - level-1
+    - section-3
+    - "3.5.2"
+    - not-scored
   
 - name: 3.5.2 - Ensure SCTP is disabled 
   copy:
     dest: "{{ cis_modprobe_conf_filename }}"
     content: "install sctp /bin/true\n"
   when: modprobe_3_5_2.stat.exists is not defined or not modprobe_3_5_2.stat.exists
+  tags:
+    - level-1
+    - section-3
+    - "3.5.2"
+    - not-scored
 
 - name: 3.5.2 - Ensure SCTP is disabled
   lineinfile: 
@@ -19,3 +29,9 @@
     regexp: "^install sctp\\s+" 
     line: "install sctp /bin/true" 
   when: modprobe_3_5_2.stat.exists is defined and modprobe_3_5_2.stat.exists
+  tags:
+    - level-1
+    - section-3
+    - "3.5.2"
+    - not-scored
+

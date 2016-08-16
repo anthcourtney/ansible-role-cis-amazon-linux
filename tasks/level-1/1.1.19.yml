@@ -6,6 +6,7 @@
   service:
     name: autofs
     enabled: false
+    state: stopped
   register: autofs_result
   failed_when: "autofs_result.failed and 'no service or tool found for: autofs' not in autofs_result.msg"
   tags:

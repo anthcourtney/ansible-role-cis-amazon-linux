@@ -9,6 +9,7 @@
     dest: "/etc/pam.d/su"
   tags:
     - level-1
+    - section-5
     - "5.5"
     - scored
 
@@ -19,6 +20,6 @@
     dest: "/etc/group"
   tags:
     - level-1
+    - section-5
     - "5.5"
     - scored
-

@@ -1,0 +1,13 @@
+---
+
+# 6.2.9 Ensure users own their home directories
+
+- name: 6.2.9 - Ensure users own their home directories
+  debug:
+    msg: "WARNING - This check has not been implemented yet."
+  tags:
+    - level-1
+    - section-6
+    - "6.2.9"
+    - scored
+    - todo
