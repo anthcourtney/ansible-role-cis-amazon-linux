@@ -25,7 +25,7 @@
 
 - name: 6.1.13 - Audit SUID executables
   debug:
-    msg: "{{ audit_6_1_13.stdout_lines }}"
+    msg: "*** Manual Remediation Required ***\\n{{ audit_6_1_13.stdout_lines }}"
   when:
     - audit_6_1_13.stdout_lines is defined and audit_6_1_13.stdout_lines|length > 0
     - not fail_on_manual_remediation_actions

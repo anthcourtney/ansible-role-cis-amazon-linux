@@ -25,7 +25,7 @@
 
 - name: 6.1.11 - Ensure no unowned files or directories exist
   debug:
-    msg: "{{ audit_6_1_11.stdout_lines }}"
+    msg: "*** Manual Remediation Required ***\\n{{ audit_6_1_11.stdout_lines }}"
   when: 
     - audit_6_1_11.stdout_lines is defined and audit_6_1_11.stdout_lines|length > 0
     - not fail_on_manual_remediation_actions

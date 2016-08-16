@@ -14,7 +14,21 @@
 - name: 6.2.5 - Fail if root is not the only UID 0 account
   fail:
     msg: "root is not the only UID 0 account."
-  when: cat_6_2_5.stdout_lines is defined and (cat_6_2_5.stdout_lines|length > 1 or (cat_6_2_5.stdout_lines|length == 1 and 'root' not in cat_6_2_5.stdout_lines))
+  when: 
+    - cat_6_2_5.stdout_lines is defined and (cat_6_2_5.stdout_lines|length > 1 or (cat_6_2_5.stdout_lines|length == 1 and 'root' not in cat_6_2_5.stdout_lines))
+    - fail_on_manual_remediation_actions
+  tags:
+    - level-1
+    - section-6
+    - "6.2.5"
+    - scored
+
+- name: 6.2.5 - Warn if root is not the only UID 0 account
+  debug:
+    msg: "*** Manual Remediation Required ***\\n root is not hte only UID 0 account"
+  when:
+    - cat_6_2_5.stdout_lines is defined and (cat_6_2_5.stdout_lines|length > 1 or (cat_6_2_5.stdout_lines|length == 1 and 'root' not in cat_6_2_5.stdout_lines))
+    - not fail_on_manual_remediation_actions
   tags:
     - level-1
     - section-6
