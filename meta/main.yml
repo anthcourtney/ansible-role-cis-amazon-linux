@@ -1,3 +1,12 @@
----
-
+galaxy_info:
+  author: Anth Courtney
+  description: your description
+  company: JemJuliet Pty Ltd
+  license: MIT
+  min_ansible_version: 2.0
+  platforms:
+  - name: Amazon
+    versions:
+    - all
+  galaxy_tags: []
 dependencies: []
