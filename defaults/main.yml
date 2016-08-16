@@ -12,6 +12,10 @@ fail_on_manual_remediation_actions: false  # Whether to fail when remediation it
 # Check specific values which can be overriden
 ##############################################
 
+# 1.3.1
+cis_aide_database_filename: "/var/lib/aide/aide.db.gz"
+cis_aide_src_database_filename: "/var/lib/aide/aide.db.new.gz"
+# 1.3.2
 cis_aide_cron_user: "root"
 cis_aide_cron_job: "/usr/sbin/aide --check"
 cis_aide_cron_minute: 0
