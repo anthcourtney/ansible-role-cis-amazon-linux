@@ -5,7 +5,7 @@
 - name: 3.4.2 - Check if /etc/hosts.allow configuration file exists
   stat:
     path: "/etc/hosts.allow"
-  register: hosts.allow_3_4_2
+  register: hosts_allow_3_4_2
   tags:
     - level-1
     - section-3
@@ -16,7 +16,7 @@
   copy:
     path: "/etc/hosts.allow"
     content: "ALL: {{ cis_hosts_allow_all_ips }}\n"
-  when: hosts.allow_3_4_2.stat.exists is not defined or not hosts.allow_3_4_2.stat.exists
+  when: hosts_allow_3_4_2.stat.exists is not defined or not hosts_allow_3_4_2.stat.exists
   tags:
     - level-1
     - section-3
@@ -28,7 +28,7 @@
     dest: "/etc/hosts.allow"
     regexp: "^ALL:"
     line: "ALL: {{ cis_hosts_allow_all_ips }}"
-  when: hosts.allow_3_4_2.stat.exists is defined and hosts.allow_3_4_2.stat.exists
+  when: hosts_allow_3_4_2.stat.exists is defined and hosts_allow_3_4_2.stat.exists
   tags:
     - level-1
     - section-3
