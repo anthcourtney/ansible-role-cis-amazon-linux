@@ -1,12 +1,12 @@
 ---
 
 - include: preflight.yml
-  when: apply_cis_level_1_profile or apply_cis_level_2_profile
+  when: cis_apply_level_1_profile or cis_apply_level_2_profile
 
 - include: "{{ role_path }}/tasks/level-1.yml"
   become: yes
-  when: apply_cis_level_1_profile
+  when: cis_apply_level_1_profile
 
 - include: "{{ role_path }}/tasks/level-2.yml"
   become: yes
-  when: apply_cis_level_2_profile
+  when: cis_apply_level_2_profile
