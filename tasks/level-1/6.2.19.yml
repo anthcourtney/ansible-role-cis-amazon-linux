@@ -25,7 +25,7 @@
 
 - name: 6.2.19 - Ensure no duplicate group names exist
   debug:
-    msg: "*** Manual Remediation Required ***\\n{{ audit_6_2_19.stdout_lines }}"
+    msg: "*** ACTION REQUIRED *** {{ audit_6_2_19.stdout }}"
   when: 
     - audit_6_2_19.stdout_lines is defined and audit_6_2_19.stdout_lines|length > 0
     - not fail_on_manual_remediation_actions

@@ -25,7 +25,7 @@
 
 - name: 6.2.10 - Ensure users' dot files are not group or world writable
   debug:
-    msg: "*** Manual Remediation Required ***\\n{{ audit_6_2_10.stdout_lines }}"
+    msg: "*** ACTION REQUIRED ***\\n{{ audit_6_2_10.stdout_lines }}"
   when: 
     - audit_6_2_10.stdout_lines is defined and audit_6_2_10.stdout_lines|length > 0
     - not fail_on_manual_remediation_actions

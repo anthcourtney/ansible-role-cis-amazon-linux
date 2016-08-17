@@ -25,7 +25,7 @@
 
 - name: 6.2.13 - Ensure users' .netrc Files are not group or world accessible
   debug:
-    msg: "*** Manual Remediation Required ***\\n{{ audit_6_2_13.stdout_lines }}"
+    msg: "*** ACTION REQUIRED ***\\n{{ audit_6_2_13.stdout }}"
   when: 
     - audit_6_2_13.stdout_lines is defined and audit_6_2_13.stdout_lines|length > 0
     - not fail_on_manual_remediation_actions
