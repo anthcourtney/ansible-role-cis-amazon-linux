@@ -2,12 +2,46 @@
 
 # 5.2.15 Ensure SSH access is limited
 
-- name: 5.2.15 - Ensure SSH access is limited
-  debug:
-    msg: "WARNING - This check has not been implemented yet."
+- name: 5.2.15 - Configure SSH AllowUsers
+  lineinfile:
+    regexp: "^#?AllowUsers\\s+" 
+    line: "AllowUsers {{ cis_sshd_allow_users }}"
+  when: cis_sshd_allow_users is defined and cis_sshd_allow_users|trim != ""
   tags:
     - level-1
     - section-5
     - "5.2.15"
     - scored
-    - todo
+
+- name: 5.2.15 - Configure SSH AllowGroups
+  lineinfile:
+    regexp: "^#?AllowGroups\\s+"
+    line: "AllowGroups {{ cis_sshd_allow_groups }}"
+  when: cis_sshd_allow_groups is defined and cis_sshd_allow_groups|trim != ""
+  tags:
+    - level-1
+    - section-5
+    - "5.2.15"
+    - scored
+
+- name: 5.2.15 - Configure SSH DenyUsers 
+  lineinfile:
+    regexp: "^#?DenyUsers\\s+"
+    line: "DenyUsers {{ cis_sshd_deny_users }}"
+  when: cis_sshd_deny_users is defined and cis_sshd_deny_users|trim != ""
+  tags:
+    - level-1
+    - section-5
+    - "5.2.15"
+    - scored
+
+- name: 5.2.15 - Configure SSH DenyGroups
+  lineinfile:
+    regexp: "^#?DenyGroups\\s+"
+    line: "DenyGroups {{ cis_sshd_deny_groups }}"
+  when: cis_sshd_deny_groups is defined and cis_sshd_deny_groups|trim != ""
+  tags:
+    - level-1
+    - section-5
+    - "5.2.15"
+    - scored
