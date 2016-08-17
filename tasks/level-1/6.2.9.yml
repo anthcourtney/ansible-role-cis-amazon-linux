@@ -2,12 +2,26 @@
 
 # 6.2.9 Ensure users own their home directories
 
-- name: 6.2.9 - Ensure users own their home directories
-  debug:
-    msg: "WARNING - This check has not been implemented yet."
+- name: 6.2.9 - Audit ownership of users' home directories
+  script: "{{ role_path }}/files/audit_6.2.9.sh"
+  register: audit_6_2_9
   tags:
     - level-1
     - section-6
     - "6.2.9"
     - scored
-    - todo
+
+- name: 6.2.9 - Ensure users own their home directories
+  file:
+    owner: "{{ item.split(':')[1] }}"
+    path: "{{ item.split(':')[0] }}"
+    state: directory
+    follow: yes
+  when: audit_6_2_9.stdout_lines is defined and audit_6_2_9.stdout_lines|length > 0
+  with_items: "{{ audit_6_2_9.stdout_lines }}"
+  tags:
+    - level-1
+    - section-6
+    - "6.2.9"
+    - scored
+
