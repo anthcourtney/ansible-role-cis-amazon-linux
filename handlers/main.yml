@@ -4,3 +4,8 @@
   service:
     name: sshd
     state: restarted
+
+- name: Restart rsyslog
+  service:
+    name: rsyslog
+    state: restarted

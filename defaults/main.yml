@@ -44,6 +44,12 @@ cis_hosts_allow_all_ips: "127.0.0.1"
 cis_enable_rsyslog: true # Set to true if rsyslog should be enabled/configured.
 cis_enable_syslog_ng: false # Set to true if syslog_ng should be enabled/configured.
 
+# 4.2.1.4
+cis_rsyslog_remote_loghost_address: "loghost.example.com" # Can be a hostname or IP address. If no forwarding should occur, exclude this check.
+
+# 4.2.1.5
+cis_rsyslog_accept_remote_messages: false # Set to true if the host should accept remote syslog messages.
+
 # 5.2
 cis_sshd_max_auth_tries: 4
 cis_sshd_ciphers: "aes256-ctr,aes192-ctr,aes128-ctr"

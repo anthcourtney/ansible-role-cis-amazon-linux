@@ -88,6 +88,11 @@ Limitations
 
 At present, only the Level 1 items of the benchmark are implemented. Level 2 items will be added as time permits.
 
+The following checks have not been implemented:
+
+* 4.2.1.2. The determination of what should be logged and the destination of messsages is environment specific.
+* 4.2.2.2. The determination of what should be logged and the destination of messages is environment specific.
+
 License
 -------
 

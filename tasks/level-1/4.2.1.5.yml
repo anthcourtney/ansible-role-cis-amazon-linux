@@ -3,11 +3,35 @@
 # 4.2.1.5 Ensure remote rsyslog messages are only accepted on designated log hosts
 
 - name: 4.2.1.5 - Ensure remote rsyslog messages are only accepted on designated log hosts
-  debug:
-    msg: "WARNING - This check has not been implemented yet."
+  lineinfile:
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    dest: "/etc/rsyslog.conf"
+    state: present
+  when: cis_enable_rsyslog and cis_rsyslog_accept_remote_messages
+  with_items:
+    - { regexp: "^#?\\$ModLoad\\s+imtcp.so", line: "$ModLoad imtcp.so" }
+    - { regexp: "^#?\\$InputTCPServerRun\\s+", line: "$InputTCPServerRun 514" }
+  notify: Restart rsyslog
   tags:
     - level-1
     - section-4
     - "4.2.1.5"
-    - not-scored
-    - todo
+    - scored
+
+- name: 4.2.1.5 - Ensure remote rsyslog messages are not accepted on non-designated log hosts
+  lineinfile:
+    regexp: "{{ item }}"
+    dest: "/etc/rsyslog.conf"
+    state: absent
+  when: cis_enable_rsyslog and not cis_rsyslog_accept_remote_messages
+  with_items:
+    - "^#?\\$ModLoad\\s+imtcp.so"
+    - "^#?\\$InputTCPServerRun\\s+514"
+  notify: Restart rsyslog
+  tags:
+    - level-1
+    - section-4
+    - "4.2.1.5"
+    - scored
+

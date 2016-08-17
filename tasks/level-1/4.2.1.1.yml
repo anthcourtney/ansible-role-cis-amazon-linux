@@ -5,6 +5,7 @@
 - name: 4.2.1.1 - Check if rsyslog is installed
   command: yum -q list rsyslog
   ignore_errors: true
+  when: cis_enable_rsyslog
   register: rsyslog_4_2_1_1
   tags:
     - level-1
@@ -17,7 +18,9 @@
     name: "rsyslog"
     enabled: true
     state: started
-  when: rsyslog_4_2_1_1.rc is not defined or rsyslog_4_2_1_1.rc == 0
+  when: 
+    - cis_enable_rsyslog
+    - rsyslog_4_2_1_1.rc is not defined or rsyslog_4_2_1_1.rc == 0
   ignore_errors: false
   tags:
     - level-1
