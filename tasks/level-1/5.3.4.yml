@@ -3,8 +3,7 @@
 # 5.3.4 Ensure password hashing algorithm is SHA-512
 
 - name: 5.3.4 - Ensure password hashing algorithm is SHA-512
-  debug:
-    msg: "WARNING - This check has not been implemented yet."
+  command: "authconfig --update --passalgo=sha512"
   tags:
     - level-1
     - section-5
