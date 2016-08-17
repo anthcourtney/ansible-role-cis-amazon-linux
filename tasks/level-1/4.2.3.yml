@@ -2,12 +2,27 @@
 
 # 4.2.3 Ensure rsyslog or syslog-ng is installed
 
-- name: 4.2.3 - Ensure rsyslog or syslog-ng is installed
-  debug:
-    msg: "WARNING - This check has not been implemented yet."
+- name: 4.2.3 - Ensure rsyslog is installed
+  package:
+    name: rsyslog
+    state: latest
+  when: cis_enable_rsyslog
   tags:
     - level-1
     - section-4
     - "4.2.3"
     - scored
     - todo
+
+- name: 4.2.3 - Ensure syslog-ng is installed
+  package:
+    name: rsyslog
+    state: latest
+  when: cis_enable_syslog_ng
+  tags:
+    - level-1
+    - section-4
+    - "4.2.3"
+    - scored
+    - todo
+

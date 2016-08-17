@@ -1,12 +1,18 @@
 ---
 
+###############################################
+# Values which modify the behaviour of the role
+###############################################
+
 apply_cis_level_1_profile: true    # Whether Level 1 of the benchmark should be applied
 apply_cis_level_2_profile: false   # Whether Level 2 of the benchmark should be applied
 
 cis_level_1_exclusions: []         # A list of Level 1 reccomendations to exclude (i.e. ['1.1.1.1'])
 cis_level_2_exclusions: []         # A list of Level 2 reccomendations to exclude 
 
-fail_on_manual_remediation_actions: false  # Whether to fail when remediation items are found for reccomendations which can't be automatically fixed. True or false. If false, a debug message will be generated instead.
+# Whether to fail when remediation items are found for reccomendations which can't be automatically fixed.
+# If false, a debug message will be generated instead, with the preface *** ACTION REQUIRED ***..
+fail_on_manual_remediation_actions: false  # True or false.
 
 ##############################################
 # Check specific values which can be overriden
@@ -15,6 +21,7 @@ fail_on_manual_remediation_actions: false  # Whether to fail when remediation it
 # 1.3.1
 cis_aide_database_filename: "/var/lib/aide/aide.db.gz"
 cis_aide_src_database_filename: "/var/lib/aide/aide.db.new.gz"
+
 # 1.3.2
 cis_aide_cron_user: "root"
 cis_aide_cron_job: "/usr/sbin/aide --check"
@@ -31,6 +38,11 @@ cis_remote_login_warning_banner: "Authorized uses only. All activity may be moni
 
 # 3.4.2
 cis_hosts_allow_all_ips: "127.0.0.1"
+
+# 4.2.3
+# You should only enable either rsyslog or syslog-ng, but not both.
+cis_enable_rsyslog: true # Set to true if rsyslog should be enabled/configured.
+cis_enable_syslog_ng: false # Set to true if syslog_ng should be enabled/configured.
 
 # 5.2
 cis_sshd_max_auth_tries: 4
