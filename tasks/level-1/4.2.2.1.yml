@@ -3,11 +3,13 @@
 # 4.2.2.1 Ensure syslog-ng service is enabled
 
 - name: 4.2.2.1 - Ensure syslog-ng service is enabled
-  debug:
-    msg: "WARNING - This check has not been implemented yet."
+  service:
+    name: "syslog-ng"
+    enabled: true
+    state: started
   tags:
     - level-1
     - section-4
     - "4.2.2.1"
-    - not-scored
+    - scored
     - todo
