@@ -13,5 +13,6 @@
   ignore_errors: true
   tags:
     - level-1
+    - section-2
     - "2.1.5"
     - scored
