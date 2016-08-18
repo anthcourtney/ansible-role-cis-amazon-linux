@@ -107,6 +107,10 @@ At present, only the Level 1 items of the benchmark are implemented. Level 2 ite
 
 The following checks have not been implemented:
 
+* 3.6.2. Firewall rulesets are envrionment specific.
+* 3.6.3. Firewall rulesets are environment specific.
+* 3.6.4. Firewall rulesets are environment specific.
+* 3.6.5. Firewall rulesets are environment specific.
 * 4.2.1.2. The determination of what should be logged and the destination of messages is environment specific.
 * 4.2.2.2. The determination of what should be logged and the destination of messages is environment specific.
 * 4.2.2.3. Inline editing of syslog-ng configuration file is considered too imprecise and is best solved by a supplied configuration file which addresses this and other related requirements.
