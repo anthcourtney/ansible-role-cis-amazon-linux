@@ -13,7 +13,7 @@
 
 - name: 6.2.11 - Ensure no users have .forward files
   fail:
-    msg: "{{ audit_6_2_11.stdout_lines }}"
+    msg: "{{ audit_6_2_11.stdout }}"
   when:
     - audit_6_2_11.stdout_lines is defined and audit_6_2_11.stdout_lines|length > 0
     - fail_on_manual_remediation_actions
@@ -25,7 +25,7 @@
 
 - name: 6.2.11 - Ensure no users have .forward files
   debug:
-    msg: "*** ACTION REQUIRED ***\\n{{ audit_6_2_11.stdout_lines }}"
+    msg: "*** ACTION REQUIRED *** {{ audit_6_2_11.stdout }}"
   when: 
     - audit_6_2_11.stdout_lines is defined and audit_6_2_11.stdout_lines|length > 0
     - not fail_on_manual_remediation_actions
