@@ -46,8 +46,8 @@ cis_hosts_allow_all_ips: "127.0.0.1"
 
 # 4.2.3
 # You should only enable either rsyslog or syslog-ng, but not both.
-cis_enable_rsyslog: false # Set to true if rsyslog should be enabled/configured.
-cis_enable_syslog_ng: true # Set to true if syslog_ng should be enabled/configured.
+cis_enable_rsyslog: true # Set to true if rsyslog should be enabled/configured.
+cis_enable_syslog_ng: false # Set to true if syslog_ng should be enabled/configured.
 
 # 4.2.1.4
 cis_rsyslog_remote_loghost_address: "loghost.example.com" # Can be a hostname or IP address. If no forwarding should occur, exclude this check.
