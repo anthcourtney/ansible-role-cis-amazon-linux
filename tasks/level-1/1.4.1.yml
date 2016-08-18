@@ -2,7 +2,7 @@
 
 # 1.4.1 Ensure permissions on bootloader config are configured
 
-- name: Set permissions on grub configuration
+- name: 1.4.1 - Set permissions on grub configuration
   file:
     path: "{{ cis_grub_bootloader_filename }}"
     owner: root
