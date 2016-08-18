@@ -3,7 +3,7 @@ anthcourtney.cis-amazon-linu
 
 This ansible role applies v2.0.0 of the CIS Amazon Linux Benchmark. <https://benchmarks.cisecurity.org/tools2/linux/CIS_Amazon_Linux_Benchmark_v2.0.0.pdf>
 
-This role was developed and tested against Amazon linux 2016.03.
+This role was developed and tested against Amazon Linux 2016.03.
 
 Why Would I Use This Role?
 --------------------------
