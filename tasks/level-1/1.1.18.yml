@@ -2,4 +2,10 @@
 
 # 1.1.18 Ensure sticky bit is set on all world-writable directories
 
-# TODO
+- name: 1.1.18 - Ensure sticky bit is set on all world-writable directories
+  shell: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d -perm -0002 2>/dev/null | xargs chmod a+t"
+  tags:
+    - level-1
+    - section-1
+    - "1.1.18"
+    - scored
