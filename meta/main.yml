@@ -8,5 +8,5 @@ galaxy_info:
   - name: Amazon
     versions:
     - all
-  galaxy_tags: ['cis-amazon-linux','cis','amazon-linux','amazon','hardening','benchmark','pci-dss']
+  galaxy_tags: ['CIS Amazon Linux','CIS','Amazon Linux','Amazon','hardening','benchmark','PCIDSS','compliance']
 dependencies: []
