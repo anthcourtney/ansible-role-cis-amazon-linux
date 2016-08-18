@@ -3,11 +3,20 @@
 # 5.3.1 Ensure password creation requirements are configured
 
 - name: 5.3.1 - Ensure password creation requirements are configured
-  debug:
-    msg: "WARNING - This check has not been implemented yet."
+  lineinfile:
+    dest: "/etc/security/pwquality.conf"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+    create: yes
+  with_items:
+    - { regexp: "^#?minlen=", line: "minlen={{ cis_pwquality_minlen }}" }
+    - { regexp: "^#?dcredit=", line: "dcredit={{ cis_pwquality_dcredit }}" }
+    - { regexp: "^#?ucredit=", line: "ucredit={{ cis_pwquality_ucredit }}" }
+    - { regexp: "^#?ocredit=", line: "ocredit={{ cis_pwquality_ocredit }}" }
+    - { regexp: "^#?lcredit=", line: "lcredit={{ cis_pwquality_lcredit }}" }
   tags:
     - level-1
     - section-5
     - "5.3.1"
     - scored
-    - todo

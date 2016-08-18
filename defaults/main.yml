@@ -46,8 +46,8 @@ cis_hosts_allow_all_ips: "127.0.0.1"
 
 # 4.2.3
 # You should only enable either rsyslog or syslog-ng, but not both.
-cis_enable_rsyslog: true # Set to true if rsyslog should be enabled/configured.
-cis_enable_syslog_ng: false # Set to true if syslog_ng should be enabled/configured.
+cis_enable_rsyslog: false # Set to true if rsyslog should be enabled/configured.
+cis_enable_syslog_ng: true # Set to true if syslog_ng should be enabled/configured.
 
 # 4.2.1.4
 cis_rsyslog_remote_loghost_address: "loghost.example.com" # Can be a hostname or IP address. If no forwarding should occur, exclude this check.
@@ -55,19 +55,40 @@ cis_rsyslog_remote_loghost_address: "loghost.example.com" # Can be a hostname or
 # 4.2.1.5
 cis_rsyslog_accept_remote_messages: false # Set to true if the host should accept remote syslog messages.
 
-# 5.2
+# 4.2.2.3
+cis_syslog_ng_file_perms: "0640"
+
+# 5.2.5
 cis_sshd_max_auth_tries: 4
+
+# 5.2.11
 cis_sshd_ciphers: "aes256-ctr,aes192-ctr,aes128-ctr"
+
+# 5.2.12
 cis_sshd_macs: "hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com"
+
+# 5.2.13
 cis_sshd_client_alive_interval: 300
 cis_sshd_client_alive_count_max: 0
+
+# 5.2.14
 cis_sshd_login_grace_time: 60
-cis_sshd_banner: "/etc/issue.net"
+
 # 5.2.15
 cis_sshd_allow_users: "" # A comma-delimited list of users to allow ssh access to
 cis_sshd_allow_groups: "" # A comma-delimited list of groups ot allow ssh access to
 cis_sshd_deny_users: "" # A comma-delimited list of users to deny ssh access for
 cis_sshd_deny_groups: "" # A comma-delimited list of groups to deny ssh access for
+
+# 5.2.16
+cis_sshd_banner: "/etc/issue.net"
+
+# 5.3.1
+cis_pwquality_minlen: "14" # Minimum number of characters required for passwords
+cis_pwquality_dcredit: "-1" # At least one digit must be provided
+cis_pwquality_ucredit: "-1" # At least one uppercase character must be provided
+cis_pwquality_ocredit: "-1" # At least one special character must be provided
+cis_pwquality_lcredit: "-1" # At least one lowercase character must be provided
 
 # 5.4.1
 cis_pass_max_days: 90
