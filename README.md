@@ -101,10 +101,10 @@ The following checks have not been implemented:
 * 4.2.1.2. The determination of what should be logged and the destination of messages is environment specific.
 * 4.2.2.2. The determination of what should be logged and the destination of messages is environment specific.
 * 4.2.2.3. Inline editing of syslog-ng configuration file is considered too imprecise and is best solved by a supplied configuration file which addresses this and other related requirements.
-* 4.2.2.4. Inline editing of syslog-ng configuration file is considered too imprecise and is best solved b
-y a supplied configuration file which addresses this and other related requirements.
+* 4.2.2.4. Inline editing of syslog-ng configuration file is considered too imprecise and is best solved by a supplied configuration file which addresses this and other related requirements.
 * 4.2.2.5. Inline editing of syslog-ng configuration file is considered too imprecise and is best solved b
 y a supplied configuration file which addresses this and other related requirements.
+* 4.3. The configuration of logrotate is site-specific.
 * 5.3.2. Multi-line editing of pam configuration files is considered too imprecise and dangerous, and is best solved by a supplied configuration file which addresses this and other related requirements.
 * 5.3.3. Multi-line editing of pam configuration files is considered too imprecise and dangerous, and is b
 est solved by a supplied configuration file which addresses this and other related requirements.
