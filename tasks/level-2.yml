@@ -1,0 +1,4 @@
+---
+
+- include: "{{ role_path }}/tasks/level-2/6.1.1.yml"
+  when: "'6.1.1' not in cis_level_2_exclusions"
