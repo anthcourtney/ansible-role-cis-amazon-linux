@@ -2,7 +2,17 @@
 
 # 1.3.2 - Ensure filesystem integrity is regularly checked
 
-- name: Create cron entry to run aide filesystem integrity check regularly
+- name: 1.3.2 - Ensure cron is installed
+  yum:
+    name: cronie
+    state: present
+  tags:
+    - level-1
+    - section-1
+    - "1.3.2"
+    - scored
+
+- name: 1.3.2 - Create cron entry to run aide filesystem integrity check regularly
   cron:
     name: "CIS 1.3.2 - Run aide filesystem integrity check"
     user: "{{ cis_aide_cron_user }}"
