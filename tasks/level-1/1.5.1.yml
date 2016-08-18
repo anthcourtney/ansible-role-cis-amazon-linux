@@ -22,10 +22,12 @@
     - scored
 
 - name: 1.5.1 - Ensure core dumps are restricted
-  lineinfile:
+  pam_limits:
     dest: "{{ cis_security_limits_filename }}"
-    regexp: "^(#){0,1}\\*\\s+hard\\s+core"
-    line: "* hard core 0"
+    limit_item: "core"
+    limit_type: "hard"
+    domain: "*"
+    value: "0"
   when: security_limits_1_5_1.stat.exists is defined and security_limits_1_5_1.stat.exists
   tags:
     - level-1
