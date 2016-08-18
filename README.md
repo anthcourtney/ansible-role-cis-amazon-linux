@@ -13,11 +13,11 @@ If you are running Amazon Linux, then this role attempts to provide one piece of
 Here Be Dragons!
 ----------------
 
-If you are considering applying this role to any servers, you should have a basic familiarity with the CIS Benchmark (or other similar benchmarks) and an appreciation for the untoward impact that it may have on a system.
+If you are considering applying this role to any servers, you should have a basic familiarity with the CIS Benchmark (or other similar benchmarks) and an appreciation for the impact that it may have on a system.
 
-If you apply this role straight-out-of-the-box, there is a 99% chance you will bork your system. Please take the time to familarise yourself with the standard and with the configurable default values, and exclude any items before applying to a system.
+Please take the time to familarise yourself with the standard and with the configurable default values, and exclude any items before applying to a system.
 
-An examples of items that should be considered for exclusion (or at least, for modification of the related default values) include:
+An examples of items that should be immediately considered for exclusion (or at least, for modification of the related default values) include:
 
 * ```3.4.2``` and ```3.4.3```, which by default effectively limit access to the host (including via ssh) to localhost only.
 
