@@ -3,21 +3,13 @@
 # 4.2.3 Ensure rsyslog or syslog-ng is installed
 
 - name: 4.2.3 - Ensure rsyslog is installed
-  package:
-    name: rsyslog
-    state: latest
-  when: cis_enable_rsyslog
-  tags:
-    - level-1
-    - section-4
-    - "4.2.3"
-    - scored
-
-- name: 4.2.3 - Ensure syslog-ng is not installed
-  package:
-    name: syslog-ng
-    state: absent
-  when: cis_enable_rsyslog
+  yum:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  when: cis_enable_rsyslog and not cis_enable_syslog_ng
+  with_items:
+    - { name: "rsyslog", state: "present" }
+    - { name: "syslog-ng", state: "absent" }
   tags:
     - level-1
     - section-4
@@ -25,21 +17,14 @@
     - scored
 
 - name: 4.2.3 - Ensure syslog-ng is installed
-  package:
-    name: rsyslog
-    state: latest
-  when: cis_enable_syslog_ng
-  tags:
-    - level-1
-    - section-4
-    - "4.2.3"
-    - scored
-
-- name: 4.2.3 - Ensure rsyslog is not installed
-  package:
-    name: rsyslog
-    state: absent
-  when: cis_enable_syslog_ng
+  yum:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+    enablerepo: epel
+  when: cis_enable_syslog_ng and not cis_enable_rsyslog
+  with_items:
+    - { name: "rsyslog", state: "absent" }
+    - { name: "syslog-ng", state: "present" }
   tags:
     - level-1
     - section-4
