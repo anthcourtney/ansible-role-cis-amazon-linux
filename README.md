@@ -8,7 +8,7 @@ Why Would I Use This Role?
 
 If you are attempting to obtain compliance against an industry-accepted security standard, like PCI DSS, APRA or ISO 27001, then you need to demonstrate that you have applied documented hardening standards against all systems within scope of assessment.
 
-If you are running Amazon Linux, then this role attempts to provide one piece of the compliance puzzle.
+If you are running Amazon Linux, then this role attempts to provide one piece of the solution to the compliance puzzle.
 
 Here Be Dragons!
 ----------------
@@ -17,9 +17,9 @@ If you are considering applying this role to any servers, you should have a basi
 
 If you apply this role straight-out-of-the-box, there is a 99% chance you will bork your system. Please take the time to familarise yourself with the standard and with the configurable default values, and exclude any items before applying to a system.
 
-Some examples of items that should be considered for exclusion (or at least, for modification of the related default values) include:
+An examples of items that should be considered for exclusion (or at least, for modification of the related default values) include:
 
-* TBC
+* ```3.4.2``` and ```3.4.3```, which by default effectively limit access to the host (including via ssh) to localhost only.
 
 Example Playbook
 ----------------
@@ -112,7 +112,7 @@ est solved by a supplied configuration file which addresses this and other relat
 License
 -------
 
-BSD. Whatever that means :)
+BSD. 
 
 Author Information
 ------------------
