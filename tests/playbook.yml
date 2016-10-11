@@ -1,6 +1,7 @@
+# Standards: 0.11
 ---
 
-- hosts: all
+- hosts: localhost
   become: yes
 
   roles:

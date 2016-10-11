@@ -1,3 +1,4 @@
+# Standards: 0.11
 ---
 
 # 4.2.2.4 Ensure syslog-ng is configured to send logs to a remote log host

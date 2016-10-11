@@ -1,3 +1,4 @@
+# Standards: 0.11
 ---
 language: python
 python: "2.7"
@@ -23,7 +24,8 @@ install:
 
 script:
   # Basic role syntax check
-  - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
+  - make syntax
+  - make review
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

@@ -122,6 +122,18 @@ y a supplied configuration file which addresses this and other related requireme
 * 5.3.3. Multi-line editing of pam configuration files is considered too imprecise and dangerous, and is b
 est solved by a supplied configuration file which addresses this and other related requirements.
 
+Testing
+-------
+
+The following testing processes are applied by the developer of this role:
+
+* The syntax of the role is checked. See ```make syntax```.
+* ```ansible-review``` is run against the role and any warnings which are deemed appropriate are remediated. See ```make review```.
+
+The following tests have been flagged but are not yet implemented:
+
+* Test application of the role against the Vagrant ```mvbcoding/awslinux``` image, using the ansible provisioner.
+
 License
 -------
 

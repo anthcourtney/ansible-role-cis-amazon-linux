@@ -1,3 +1,4 @@
+# Standards: 0.11
 ---
 
 ###############################################
@@ -99,8 +100,8 @@ cis_pass_inactive_lock: 30
 # 5.4.4
 cis_umask_default: "027"
 cis_umask_shell_files:
-  - /etc/bashrc
-  - /etc/profile
+- /etc/bashrc
+- /etc/profile
 
 # 5.5
 cis_wheel_group_members: "root"
