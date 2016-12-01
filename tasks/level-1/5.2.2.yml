@@ -3,12 +3,20 @@
 
 # 5.2.2 - Ensure SSH Protocol is set to 2 
 
+- include: stat_sshd_config.yml
+  tags:
+    - level-1
+    - section-5
+    - "5.2.2"
+    - scored
+
 - name: 5.2.2 - Ensure SSH Protocol is set to 2 
   lineinfile:
     regexp: "^Protocol\\s+"
     line: "Protocol 2"
     dest: "/etc/ssh/sshd_config"
   notify: "Restart sshd"
+  when: sshd_config.stat.exists
   tags:
     - level-1
     - section-5

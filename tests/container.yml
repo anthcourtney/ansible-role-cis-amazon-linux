@@ -1,0 +1,52 @@
+# Standards: 0.11
+---
+
+- hosts: localhost
+  connection: local
+
+  vars:
+    test_ansible_version: "2.2"
+    sanitised_test_ansible_version: "{{ test_ansible_version | regex_replace('\\.','_') }}"
+    docker_image_name: "anthcourtney/cis-amazon-linux-{{ sanitised_test_ansible_version }}"
+    docker_container_name: "anthcourtney-cis-amazon-linux-{{ sanitised_test_ansible_version }}"
+
+  tasks:
+
+  - block:
+    - name: Create temp directory
+      file:
+        path: "{{ playbook_dir }}/tmp"
+        state: directory
+      
+    - name: Create Dockerfile
+      template:
+        src: "{{ playbook_dir }}/templates/Dockerfile.j2"
+        dest: "{{ playbook_dir }}/tmp/Dockerfile"
+
+    - name: Build docker image
+      docker_image:
+        name: "{{ docker_image_name }}"
+        state: present
+        path: .
+        dockerfile: "{{ playbook_dir }}/tmp/Dockerfile"
+        force: yes
+
+    - name: Test playbook within docker container
+      docker_container:
+        command: "/sbin/my_init -- ansible-playbook -i localhost, --e \"cis_level_1_exclusions=['3.2.8','5.3.4']\" playbook.yml"
+        detach: false
+        image: "{{ docker_image_name }}"
+        name: "{{ docker_container_name }}"
+        privileged: yes
+        state: started
+
+    always:
+      - name: Cleanup docker container
+        docker_container:
+          name: "{{ docker_container_name }}"
+          state: absent
+
+      - name: Cleanup temp directory
+        file:
+          path: "{{ playbook_dir }}/tmp"
+          state: absent

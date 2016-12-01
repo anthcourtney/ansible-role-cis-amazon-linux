@@ -5,6 +5,7 @@
 
 - name: 1.5.3 - Ensure address space layout randomization is enabled
   sysctl:
+    ignoreerrors: yes
     name: kernel.randomize_va_space
     value: 2
     state: present

@@ -5,6 +5,7 @@
 
 - name: 3.2.1 - Ensure source routed packets are not accepted 
   sysctl:
+    ignoreerrors: yes
     name: "{{ item }}" 
     value: 0
     state: present

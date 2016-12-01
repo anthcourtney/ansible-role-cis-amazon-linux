@@ -3,7 +3,7 @@ anthcourtney.cis-amazon-linux
 
 This ansible role applies v2.0.0 of the CIS Amazon Linux Benchmark. <https://benchmarks.cisecurity.org/tools2/linux/CIS_Amazon_Linux_Benchmark_v2.0.0.pdf>
 
-This role was developed and tested against Amazon Linux 2016.03.
+This role was developed and tested against Amazon Linux 2016.03. It has been tested against Amazon Linux 2016.09 with equal success.
 
 Why Would I Use This Role?
 --------------------------
@@ -122,6 +122,17 @@ y a supplied configuration file which addresses this and other related requireme
 * 5.3.3. Multi-line editing of pam configuration files is considered too imprecise and dangerous, and is b
 est solved by a supplied configuration file which addresses this and other related requirements.
 
+Compatibility
+-------------
+
+This role is compatible with the following versions of ansible:
+
+* 2.0.2
+* 2.1.3
+* 2.2.0
+
+This role has not been tested against any other versions of ansible.
+
 Testing
 -------
 
@@ -129,6 +140,7 @@ The following testing processes are applied by the developer of this role:
 
 * The syntax of the role is checked. See ```make syntax```.
 * ```ansible-review``` is run against the role and any warnings which are deemed appropriate are remediated. See ```make review```.
+* The role is applied against a docker container using both ansible v2.1.3 and ansible v2.2. see ```make test```.
 
 The following tests have been flagged but are not yet implemented:
 

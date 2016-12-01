@@ -5,6 +5,7 @@
 
 - name: 3.2.8 - Ensure TCP SYN Cookies is enabled
   sysctl:
+    ignoreerrors: yes
     name: "net.ipv4.tcp_syncookies"
     value: 1
     state: present

@@ -3,11 +3,19 @@
 
 # 5.2.10 - Ensure SSH PermitUserEnvironment is disabled
 
+- include: stat_sshd_config.yml
+  tags:
+    - level-1
+    - section-5
+    - "5.2.10"
+    - scored
+
 - name: 5.2.10 - Ensure SSH PermitUserEnvironment is disabled
   lineinfile:
     regexp: "^PermitUserEnvironment\\s+"
     line: "PermitUserEnvironment no"
     dest: "/etc/ssh/sshd_config"
+  when: sshd_config.stat.exists
   notify:
     - Restart sshd
   tags:
