@@ -5,6 +5,7 @@
 
 - name: 3.2.2 - Ensure ICMP redirects are not accepted
   sysctl:
+    ignoreerrors: yes
     name: "{{ item }}" 
     value: 0
     state: present

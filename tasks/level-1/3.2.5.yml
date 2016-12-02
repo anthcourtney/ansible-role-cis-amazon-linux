@@ -5,6 +5,7 @@
 
 - name: 3.2.5 - Ensure broadcast ICMP requests are ignored
   sysctl:
+    ignoreerrors: yes
     name: "net.ipv4.icmp_echo_ignore_broadcasts"
     value: 1
     state: present

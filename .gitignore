@@ -1,2 +1,6 @@
 **/*.retry
 **/*.swp
+**/*.vagrant
+*.output
+tests/tmp
+tests/roles

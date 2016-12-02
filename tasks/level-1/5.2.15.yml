@@ -3,12 +3,21 @@
 
 # 5.2.15 Ensure SSH access is limited
 
+- include: stat_sshd_config.yml
+  tags:
+    - level-1
+    - section-5
+    - "5.2.15"
+    - scored
+
 - name: 5.2.15 - Configure SSH AllowUsers
   lineinfile:
     regexp: "^#?AllowUsers\\s+" 
     line: "AllowUsers {{ cis_sshd_allow_users }}"
     dest: "/etc/ssh/sshd_config"
-  when: cis_sshd_allow_users is defined and cis_sshd_allow_users|trim != ""
+  when: 
+    - sshd_config.stat.exists
+    - cis_sshd_allow_users is defined and cis_sshd_allow_users|trim != ""
   notify: Restart sshd
   tags:
     - level-1
@@ -21,7 +30,9 @@
     regexp: "^#?AllowGroups\\s+"
     line: "AllowGroups {{ cis_sshd_allow_groups }}"
     dest: "/etc/ssh/sshd_config"
-  when: cis_sshd_allow_groups is defined and cis_sshd_allow_groups|trim != ""
+  when: 
+    - sshd_config.stat.exists
+    - cis_sshd_allow_groups is defined and cis_sshd_allow_groups|trim != ""
   notify: Restart sshd
   tags:
     - level-1
@@ -34,7 +45,9 @@
     regexp: "^#?DenyUsers\\s+"
     line: "DenyUsers {{ cis_sshd_deny_users }}"
     dest: "/etc/ssh/sshd_config"
-  when: cis_sshd_deny_users is defined and cis_sshd_deny_users|trim != ""
+  when: 
+    - sshd_config.stat.exists
+    - cis_sshd_deny_users is defined and cis_sshd_deny_users|trim != ""
   notify: Restart sshd
   tags:
     - level-1
@@ -47,7 +60,9 @@
     regexp: "^#?DenyGroups\\s+"
     line: "DenyGroups {{ cis_sshd_deny_groups }}"
     dest: "/etc/ssh/sshd_config"
-  when: cis_sshd_deny_groups is defined and cis_sshd_deny_groups|trim != ""
+  when: 
+    - sshd_config.stat.exists
+    - cis_sshd_deny_groups is defined and cis_sshd_deny_groups|trim != ""
   notify: Restart sshd
   tags:
     - level-1

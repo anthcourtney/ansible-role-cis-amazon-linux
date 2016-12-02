@@ -2,6 +2,7 @@
 ---
 
 - hosts: localhost
+  connection: local
   become: yes
 
   roles:
