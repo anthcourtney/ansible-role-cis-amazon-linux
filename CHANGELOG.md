@@ -1,3 +1,10 @@
+1.1.1 (2017-01-01)
+
+Enhancement:
+
+* Support running preflight checks over SSH. See <https://github.com/anthcourtney/ansible-role-cis-amazon-linux/pull/3>
+* Add '2016.09' to supported versions for Amazon in metadata.
+
 1.1.0 (2016-12-02)
 
 Bugfixes:
