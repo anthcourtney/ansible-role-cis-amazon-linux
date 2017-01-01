@@ -3,18 +3,8 @@
 
 # Preflight checks
 
-- name: Preflight - Lookup operating-system id
-  set_fact:
-    os_id: "{{ lookup('ini', 'ID type=properties file=/etc/os-release') | regex_replace('\"','') }}"
-  tags: always
-
-- name: Preflight - Lookup operating system version
-  set_fact:
-    os_version: "{{ lookup('ini', 'VERSION type=properties file=/etc/os-release') | regex_replace('\"','') }}"
-  tags: always
-
 - name: Preflight - Fail if host is not suitable for this benchmark
   fail:
     msg: "This benchmark is not suitable for the destination operating system"
-  when: (os_id is not defined) or (os_version is not defined) or (os_version not in cis_target_os_versions) or (os_id != cis_target_os_id)
+  when: (ansible_distribution is not defined) or (ansible_distribution_version is not defined) or (ansible_distribution_version not in cis_target_os_versions) or (ansible_distribution != cis_target_os_distribution)
   tags: always
