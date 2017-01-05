@@ -3,8 +3,8 @@
 
 # 5.4.2 Ensure system accounts are non-login 
 
-- name: 5.4.2 - Audit system account shells
-  script: "{{ role_path }}/files/audit_5.4.2.sh"
+- name: 5.4.2 - Retrieve system accounts
+  shell: "awk -F: '($3 < 500) {print $1 }' /etc/passwd | grep -v ^#"
   register: audit_5_4_2
   tags:
     - level-1
@@ -12,12 +12,10 @@
     - "5.4.2"
     - scored
 
-- name: 5.4.2 - Ensure system accounts are non-login 
-  fail:
-    msg: "{{ audit_5_4_2.stdout_lines }}"
-  when: 
-    - audit_5_4_2.stdout_lines is defined and audit_5_4_2.stdout_lines|length > 0
-    - fail_on_manual_remediation_actions
+- name: 5.4.2 - Lock system user passwords
+  shell: "usermod -L {{ item }}"
+  with_items: "{{ audit_5_4_2.stdout_lines }}"
+  when: item != "root"
   tags:
     - level-1
     - section-5
@@ -25,14 +23,13 @@
     - scored
 
 - name: 5.4.2 - Ensure system accounts are non-login
-  debug:
-    msg: "*** ACTION REQUIRED *** {{ audit_5_4_2.stdout }}"
-  when: 
-    - audit_5_4_2.stdout_lines is defined and audit_5_4_2.stdout_lines|length > 0
-    - not fail_on_manual_remediation_actions
+  user:
+    name: "{{ item }}"
+    shell: "/sbin/nologin"
+  with_items: "{{ audit_5_4_2.stdout_lines }}"
+  when: "item not in cis_skip_lock_users"
   tags:
     - level-1
     - section-5
     - "5.4.2"
     - scored
-

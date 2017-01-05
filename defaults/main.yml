@@ -97,6 +97,13 @@ cis_pass_min_days: 7
 cis_pass_warn_age: 7
 cis_pass_inactive_lock: 30
 
+# 5.4.2
+cis_skip_lock_users:
+  - root
+  - halt
+  - shutdown
+  - sync
+
 # 5.4.4
 cis_umask_default: "027"
 cis_umask_shell_files:
