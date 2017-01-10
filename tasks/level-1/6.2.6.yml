@@ -5,6 +5,8 @@
 
 - name: 6.2.6 - Audit root PATH Integrity
   script: "{{ role_path }}/files/audit_6.2.6.sh"
+  always_run: yes
+  changed_when: False
   register: audit_6_2_6
   tags:
     - level-1
