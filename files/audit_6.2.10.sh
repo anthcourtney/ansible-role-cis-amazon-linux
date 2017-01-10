@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for dir in `cat /etc/passwd | egrep -v '(root|sync|halt|shutdown)' | awk -F: '($7 != "/sbin/nologin") { print $6 }'`; do
+for dir in `cat /etc/passwd | egrep -v '^(root|sync|halt|shutdown):' | awk -F: '($7 != "/sbin/nologin") { print $6 }'`; do
   for file in $dir/.[A-Za-z0-9]*; do
     if [ ! -h "$file" -a -f "$file" ]; then
       fileperm=`ls -ld $file | cut -f1 -d" "`
