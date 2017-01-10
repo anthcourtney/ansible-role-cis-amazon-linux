@@ -1,3 +1,11 @@
+1.1.3 (2017-01-10)
+
+Enhancement:
+
+* Refactored auditing shell scripts to add ability to handle commented entries in ```/etc/passwd``` and ```/etc/group```, as well as optimisation of loops. Credit: @lorensk
+* Improve identification of information gathering tasks to ensure execution during check mode and idempotency. Credit: @lorensk
+* Minor documentation fixes. Credit: @lorensk
+
 1.1.2 (2017-01-05)
 
 Enhancement:
