@@ -1,3 +1,10 @@
+1.1.4 (2017-04-12)
+
+Bugfix:
+
+* Fixed check script for check 6.1.13 so that SUID executables were found rather than executables belonging to no group. Credit: @lorensk
+* Added support for Amazon Linux 2017.03. Credit: @heitorlessa
+
 1.1.3 (2017-01-10)
 
 Enhancement:
