@@ -1,9 +1,9 @@
 # Standards: 0.11
 ---
 
-# 6.2.3 Ensure no legacy "+" entries exist in /etc/shadow 
+# 6.2.3 Ensure no legacy "+" entries exist in /etc/shadow
 
-- name: 6.2.3 - Ensure no legacy "+" entries exist in /etc/shadow 
+- name: 6.2.3 - Ensure no legacy "+" entries exist in /etc/shadow
   replace:
     dest: "/etc/shadow"
     regexp: "^\\+:.*\n"

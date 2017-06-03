@@ -8,14 +8,14 @@
   register: accounts_6_2_1
   always_run: yes
   changed_when: False
-  tags: 
+  tags:
     - level-1
     - section-6
     - "6.2.1"
     - scored
 
 - name: 6.2.1 - Lock any accounts without passwords
-  command: "passwd -l {{ item }}" 
+  command: "passwd -l {{ item }}"
   with_items: "{{ accounts_6_2_1.stdout_lines }}"
   when: accounts_6_2_1.stdout_lines is defined
   tags:

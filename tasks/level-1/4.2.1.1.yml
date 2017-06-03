@@ -19,7 +19,7 @@
     name: "rsyslog"
     enabled: true
     state: started
-  when: 
+  when:
     - cis_enable_rsyslog
     - rsyslog_4_2_1_1.rc is not defined or rsyslog_4_2_1_1.rc == 0
   ignore_errors: false

@@ -17,7 +17,7 @@
 - name: 6.2.16 - Ensure no duplicate UIDs exist
   fail:
     msg: "{{ audit_6_2_16.stdout_lines }}"
-  when: 
+  when:
     - audit_6_2_16.stdout_lines is defined and audit_6_2_16.stdout_lines|length > 0
     - fail_on_manual_remediation_actions
   tags:
@@ -29,7 +29,7 @@
 - name: 6.2.16 - Ensure no duplicate UIDs exist
   debug:
     msg: "*** ACTION REQUIRED *** {{ audit_6_2_16.stdout }}"
-  when: 
+  when:
     - audit_6_2_16.stdout_lines is defined and audit_6_2_16.stdout_lines|length > 0
     - not fail_on_manual_remediation_actions
   tags:

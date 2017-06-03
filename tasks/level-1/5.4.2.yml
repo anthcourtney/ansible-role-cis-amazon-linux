@@ -1,7 +1,7 @@
 # Standards: 0.11
 ---
 
-# 5.4.2 Ensure system accounts are non-login 
+# 5.4.2 Ensure system accounts are non-login
 
 - name: 5.4.2 - Retrieve system accounts
   shell: "awk -F: '($3 < 500) {print $1 }' /etc/passwd | grep -v ^#"

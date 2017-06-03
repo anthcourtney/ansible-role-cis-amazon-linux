@@ -1,7 +1,7 @@
 # Standards: 0.11
 ---
 
-# 5.4.1.2 Ensure minimum days between password changes is 7 or more 
+# 5.4.1.2 Ensure minimum days between password changes is 7 or more
 
 - name: 5.4.1.2 - Obtain a list of user accounts
   shell: "egrep ^[^:]+:[^\\!*] /etc/shadow | cut -d: -f1"
@@ -14,7 +14,7 @@
     - "5.4.1.2"
     - scored
 
-- name: 5.4.1.2 - Ensure minimum days between password changes is 7 or more 
+- name: 5.4.1.2 - Ensure minimum days between password changes is 7 or more
   lineinfile:
     dest: "/etc/login.defs"
     regexp: "^PASS_MIN_DAYS\\s+"

@@ -1,12 +1,12 @@
 # Standards: 0.11
 ---
 
-# 3.2.1 Ensure source routed packets are not accepted 
+# 3.2.1 Ensure source routed packets are not accepted
 
-- name: 3.2.1 - Ensure source routed packets are not accepted 
+- name: 3.2.1 - Ensure source routed packets are not accepted
   sysctl:
     ignoreerrors: yes
-    name: "{{ item }}" 
+    name: "{{ item }}"
     value: 0
     state: present
   with_items:

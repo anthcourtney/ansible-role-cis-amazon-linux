@@ -1,7 +1,7 @@
 # Standards: 0.11
 ---
 
-# 1.1.1.4 - Ensure mounting of hfs filesystems is disabled 
+# 1.1.1.4 - Ensure mounting of hfs filesystems is disabled
 
 - name: 1.1.1.4 - Check if CIS modprobe configuration file exists
   stat:
@@ -12,8 +12,8 @@
     - section-1
     - "1.1.1.4"
     - scored
-  
-- name: 1.1.1.4 - Ensure mounting of hfs filesystems is disabled 
+
+- name: 1.1.1.4 - Ensure mounting of hfs filesystems is disabled
   copy:
     dest: "{{ cis_modprobe_conf_filename }}"
     content: "install hfs /bin/true\n"
@@ -25,10 +25,10 @@
     - scored
 
 - name: 1.1.1.4 - Ensure mounting of hfs filesystems is disabled
-  lineinfile: 
+  lineinfile:
     dest: "{{ cis_modprobe_conf_filename }}"
-    regexp: "^install hfs\\s+" 
-    line: "install hfs /bin/true" 
+    regexp: "^install hfs\\s+"
+    line: "install hfs /bin/true"
   when: modprobe_1_1_1_4.stat.exists is defined and modprobe_1_1_1_4.stat.exists
   tags:
     - level-1

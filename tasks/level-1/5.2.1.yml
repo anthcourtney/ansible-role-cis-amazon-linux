@@ -1,7 +1,7 @@
 # Standards: 0.11
 ---
 
-# 5.2.1 Ensure permissions on /etc/ssh/sshd_config are configured 
+# 5.2.1 Ensure permissions on /etc/ssh/sshd_config are configured
 
 - include: stat_sshd_config.yml
   tags:
@@ -10,7 +10,7 @@
     - "5.2.1"
     - scored
 
-- name: 5.2.1 - Ensure permissions on /etc/ssh/sshd_config are configured 
+- name: 5.2.1 - Ensure permissions on /etc/ssh/sshd_config are configured
   file:
     path: /etc/ssh/sshd_config
     owner: root

@@ -11,7 +11,7 @@
     - level-1
     - "1.4.2"
     - scored
-  
+
 - name: 1.4.2 - Ensure authentication is required for single-user mode
   copy:
     dest: "{{ cis_sysconfig_init_filename }}"
@@ -23,10 +23,10 @@
     - scored
 
 - name: 1.4.2 - Ensure authentication is required for single-user mode
-  lineinfile: 
+  lineinfile:
     dest: "{{ cis_sysconfig_init_filename }}"
-    regexp: "^SINGLE=" 
-    line: "SINGLE=/sbin/sulogin" 
+    regexp: "^SINGLE="
+    line: "SINGLE=/sbin/sulogin"
   when: sysconfig_init_1_4_2.stat.exists is defined and sysconfig_init_1_4_2.stat.exists
   tags:
     - level-1

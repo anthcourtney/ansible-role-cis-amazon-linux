@@ -4,7 +4,7 @@
 # 6.1.1 Audit system file permissions
 
 - name: 6.1.1 - Audit system file permissions
-  shell: rpm -Va --nomtime --nosize --nomd5 --nolinkto 
+  shell: rpm -Va --nomtime --nosize --nomd5 --nolinkto
   register: audit_6_1_1
   tags:
     - level-2

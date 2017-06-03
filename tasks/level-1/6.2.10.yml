@@ -17,7 +17,7 @@
 - name: 6.2.10 - Ensure users' dot files are not group or world writable
   fail:
     msg: "{{ audit_6_2_10.stdout }}"
-  when: 
+  when:
     - audit_6_2_10.stdout_lines is defined and audit_6_2_10.stdout_lines|length > 0
     - fail_on_manual_remediation_actions
   tags:
@@ -29,7 +29,7 @@
 - name: 6.2.10 - Ensure users' dot files are not group or world writable
   debug:
     msg: "*** ACTION REQUIRED *** {{ audit_6_2_10.stdout }}"
-  when: 
+  when:
     - audit_6_2_10.stdout_lines is defined and audit_6_2_10.stdout_lines|length > 0
     - not fail_on_manual_remediation_actions
   tags:

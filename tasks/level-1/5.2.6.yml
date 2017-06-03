@@ -1,7 +1,7 @@
 # Standards: 0.11
 ---
 
-# 5.2.6 - Ensure SSH IgnoreRhosts is enabled 
+# 5.2.6 - Ensure SSH IgnoreRhosts is enabled
 
 - include: stat_sshd_config.yml
   tags:
@@ -10,7 +10,7 @@
     - "5.2.6"
     - scored
 
-- name: 5.2.6 - Ensure SSH IgnoreRhosts is enabled 
+- name: 5.2.6 - Ensure SSH IgnoreRhosts is enabled
   lineinfile:
     regexp: "^IgnoreRhosts\\s+"
     line: "IgnoreRhosts yes"

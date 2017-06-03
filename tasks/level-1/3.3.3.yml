@@ -12,7 +12,7 @@
     - section-3
     - "3.3.3"
     - scored
-  
+
 - name: 3.3.3 - Ensure IPv6 is disabled
   copy:
     dest: "{{ cis_modprobe_conf_filename }}"
@@ -25,10 +25,10 @@
     - scored
 
 - name: 3.3.3 - Ensure IPv6 is disabled
-  lineinfile: 
+  lineinfile:
     dest: "{{ cis_modprobe_conf_filename }}"
-    regexp: "^options ipv6 disable=" 
-    line: "options ipv6 disable=1" 
+    regexp: "^options ipv6 disable="
+    line: "options ipv6 disable=1"
   when: modprobe_3_3_3.stat.exists is defined and modprobe_3_3_3.stat.exists
   tags:
     - level-1

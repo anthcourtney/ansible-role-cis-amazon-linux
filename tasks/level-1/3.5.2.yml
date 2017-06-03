@@ -12,8 +12,8 @@
     - section-3
     - "3.5.2"
     - not-scored
-  
-- name: 3.5.2 - Ensure SCTP is disabled 
+
+- name: 3.5.2 - Ensure SCTP is disabled
   copy:
     dest: "{{ cis_modprobe_conf_filename }}"
     content: "install sctp /bin/true\n"
@@ -25,10 +25,10 @@
     - not-scored
 
 - name: 3.5.2 - Ensure SCTP is disabled
-  lineinfile: 
+  lineinfile:
     dest: "{{ cis_modprobe_conf_filename }}"
-    regexp: "^install sctp\\s+" 
-    line: "install sctp /bin/true" 
+    regexp: "^install sctp\\s+"
+    line: "install sctp /bin/true"
   when: modprobe_3_5_2.stat.exists is defined and modprobe_3_5_2.stat.exists
   tags:
     - level-1

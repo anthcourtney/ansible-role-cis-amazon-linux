@@ -1,12 +1,12 @@
 # Standards: 0.11
 ---
 
-# 3.2.7 Ensure Reverse Path Filtering is enabled 
+# 3.2.7 Ensure Reverse Path Filtering is enabled
 
-- name: 3.2.7 - Ensure Reverse Path Filtering is enabled 
+- name: 3.2.7 - Ensure Reverse Path Filtering is enabled
   sysctl:
     ignoreerrors: yes
-    name: "{{ item }}" 
+    name: "{{ item }}"
     value: 1
     state: present
   with_items:

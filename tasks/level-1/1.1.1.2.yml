@@ -1,7 +1,7 @@
 # Standards: 0.11
 ---
 
-# 1.1.1.2 - Ensure mounting of freevxfs filesystems is disabled 
+# 1.1.1.2 - Ensure mounting of freevxfs filesystems is disabled
 
 - name: 1.1.1.2 - Check if CIS modprobe configuration file exists
   stat:
@@ -12,8 +12,8 @@
     - section-1
     - "1.1.1.2"
     - scored
-  
-- name: 1.1.1.2 - Ensure mounting of freevxfs filesystems is disabled 
+
+- name: 1.1.1.2 - Ensure mounting of freevxfs filesystems is disabled
   copy:
     dest: "{{ cis_modprobe_conf_filename }}"
     content: "install freevxfs /bin/true\n"
@@ -25,10 +25,10 @@
     - scored
 
 - name: 1.1.1.2 - Ensure mounting of freevxfs filesystems is disabled
-  lineinfile: 
+  lineinfile:
     dest: "{{ cis_modprobe_conf_filename }}"
-    regexp: "^install freevxfs" 
-    line: "install freevxfs /bin/true" 
+    regexp: "^install freevxfs"
+    line: "install freevxfs /bin/true"
   when: modprobe_1_1_1_2.stat.exists is defined and modprobe_1_1_1_2.stat.exists
   tags:
     - level-1
