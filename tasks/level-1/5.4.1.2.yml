@@ -26,7 +26,7 @@
     - scored
 
 - name: 5.4.1.2 - Set minimum password change interval for all user accounts
-  shell: "chage --mindays {{ cis_pass_min_days }} {{ item }}"
+  command: "chage --mindays {{ cis_pass_min_days }} {{ item }}"
   with_items: "{{ egrep_5_4_1_2.stdout_lines }}"
   tags:
     - level-1
