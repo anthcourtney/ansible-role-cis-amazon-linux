@@ -26,7 +26,7 @@
     - scored
 
 - name: 5.4.1.3 - Set password expiration warning for all user accounts
-  shell: "chage --warndays {{ cis_pass_warn_age }} {{ item }}"
+  command: "chage --warndays {{ cis_pass_warn_age }} {{ item }}"
   with_items: "{{ egrep_5_4_1_3.stdout_lines }}"
   tags:
     - level-1

@@ -1,7 +1,7 @@
 # Standards: 0.11
 ---
 
-# 5.4.1.1 Ensure password expiration is 90 days or less 
+# 5.4.1.1 Ensure password expiration is 90 days or less
 
 - name: 5.4.1.1 - Obtain a list of user accounts
   shell: "egrep ^[^:]+:[^\\!*] /etc/shadow | cut -d: -f1"
@@ -26,7 +26,7 @@
     - scored
 
 - name: 5.4.1.1 - Set password expiration for all user accounts
-  shell: "chage --maxdays {{ cis_pass_max_days }} {{ item }}"
+  command: "chage --maxdays {{ cis_pass_max_days }} {{ item }}"
   with_items: "{{ egrep_5_4_1_1.stdout_lines }}"
   tags:
     - level-1

@@ -1,7 +1,7 @@
 # Standards: 0.11
 ---
 
-# 1.5.1 Ensure core dumps are restricted 
+# 1.5.1 Ensure core dumps are restricted
 
 - name: 1.5.1 - Check if security limits file exists
   stat:

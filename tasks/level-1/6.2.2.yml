@@ -1,9 +1,9 @@
 # Standards: 0.11
 ---
 
-# 6.2.2 Ensure no legacy "+" entries exist in /etc/passwd 
+# 6.2.2 Ensure no legacy "+" entries exist in /etc/passwd
 
-- name: 6.2.2 - Ensure no legacy "+" entries exist in /etc/passwd 
+- name: 6.2.2 - Ensure no legacy "+" entries exist in /etc/passwd
   replace:
     dest: "/etc/passwd"
     regexp: "^\\+:.*\n"

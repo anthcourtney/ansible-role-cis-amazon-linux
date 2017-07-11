@@ -24,7 +24,7 @@
   yum:
     name: prelink
     state: absent
-  tags: 
+  tags:
     - level-1
     - "1.5.4"
     - scored

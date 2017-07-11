@@ -15,7 +15,7 @@
 - name: 6.1.13 - Audit SUID executables
   fail:
     msg: "{{ audit_6_1_13.stdout_lines }}"
-  when: 
+  when:
     - audit_6_1_13.stdout_lines is defined and audit_6_1_13.stdout_lines|length > 0
     - fail_on_manual_remediation_actions
   tags:

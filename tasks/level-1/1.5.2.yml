@@ -17,7 +17,7 @@
 - name: 1.5.2 - Ensure XD/NX support is enabled
   fail:
     msg: "Ensure XD/NX support is enabled."
-  when: 
+  when:
     - "'NX (Execute Disable) protection: active' not in dmesg_1_5_2.stdout"
     - fail_on_manual_remediation_actions
   tags:
@@ -28,7 +28,7 @@
 - name: 1.5.2 - Ensure XD/NX support is enabled
   debug:
     msg: "*** ACTION REQUIRED *** Ensure XD/NX support is enabled."
-  when: 
+  when:
     - "'NX (Execute Disable) protection: active' not in dmesg_1_5_2.stdout"
     - not fail_on_manual_remediation_actions
   tags:

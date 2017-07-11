@@ -12,8 +12,8 @@
     - section-3
     - "3.5.4"
     - not-scored
-  
-- name: 3.5.4 - Ensure TIPC is disabled 
+
+- name: 3.5.4 - Ensure TIPC is disabled
   copy:
     dest: "{{ cis_modprobe_conf_filename }}"
     content: "install tipc /bin/true\n"
@@ -25,10 +25,10 @@
     - not-scored
 
 - name: 3.5.4 - Ensure TIPC is disabled
-  lineinfile: 
+  lineinfile:
     dest: "{{ cis_modprobe_conf_filename }}"
-    regexp: "^install tipc\\s+" 
-    line: "install tipc /bin/true" 
+    regexp: "^install tipc\\s+"
+    line: "install tipc /bin/true"
   when: modprobe_3_5_4.stat.exists is defined and modprobe_3_5_4.stat.exists
   tags:
     - level-1

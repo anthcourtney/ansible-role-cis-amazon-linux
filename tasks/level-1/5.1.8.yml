@@ -17,7 +17,7 @@
     - scored
 
 - name: 5.1.8 -  Ensure at/cron is restricted to authorized users
-  file: 
+  file:
     path: "{{ item }}"
     state: touch
     owner: root

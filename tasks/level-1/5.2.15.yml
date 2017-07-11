@@ -12,10 +12,10 @@
 
 - name: 5.2.15 - Configure SSH AllowUsers
   lineinfile:
-    regexp: "^#?AllowUsers\\s+" 
+    regexp: "^#?AllowUsers\\s+"
     line: "AllowUsers {{ cis_sshd_allow_users }}"
     dest: "/etc/ssh/sshd_config"
-  when: 
+  when:
     - sshd_config.stat.exists
     - cis_sshd_allow_users is defined and cis_sshd_allow_users|trim != ""
   notify: Restart sshd
@@ -30,7 +30,7 @@
     regexp: "^#?AllowGroups\\s+"
     line: "AllowGroups {{ cis_sshd_allow_groups }}"
     dest: "/etc/ssh/sshd_config"
-  when: 
+  when:
     - sshd_config.stat.exists
     - cis_sshd_allow_groups is defined and cis_sshd_allow_groups|trim != ""
   notify: Restart sshd
@@ -40,12 +40,12 @@
     - "5.2.15"
     - scored
 
-- name: 5.2.15 - Configure SSH DenyUsers 
+- name: 5.2.15 - Configure SSH DenyUsers
   lineinfile:
     regexp: "^#?DenyUsers\\s+"
     line: "DenyUsers {{ cis_sshd_deny_users }}"
     dest: "/etc/ssh/sshd_config"
-  when: 
+  when:
     - sshd_config.stat.exists
     - cis_sshd_deny_users is defined and cis_sshd_deny_users|trim != ""
   notify: Restart sshd
@@ -60,7 +60,7 @@
     regexp: "^#?DenyGroups\\s+"
     line: "DenyGroups {{ cis_sshd_deny_groups }}"
     dest: "/etc/ssh/sshd_config"
-  when: 
+  when:
     - sshd_config.stat.exists
     - cis_sshd_deny_groups is defined and cis_sshd_deny_groups|trim != ""
   notify: Restart sshd

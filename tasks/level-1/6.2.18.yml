@@ -29,7 +29,7 @@
 - name: 6.2.18 - Ensure no duplicate user names exist
   debug:
     msg: "*** ACTION REQUIRED *** {{ audit_6_2_18.stdout }}"
-  when: 
+  when:
     - audit_6_2_18.stdout_lines is defined and audit_6_2_18.stdout_lines|length > 0
     - not fail_on_manual_remediation_actions
   tags:

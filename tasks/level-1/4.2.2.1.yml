@@ -19,8 +19,8 @@
     name: "syslog-ng"
     enabled: true
     state: started
-  when: 
-    - cis_enable_syslog_ng 
+  when:
+    - cis_enable_syslog_ng
     - syslog_ng_4_2_2_1 is defined
     - syslog_ng_4_2_2_1.rc is not defined or syslog_ng_4_2_2_1.rc == 0
   ignore_errors: false

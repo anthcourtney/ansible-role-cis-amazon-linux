@@ -27,7 +27,7 @@
 - name: 6.1.12 - Ensure no ungrouped files or directories exist
   debug:
     msg: "*** ACTION REQUIRED *** {{ audit_6_1_12.stdout }}"
-  when: 
+  when:
     - audit_6_1_12.stdout_lines is defined and audit_6_1_12.stdout_lines|length > 0
     - not fail_on_manual_remediation_actions
   tags:

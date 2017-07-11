@@ -1,7 +1,7 @@
 # Standards: 0.11
 ---
 
-# 1.5.3 Ensure address space layout randomization (ASLR) is enabled 
+# 1.5.3 Ensure address space layout randomization (ASLR) is enabled
 
 - name: 1.5.3 - Ensure address space layout randomization is enabled
   sysctl:
