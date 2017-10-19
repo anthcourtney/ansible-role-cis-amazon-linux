@@ -15,7 +15,7 @@
 
 - name: 3.4.3 - Ensure /etc/hosts.deny is configured
   copy:
-    path: "/etc/hosts.deny"
+    dest: "/etc/hosts.deny"
     content: "ALL: ALL\n"
   when: hosts_deny_3_4_3.stat.exists is not defined or not hosts_deny_3_4_3.stat.exists
   tags:

@@ -15,8 +15,8 @@
 
 - name: 3.4.2 - Ensure /etc/hosts.allow is configured
   copy:
-    path: "/etc/hosts.allow"
-    content: "ALL: {{ item }}\n"
+    dest: "/etc/hosts.allow"
+    content: "ALL: {{ item }}"
   when: hosts_allow_3_4_2.stat.exists is not defined or not hosts_allow_3_4_2.stat.exists
   tags:
     - level-1
@@ -28,7 +28,6 @@
 - name: 3.4.2 - Ensure /etc/hosts.allow is configured
   lineinfile:
     dest: "/etc/hosts.allow"
-    regexp: "^ALL:"
     line: "ALL: {{ item }}"
   when: hosts_allow_3_4_2.stat.exists is defined and hosts_allow_3_4_2.stat.exists
   tags:
