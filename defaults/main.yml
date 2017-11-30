@@ -45,6 +45,9 @@ cis_enable_chrony: false # Set to true if chrony should be enabled/configured.
 # 3.4.2
 cis_hosts_allow_all_ips: "127.0.0.1"
 
+# 4.1.8 - 4.1.18
+cis_audit_rules_filename: "/etc/audit/audit.rules"
+
 # 4.2.3
 # You should only enable either rsyslog or syslog-ng, but not both.
 cis_enable_rsyslog: true # Set to true if rsyslog should be enabled/configured.
