@@ -4,3 +4,4 @@
 *.output
 tests/tmp
 tests/roles
+.idea
