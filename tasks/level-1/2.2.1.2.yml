@@ -3,4 +3,20 @@
 
 # 2.2.1.2 Ensure ntp is configured
 
-# TODO
+- name: Set Options -u ntp:ntp in /etc/sysconfig/ntpd
+  replace:
+    path: /etc/sysconfig/ntpd
+    regexp: '^OPTIONS=.*$'
+    replace: 'OPTIONS="-u ntp:ntp"'
+
+- name: Set Restrict -6
+  lineinfile:
+    path: /etc/ntp.conf
+    insertbefore: 'restrict default nomodify notrap nopeer noquery'
+    line: 'restrict -6 default kod nomodify notrap nopeer noquery'
+
+- name: Set Restrict -4
+  lineinfile:
+    path: /etc/ntp.conf
+    insertbefore: 'restrict -6 default kod nomodify notrap nopeer noquery'
+    line: 'restrict -4 default kod nomodify notrap nopeer noquery'
