@@ -1,3 +1,9 @@
+1.1.5 (2018-01-03)
+
+Bugfix:
+
+* Added support for Amazon Linux 2017.09. Credit: @stevear22
+
 1.1.4 (2017-04-12)
 
 Bugfix:
