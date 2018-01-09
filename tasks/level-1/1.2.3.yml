@@ -4,7 +4,7 @@
 # 1.2.3 - Ensure gpgcheck is globally activated
 
 - name: 1.2.3 - Get all repos on remote host
-  find: 
+  find:
     paths: "/etc/yum.repos.d"
     pattern: "*.repo"
   register: yum_repos

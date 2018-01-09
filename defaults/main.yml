@@ -9,7 +9,7 @@ cis_apply_level_1_profile: true    # Whether Level 1 of the benchmark should be 
 cis_apply_level_2_profile: false   # Whether Level 2 of the benchmark should be applied
 
 cis_level_1_exclusions: []         # A list of Level 1 recommendations to exclude (i.e. ['1.1.1.1'])
-cis_level_2_exclusions: []         # A list of Level 2 recommendations to exclude 
+cis_level_2_exclusions: []         # A list of Level 2 recommendations to exclude
 
 # Whether to fail when remediation items are found for recommendations which can't be automatically fixed.
 # If false, a debug message will be generated instead, with the preface *** ACTION REQUIRED ***..
@@ -18,6 +18,20 @@ fail_on_manual_remediation_actions: false  # True or false.
 ###############################################
 # Check specific values which can be overridden
 ###############################################
+# 1.1.11
+cis_partition_dev_val_log: "/dev/xvda2"
+cis_partition_mnt_val_log: "/var/log"
+cis_partition_fs_val_log: "ext4"
+
+# 1.1.12
+cis_partition_dev_val_log_audit: "/dev/xvda3"
+cis_partition_mnt_val_log_audit: "/var/log/audit"
+cis_partition_fs_val_log_audit: "ext4"
+
+# 1.1.13
+cis_partition_dev_home: "/dev/xvda4"
+cis_partition_mnt_home: "/home"
+cis_partition_fs_home: "ext4"
 
 # 1.3.1
 cis_aide_database_filename: "/var/lib/aide/aide.db.gz"

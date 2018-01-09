@@ -10,3 +10,8 @@
   service:
     name: rsyslog
     state: restarted
+
+- name: Restart auditd
+  service:
+    name: auditd
+    state: restarted

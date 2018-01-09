@@ -1,0 +1,30 @@
+# Standards: 0.11
+---
+
+# 4.1.1.3 Ensure audit logs are not automatically deleted (Scored)
+
+- name: 4.1.1.3- Check if CIS audit.d configuration file exists
+  stat:
+    path: "{{ cis_audit_auditd_filename }}"
+  register: auditd_4_1_1_3
+  tags:
+    - level-1
+    - section-1
+    - "4.1.1.3"
+    - scored
+
+- name: 4.1.1.3 Ensure audit logs are not automatically deleted (Scored)
+  lineinfile:
+    regexp: "max_log_file_action = ROTATE"
+    line: "max_log_file_action = keep_logs"
+    dest: "{{ cis_audit_auditd_filename }}"
+    state: present
+  notify: Restart auditd
+  when: auditd_4_1_1_2.stat.exists is not defined or not auditd_4_1_1_2.stat.exists
+  tags:
+    - level-2
+    - section-4
+    - "4.1.1.3"
+    - scored
+
+
