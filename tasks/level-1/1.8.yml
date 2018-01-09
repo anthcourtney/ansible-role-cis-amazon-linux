@@ -11,3 +11,5 @@
     - level-1
     - "1.8"
     - not-scored
+  when:
+    - full_upgrade

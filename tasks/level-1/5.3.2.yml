@@ -3,12 +3,78 @@
 
 # 5.3.2 Ensure lockout for failed password attempts is configured
 
-- name: 5.3.2 - Ensure lockout for failed password attempts is configured
-  debug:
-    msg: "WARNING - This check has not been implemented yet."
+- name: 5.3.2 - Ensure lockout for failed password attempts is configured(pam_faillock.so - before)
+  pamd:
+    name: system-auth
+    type: auth
+    control: sufficient
+    module_path: pam_unix.so
+    new_type: auth
+    new_control: required
+    new_module_path: pam_faillock.so
+    module_arguments: 'preauth
+        audit
+        silent
+        deny=5
+        unlock_time=900'
+    state: before
   tags:
     - level-1
     - section-5
     - "5.3.2"
     - scored
-    - todo
+
+- name: 5.3.2 - Ensure lockout for failed password attempts is configured(pam_faillock.so - last)
+  pamd:
+    name: system-auth
+    type: auth
+    control: sufficient
+    module_path: pam_unix.so
+    new_type: auth
+    new_control: sufficient
+    new_module_path: pam_faillock.so
+    module_arguments: 'authsucc
+        audit
+        deny=5
+        unlock_time=900'
+    state: after
+  tags:
+    - level-1
+    - section-5
+    - "5.3.2"
+    - scored
+
+- name: 5.3.2 - Ensure lockout for failed password attempts is configured(pam_faillock.so - after)
+  pamd:
+    name: system-auth
+    type: auth
+    control: sufficient
+    module_path: pam_unix.so
+    new_type: auth
+    new_control: "[default=die]"
+    new_module_path: pam_faillock.so
+    module_arguments: 'authfail
+        audit
+        deny=5
+        unlock_time=900'
+    state: after
+  tags:
+    - level-1
+    - section-5
+    - "5.3.2"
+    - scored
+
+- name: 5.3.2 - Ensure lockout for failed password attempts is configured(pam_unix.so)
+  pamd:
+    name: system-auth
+    type: auth
+    control: sufficient
+    module_path: pam_unix.so
+    new_control: [success=1 default=bad]
+    module_arguments: ''
+    state: updated
+  tags:
+    - level-1
+    - section-5
+    - "5.3.2"
+    - scored

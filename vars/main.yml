@@ -13,3 +13,7 @@ cis_aide_database_filename: "/var/lib/aide/aide.db.gz"
 cis_grub_bootloader_filename: "/boot/grub/menu.lst"
 cis_sysconfig_init_filename: "/etc/sysconfig/init"
 cis_security_limits_filename: "/etc/security/limits.conf"
+cis_audit_auditd_filename:  "/etc/audit/auditd.conf"
+cis_audit_rules_filename: "/etc/audit/audit.rules"
+
+full_upgrade: True

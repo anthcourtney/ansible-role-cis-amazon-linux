@@ -5,7 +5,7 @@
 
 - name: 3.6.5 - Ensure firewall rules exist for all open ports
   debug:
-    msg: "WARNING - This check has not been implemented yet."
+    msg: "WARNING - We are already checking this as part of security groups."
   tags:
     - level-1
     - section-3
