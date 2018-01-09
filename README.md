@@ -23,6 +23,25 @@ An examples of items that should be immediately considered for exclusion (or at 
 
 * ```3.4.2``` and ```3.4.3```, which by default effectively limit access to the host (including via ssh) to localhost only.
 
+Amazon Linux and SE Linux
+----------------
+By default SElinux is disabled via grub in amazon linux.
+
+To enable edit ;
+
+```/boot/grub/menu.lst```
+
+Modifiy ```selinux=0  to  selinux=1```
+
+```touch /etc/selinux/config```
+
+Also install the following package to allow the ansible SElinux module to function on the host.
+
+```yum install libselinux-python```
+
+A reboot will be neccessary for the changes to take effect.
+
+
 Example Playbook
 ----------------
 
