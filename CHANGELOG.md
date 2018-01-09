@@ -1,5 +1,9 @@
 1.1.5 (2018-01-03)
 
+Enhancements:
+
+* A large number of missing checks were added. Credit: @gregnz
+
 Bugfix:
 
 * Added support for Amazon Linux 2017.09. Credit: @stevear22
