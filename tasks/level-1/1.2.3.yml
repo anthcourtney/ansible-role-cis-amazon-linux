@@ -3,6 +3,12 @@
 
 # 1.2.3 - Ensure gpgcheck is globally activated
 
+- name: 1.2.3 - Get all repos on remote host
+  find: 
+    paths: "/etc/yum.repos.d"
+    pattern: "*.repo"
+  register: yum_repos
+
 - name: 1.2.3 - Verify that gpgcheck is enabled in /etc/yum.conf
   lineinfile:
     regexp: "^gpgcheck"
@@ -17,9 +23,8 @@
   replace:
     regexp: "^gpgcheck=0"
     replace: "gpgcheck=1"
-    dest: "{{ item }}"
-  with_fileglob:
-    - /etc/yum.repos.d/*.repo
+    dest: "{{ item.path }}"
+  with_items: "{{ yum_repos.files }}"
   tags:
     - level-1
     - "1.2.3"
