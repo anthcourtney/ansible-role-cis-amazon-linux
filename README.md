@@ -1,6 +1,16 @@
 anthcourtney.cis-amazon-linux
 =========
 
+Unmaintained?
+-------------
+
+At present, I do not have the bandwidth to continue to maintain this role. I appreciate that it is used by a number of people (many of whom have made great contributions). 
+
+If you would be interested in taking over maintenance of this role, please get in touch.
+
+Introduction
+------------
+
 This ansible role applies v2.0.0 of the CIS Amazon Linux Benchmark. <https://benchmarks.cisecurity.org/tools2/linux/CIS_Amazon_Linux_Benchmark_v2.0.0.pdf>
 
 This role was developed and tested against Amazon Linux 2016.03. It has been tested against Amazon Linux 2016.09 with equal success.
