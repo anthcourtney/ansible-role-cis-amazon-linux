@@ -13,5 +13,6 @@ galaxy_info:
     - "2016.09"
     - "2017.03"
     - "2017.09"
+    - "2018.03"
   galaxy_tags: ['CIS','Linux','Amazon','hardening','benchmark','PCIDSS','compliance']
 dependencies: []
