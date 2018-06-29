@@ -6,4 +6,4 @@
   become: yes
 
   roles:
-    - anthcourtney.cis-amazon-linux
+    - ansible-role-cis-amazon-linux
