@@ -14,7 +14,7 @@ addons:
 
 install:
   # Install ansible
-  - pip install ansible
+  - pip install ansible ansible-review
 
   # Check ansible version
   - ansible --version
