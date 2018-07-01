@@ -8,7 +8,7 @@
     path: "/etc/cron.d"
     owner: root
     group: root
-    mode: 0600
+    mode: 0700
     state: directory
   tags:
     - level-1
