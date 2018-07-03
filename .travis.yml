@@ -1,5 +1,13 @@
 # Standards: 0.11
 ---
+branches:
+  only:
+    - master
+    - build
+    
+group: stable
+dist: amazonlinux
+
 language: python
 python: "2.7"
 
@@ -12,6 +20,17 @@ addons:
     packages:
     - python-pip
 
+env:
+  - ANSIBLE_INSTALL_VERSION=2.2.3
+  - ANSIBLE_INSTALL_VERSION=2.3.3
+  - ANSIBLE_INSTALL_VERSION=2.4.5
+  - ANSIBLE_INSTALL_VERSION=2.5.5
+  - ANSIBLE_INSTALL_VERSION=2.6.0
+
+# Make sure we have the latest package list
+before_install:
+  - sudo apt-get update
+  
 install:
   # Install ansible
   - pip install ansible ansible-review
