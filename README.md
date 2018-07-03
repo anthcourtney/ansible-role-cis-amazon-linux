@@ -1,12 +1,18 @@
 anthcourtney.cis-amazon-linux
 =========
 
-Unmaintained?
+Development
 -------------
+We are going to use "master" branch only for fully tested changes. 
 
-At present, I do not have the bandwidth to continue to maintain this role. I appreciate that it is used by a number of people (many of whom have made great contributions). 
+**Going forward please send your pull requests to "build" branch.**
 
-If you would be interested in taking over maintenance of this role, please get in touch.
+We need more community support to make changes and most importantly to test and review changes. If you would like to participate, please send a note to [Anth](https://github.com/anthcourtney) or [Chandan](https://github.com/chandanchowdhury).
+
+The major work to be done are
+* CIS Benchmark v2.2.0
+* Ansible 2.5 and above
+* Amazon Linux 2 LTS
 
 Introduction
 ------------
