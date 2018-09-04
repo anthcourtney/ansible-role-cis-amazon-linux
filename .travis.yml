@@ -11,10 +11,11 @@ dist: amazonlinux
 language: python
 python: "2.7"
 
-# Use the new container infrastructure
+# Use the new container infrastructure instead of legacy VM based
+# https://docs.travis-ci.com/user/reference/overview/#sudo-enabled
 sudo: false
 
-# Install ansible
+# Install python-pip
 addons:
   apt:
     packages:
@@ -27,12 +28,12 @@ env:
   - ANSIBLE_INSTALL_VERSION=2.5.5
   - ANSIBLE_INSTALL_VERSION=2.6.0
 
-# Make sure we have the latest package list
+# Make sure we have the latest package list and OS
 before_install:
-  - sudo apt-get update
+  - sudo apt update & sudo apt upgrade
   
 install:
-  # Install ansible
+  # Install ansible and ansible-review
   - pip install ansible ansible-review
 
   # Check ansible version
