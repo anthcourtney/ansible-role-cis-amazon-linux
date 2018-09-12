@@ -30,7 +30,7 @@ env:
 
 # Make sure we have the latest package list and OS
 before_install:
-  - sudo apt update & sudo apt upgrade
+  - sudo apt update
   
 install:
   # Install ansible and ansible-review
