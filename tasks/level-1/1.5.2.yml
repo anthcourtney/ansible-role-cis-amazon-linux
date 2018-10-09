@@ -6,7 +6,7 @@
 - name: 1.5.2 - Check if XD/NX support is enabled
   shell: "dmesg | grep NX"
   register: dmesg_1_5_2
-  always_run: yes
+  check_mode: no
   changed_when: False
   ignore_errors: true
   tags:
