@@ -5,7 +5,7 @@ galaxy_info:
   description: Implement CIS Amazon Linux V2 Benchmark
   company: Anth Courtney
   license: MIT
-  min_ansible_version: 2.0
+  min_ansible_version: 2.3
   platforms:
   - name: Amazon
     versions:
