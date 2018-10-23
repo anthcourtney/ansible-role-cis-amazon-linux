@@ -16,8 +16,8 @@ test-ansible-2.6:
 test-ansible-2.7:
 	cd tests && ansible-playbook -i localhost, $(ANSIBLE_CONTAINER_PLAYBOOK_FILE) --e "test_ansible_version=2.7"
 	
-test-ansible:
-	cd tests && ansible-playbook -i localhost, $(ANSIBLE_CONTAINER_PLAYBOOK_FILE)
+test-ansible-travis:
+	cd tests && ansible-playbook -i localhost, $(ANSIBLE_TEST_PLAYBOOK_FILE)
 
 syntax:
 	cd tests && ansible-playbook --syntax-check -i localhost, $(ANSIBLE_TEST_PLAYBOOK_FILE)
