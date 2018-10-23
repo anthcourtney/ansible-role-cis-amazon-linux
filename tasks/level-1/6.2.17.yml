@@ -5,7 +5,7 @@
 
 - name: 6.2.17 - Check if duplicate GIDs exist
   script: "{{ role_path }}/files/audit_6.2.17.sh"
-  always_run: yes
+  check_mode: no
   changed_when: False
   register: audit_6_2_17
   tags:

@@ -5,7 +5,7 @@
 
 - name: 1.6.1.6 Ensure no unconfined daemons exist (Scored)
   script: "{{ role_path }}/files/audit_1.6.1.6.sh"
-  always_run: yes
+  check_mode: no
   changed_when: False
   register: audit_1_6_1_6
   tags:

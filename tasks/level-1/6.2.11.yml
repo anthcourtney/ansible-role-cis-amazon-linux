@@ -5,7 +5,7 @@
 
 - name: 6.2.11 - Audit users' forward files
   script: "{{ role_path }}/files/audit_6.2.11.sh"
-  always_run: yes
+  check_mode: no
   changed_when: False
   register: audit_6_2_11
   tags:
