@@ -5,7 +5,7 @@
 
 - name: 6.2.12 - Audit users'.netrc files
   script: "{{ role_path }}/files/audit_6.2.12.sh"
-  always_run: yes
+  check_mode: no
   changed_when: False
   register: audit_6_2_12
   tags:
