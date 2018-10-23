@@ -20,4 +20,8 @@ syntax:
 	cd tests && ansible-playbook --syntax-check -i localhost, $(ANSIBLE_TEST_PLAYBOOK_FILE)
 
 review:
+	git ls-files defaults/ | xargs ansible-review -c tests/ansible-review/config.ini
+	git ls-files handlers/ | xargs ansible-review -c tests/ansible-review/config.ini
+	git ls-files meta/ | xargs ansible-review -c tests/ansible-review/config.ini
+	git ls-files vars/ | xargs ansible-review -c tests/ansible-review/config.ini
 	git ls-files tasks/ | xargs ansible-review -c tests/ansible-review/config.ini
