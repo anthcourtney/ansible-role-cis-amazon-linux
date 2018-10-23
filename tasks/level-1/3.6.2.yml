@@ -6,7 +6,7 @@
 - name: 3.6.2 - Ensure default deny firewall policy(DROP INPUT)
   iptables:
     chain: "{{item}}"
-    jump: DROP
+    policy: DROP
   become: yes
   with_items:
     - INPUT
