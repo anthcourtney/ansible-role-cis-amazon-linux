@@ -49,7 +49,6 @@ script:
   # Basic role syntax check
   - make syntax
   - make review
-  - make test-ansible
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
