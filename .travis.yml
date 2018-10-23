@@ -13,7 +13,8 @@ python: "2.7"
 
 # Use the new container infrastructure instead of legacy VM based
 # https://docs.travis-ci.com/user/reference/overview/#sudo-enabled
-sudo: false
+#sudo: false
+sudo: required 
 
 # Install python-pip
 addons:
@@ -27,6 +28,7 @@ env:
   - ANSIBLE_INSTALL_VERSION=2.4.5
   - ANSIBLE_INSTALL_VERSION=2.5.5
   - ANSIBLE_INSTALL_VERSION=2.6.0
+  - ANSIBLE_INSTALL_VERSION=2.7.0
 
 # Make sure we have the latest package list and OS
 before_install:
