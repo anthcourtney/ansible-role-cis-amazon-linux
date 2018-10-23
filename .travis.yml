@@ -36,7 +36,7 @@ before_install:
   
 install:
   # Install ansible and ansible-review
-  - pip install ansible=$ANSIBLE_INSTALL_VERSION ansible-review
+  - pip install ansible==$ANSIBLE_INSTALL_VERSION ansible-review
 
   # Check ansible version
   - ansible --version
