@@ -1,6 +1,14 @@
 anthcourtney.cis-amazon-linux
 =========
 
+Build Status
+------------
+
+Branch | Status
+| ------------- |:-------------:|
+Master | [![Build Status](https://travis-ci.org/anthcourtney/ansible-role-cis-amazon-linux.svg?branch=master)](https://travis-ci.org/anthcourtney/ansible-role-cis-amazon-linux)
+Build | [![Build Status](https://travis-ci.org/anthcourtney/ansible-role-cis-amazon-linux.svg?branch=build)](https://travis-ci.org/anthcourtney/ansible-role-cis-amazon-linux)
+
 Development
 -------------
 We are going to use "master" branch only for fully tested changes. 
@@ -160,10 +168,11 @@ Compatibility
 
 This role is compatible with the following versions of ansible:
 
-* 2.0.2
-* 2.1.3
-* 2.2.0
-* 2.5.4
+* 2.3
+* 2.4
+* 2.5
+* 2.6
+* 2.7
 
 This role has not been tested against any other versions of ansible.
 
