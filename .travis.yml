@@ -27,14 +27,15 @@ env:
   - ANSIBLE_INSTALL_VERSION=2.4.5
   - ANSIBLE_INSTALL_VERSION=2.5.5
   - ANSIBLE_INSTALL_VERSION=2.6.0
+  - ANSIBLE_INSTALL_VERSION=2.7.0
 
 # Make sure we have the latest package list and OS
 before_install:
-  - sudo apt update & sudo apt upgrade
+  - sudo apt update
   
 install:
   # Install ansible and ansible-review
-  - pip install ansible ansible-review
+  - pip install ansible==$ANSIBLE_INSTALL_VERSION ansible-review
 
   # Check ansible version
   - ansible --version

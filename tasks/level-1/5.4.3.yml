@@ -6,7 +6,7 @@
 - name: 5.4.3 - Check the GID of the root group
   shell: "cat /etc/passwd | awk -F: '($3 == 0) { print $1 }'"
   register: cat_5_4_3
-  always_run: yes
+  check_mode: no
   changed_when: False
   tags:
     - level-1

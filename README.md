@@ -180,6 +180,15 @@ The following tests have been flagged but are not yet implemented:
 
 * Test application of the role against the Vagrant ```mvbcoding/awslinux``` image, using the ansible provisioner.
 
+Build Status
+------------
+
+Branch | Status
+| ------------- |:-------------:|
+Master | [![Build Status](https://travis-ci.org/anthcourtney/ansible-role-cis-amazon-linux.svg?branch=master)](https://travis-ci.org/anthcourtney/ansible-role-cis-amazon-linux)
+Build | [![Build Status](https://travis-ci.org/anthcourtney/ansible-role-cis-amazon-linux.svg?branch=build)](https://travis-ci.org/anthcourtney/ansible-role-cis-amazon-linux)
+
+
 License
 -------
 
