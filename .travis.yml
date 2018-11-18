@@ -22,11 +22,13 @@ addons:
     - python-pip
 
 env:
-  - ANSIBLE_INSTALL_VERSION=2.2.3
+  # Following Ansible "Release and maintenance" guide
+  # Ref: https://docs.ansible.com/ansible/2.7/reference_appendices/release_and_maintenance.html
+  #- ANSIBLE_INSTALL_VERSION=2.2.3
   - ANSIBLE_INSTALL_VERSION=2.3.3
-  - ANSIBLE_INSTALL_VERSION=2.4.5
-  - ANSIBLE_INSTALL_VERSION=2.5.5
-  - ANSIBLE_INSTALL_VERSION=2.6.0
+  - ANSIBLE_INSTALL_VERSION=2.4.6
+  - ANSIBLE_INSTALL_VERSION=2.5.9
+  - ANSIBLE_INSTALL_VERSION=2.6.5
   - ANSIBLE_INSTALL_VERSION=2.7.0
 
 # Make sure we have the latest package list and OS
