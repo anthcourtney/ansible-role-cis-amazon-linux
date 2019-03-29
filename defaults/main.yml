@@ -126,3 +126,5 @@ cis_umask_shell_files:
 
 # 5.5
 cis_wheel_group_members: "root"
+
+fs_mounts: {}
