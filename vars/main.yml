@@ -21,7 +21,7 @@ cis_audit_rules_filename: "/etc/audit/audit.rules"
 
 full_upgrade: True
 
-ansible_mounts:
+fs_mounts:
   - mountpoint: '/tmp'
     device: 'tmpfs'
     fstype: 'tmpfs'
@@ -34,3 +34,11 @@ ansible_mounts:
     device: 'tmpfs'
     fstype: 'tmpfs'
     opts: 'rw,nosuid,nodev,noexec,relatime'
+
+cis_level_1_exclusions:
+  - '1.1.6'
+  - '1.1.11'
+  - '1.1.12'
+  - '1.1.14'
+
+cis_level_2_exclusions: []
