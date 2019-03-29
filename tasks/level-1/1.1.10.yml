@@ -5,12 +5,12 @@
 
 - name: 1.1.10 - Ensure noexec option set on /var/tmp partition
   mount:
-    name: "{{ item.mount }}"
+    name: "{{ item.mountpoint }}"
     state: mounted
     fstype: "{{ item.fstype }}"
     src: "{{ item.device }}"
-    opts: "{{ item.options.split(',') | union(['noexec']) | join(',') }}"
-  when: item.mount == '/var/tmp'
+    opts: "{{ item.opts.split(',') | union(['noexec']) | join(',') }}"
+  when: item.mountpoint == '/var/tmp'
   with_items: "{{ ansible_mounts }}"
   tags:
     - level-1

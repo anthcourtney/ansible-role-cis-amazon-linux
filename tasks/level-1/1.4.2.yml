@@ -33,3 +33,14 @@
     - "1.4.2"
     - scored
 
+- name: 1.4.2 - Ensure rescue.service and emergency.service both use /sbin/sulogin for ExecStart
+  command: grep -xq 'ExecStart=-/bin/sh -c "/usr/sbin/sulogin; /usr/bin/systemctl --fail --no-block default"' /usr/lib/systemd/system/{{ item }}.service
+  register: line_matched
+  failed_when: line_matched.rc != 0
+  with_items:
+    - rescue
+    - emergency
+  tags:
+    - level-1
+    - "1.4.2"
+    - scored
