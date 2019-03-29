@@ -11,7 +11,7 @@
     src: "{{ item.device }}"
     opts: "{{ item.opts.split(',') | union(['noexec']) | join(',') }}"
   when: item.mountpoint == '/dev/shm'
-  with_items: "{{ ansible_mounts }}"
+  with_items: "{{ fs_mounts }}"
   tags:
     - level-1
     - section-1
