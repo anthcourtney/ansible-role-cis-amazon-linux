@@ -5,12 +5,12 @@
 
 - name: 1.1.9 - Ensure nosuid option set on /var/tmp partition
   mount:
-    name: "{{ item.mount }}"
+    name: "{{ item.mountpoint }}"
     state: mounted
     fstype: "{{ item.fstype }}"
     src: "{{ item.device }}"
-    opts: "{{ item.options.split(',') | union(['nosuid']) | join(',') }}"
-  when: item.mount == '/var/tmp'
+    opts: "{{ item.opts.split(',') | union(['nosuid']) | join(',') }}"
+  when: item.mountpoint == '/var/tmp'
   with_items: "{{ ansible_mounts }}"
   tags:
     - level-1

@@ -5,12 +5,12 @@
 
 - name: 1.1.16 - Ensure nosuid option set on /dev/shm partition
   mount:
-    name: "{{ item.mount }}"
+    name: "{{ item.mountpoint }}"
     state: mounted
     fstype: "{{ item.fstype }}"
     src: "{{ item.device }}"
-    opts: "{{ item.options.split(',') | union(['nosuid']) | join(',') }}"
-  when: item.mount == '/dev/shm'
+    opts: "{{ item.opts.split(',') | union(['nosuid']) | join(',') }}"
+  when: item.mountpoint == '/dev/shm'
   with_items: "{{ ansible_mounts }}"
   tags:
     - level-1

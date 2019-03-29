@@ -2,6 +2,13 @@
 ---
 
 # Preflight checks
+- name: ansible_distribution
+  debug:
+    var: ansible_distribution
+
+- name: ansible_distribution_version
+  debug:
+    var: ansible_distribution_version
 
 - name: Preflight - Fail if host is not suitable for this benchmark
   fail:
