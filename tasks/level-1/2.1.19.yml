@@ -1,0 +1,16 @@
+# Standards: 0.11
+---
+
+# 2.1.9 Ensure tftp server is not enabled
+
+- name: 2.1.9 - Ensure tftp server is not enabled
+  service:
+    name: "tftp"
+    enabled: false
+    state: stopped
+  ignore_errors: true
+  tags:
+    - level-1
+    - section-2
+    - "2.1.9"
+    - scored

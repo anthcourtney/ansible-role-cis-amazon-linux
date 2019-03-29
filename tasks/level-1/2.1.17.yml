@@ -1,18 +1,20 @@
 # Standards: 0.11
 ---
 
-# 2.2.11 Ensure IMAP and POP3 server is not enabled
+# 2.1.6 Ensure rsh server is not enabled
 
-- name: 2.2.11 - Ensure IMAP and POP3 server is not enabled
+- name: 2.1.6 - Ensure rsh server is not enabled
   service:
     name: "{{ item }}"
     enabled: false
     state: stopped
   with_items:
-    - dovecot
-    - cyrus-imapd
+    - rexec
+    - rlogin
+    - rsh
   ignore_errors: true
   tags:
     - level-1
-    - "2.2.11"
+    - section-2
+    - "2.1.6"
     - scored
