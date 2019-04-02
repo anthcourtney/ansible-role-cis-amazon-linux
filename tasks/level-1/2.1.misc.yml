@@ -1,7 +1,8 @@
 # Standards: 0.11
 ---
 
-# Miscellaneous service that are not mentioned in v1.0.0 of the Benchmark, but were carrier over from the original version of this role
+# Miscellaneous services that are not mentioned in v1.0.0 of the Benchmark,
+# but carrier over from the original version of this role
 
 - name: misc - Ensure chargen services are not enabled
   service:

@@ -1,14 +1,12 @@
 # Standards: 0.11
 ---
 
-# 2.2.3 Ensure Avahi Server is not enabled
+# 2.2.3 Ensure talk client is not installed
 
-- name: 2.2.3 - Ensure Avahi Server is not enabled
-  service:
-    name: "avahi-daemon"
-    enabled: false
-    state: stopped
-  ignore_errors: true
+- name: 2.2.3 - Ensure talk client is not installed
+  yum:
+    name: "talk"
+    state: absent
   tags:
     - level-1
     - "2.2.3"
