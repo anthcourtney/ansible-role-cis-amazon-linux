@@ -1,14 +1,14 @@
 # Standards: 0.11
 ---
 
-# 3.6.1 Ensure iptables is installed
+# 3.6 Disable IPv6 (Not Scored)
 
-- name: 3.6.1 - Ensure iptables is installed
+- name: 3.6 - Disable IPv6
   yum:
     name: "iptables"
     state: latest
   tags:
     - level-1
     - section-3
-    - "3.6.1"
+    - "3.5.3"
     - scored

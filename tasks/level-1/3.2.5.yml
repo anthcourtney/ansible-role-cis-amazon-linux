@@ -7,7 +7,7 @@
   sysctl:
     ignoreerrors: yes
     name: "net.ipv4.icmp_echo_ignore_broadcasts"
-    value: 1
+    value: "1"
     state: present
   tags:
     - level-1

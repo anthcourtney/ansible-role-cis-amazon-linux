@@ -7,7 +7,7 @@
   sysctl:
     ignoreerrors: yes
     name: "{{ item }}"
-    value: 0
+    value: "0"
     state: present
   with_items:
     - "net.ipv4.conf.all.secure_redirects"

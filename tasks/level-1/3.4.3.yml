@@ -1,37 +1,37 @@
 # Standards: 0.11
 ---
 
-# 3.4.3 Ensure /etc/hosts.deny is configured
+# 3.4.3 - Ensure RDS is disabled
 
-- name: 3.4.3 - Check if /etc/hosts.deny configuration file exists
+- name: 3.4.3 - Check if CIS modprobe configuration file exists
   stat:
-    path: "/etc/hosts.deny"
-  register: hosts_deny_3_4_3
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_3_5_3
   tags:
     - level-1
     - section-3
     - "3.4.3"
-    - scored
+    - not-scored
 
-- name: 3.4.3 - Ensure /etc/hosts.deny is configured
+- name: 3.4.3 - Ensure RDS is disabled
   copy:
-    path: "/etc/hosts.deny"
-    content: "ALL: ALL\n"
-  when: hosts_deny_3_4_3.stat.exists is not defined or not hosts_deny_3_4_3.stat.exists
+    dest: "{{ cis_modprobe_conf_filename }}"
+    content: "install rds /bin/true\n"
+  when: modprobe_3_5_3.stat.exists is not defined or not modprobe_3_5_3.stat.exists
   tags:
     - level-1
     - section-3
     - "3.4.3"
-    - scored
+    - not-scored
 
-- name: 3.4.3 - Ensure /etc/hosts.deny is configured
+- name: 3.4.3 - Ensure RDS is disabled
   lineinfile:
-    dest: "/etc/hosts.deny"
-    regexp: "^ALL:"
-    line: "ALL: ALL"
-  when: hosts_deny_3_4_3.stat.exists is defined and hosts_deny_3_4_3.stat.exists
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^install rds\\s+"
+    line: "install rds /bin/true"
+  when: modprobe_3_5_3.stat.exists is defined and modprobe_3_5_3.stat.exists
   tags:
     - level-1
     - section-3
     - "3.4.3"
-    - scored
+    - not-scored
