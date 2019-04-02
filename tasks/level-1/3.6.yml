@@ -4,11 +4,34 @@
 # 3.6 Disable IPv6 (Not Scored)
 
 - name: 3.6 - Disable IPv6
-  yum:
-    name: "iptables"
-    state: latest
+  stat:
+    path: "{{ cis_modprobe_conf_filename }}"
+  register: modprobe_3_6
   tags:
     - level-1
     - section-3
-    - "3.5.3"
+    - "3.6"
+    - scored
+
+- name: 3.6 - Disable IPv6
+  copy:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    content: "options ipv6 disable=1\n"
+  when: modprobe_3_6.stat.exists is not defined or not modprobe_3_6.stat.exists
+  tags:
+    - level-1
+    - section-3
+    - "3.6"
+    - scored
+
+- name: 3.6 - Disable IPv6
+  lineinfile:
+    dest: "{{ cis_modprobe_conf_filename }}"
+    regexp: "^options ipv6 disable="
+    line: "options ipv6 disable=1"
+  when: modprobe_3_6.stat.exists is defined and modprobe_3_6.stat.exists
+  tags:
+    - level-1
+    - section-3
+    - "3.6"
     - scored
