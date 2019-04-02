@@ -1,17 +1,17 @@
 # Standards: 0.11
 ---
 
-# 2.1.6 Ensure rsh server is not enabled
+# 2.1.17 Ensure rsh server is not enabled
 
-- name: 2.1.6 - Ensure rsh server is not enabled
+- name: 2.1.17 - Ensure rsh server is not enabled
   service:
     name: "{{ item }}"
     enabled: false
     state: stopped
   with_items:
-    - rexec
-    - rlogin
-    - rsh
+    - rexec.socket
+    - rlogin.socket
+    - rsh.socket
   ignore_errors: true
   tags:
     - level-1
