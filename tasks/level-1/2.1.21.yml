@@ -5,12 +5,12 @@
 
 - name: 2.1.21 - Ensure talk server is not enabled
   service:
-    name: "talk"
+    name: "ntalk"
     enabled: false
     state: stopped
   ignore_errors: true
   tags:
     - level-1
     - section-2
-    - "2.1.7"
+    - "2.1.21"
     - scored
