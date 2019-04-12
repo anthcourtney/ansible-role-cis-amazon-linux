@@ -29,3 +29,10 @@
     - level-1
     - 1.7.1.1
     - scored
+
+- name: 1.7.1.1 - Ensure message of the day is configured properly
+  command: /usr/sbin/update-motd
+  tags:
+    - level-1
+    - 1.7.1.1
+    - scored
