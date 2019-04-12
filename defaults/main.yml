@@ -127,4 +127,16 @@ cis_umask_shell_files:
 # 5.5
 cis_wheel_group_members: "root"
 
-fs_mounts: []
+fs_mounts:
+  - mountpoint: '/tmp'
+    device: 'tmpfs'
+    fstype: 'tmpfs'
+    opts: 'rw,nosuid,nodev,noexec,relatime'
+  - mountpoint: '/var/tmp'
+    device: 'tmpfs'
+    fstype: 'tmpfs'
+    opts: 'rw,nosuid,nodev,noexec,relatime'
+  - mountpoint: '/dev/shm'
+    device: 'tmpfs'
+    fstype: 'tmpfs'
+    opts: 'rw,nosuid,nodev,noexec,relatime'
