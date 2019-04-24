@@ -43,4 +43,4 @@ review:
 
 lint:
 	@ansible-lint tests/$(ANSIBLE_TEST_PLAYBOOK_FILE)
-	@yamlint -c tests/yamllint.yaml tasks/
+	@yamllint -c tests/yamllint.yaml tasks/
