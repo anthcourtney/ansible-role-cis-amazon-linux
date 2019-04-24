@@ -23,8 +23,8 @@
     - '-w /var/log/lastlog -p wa -k logins'
     - '-w /var/run/faillock/ -p wa -k logins'
   when:
-   ("'-w /var/run/faillock/ -p wa -k logins' not in logins.stdout") or
-   ("'-w /var/log/lastlog -p wa -k logins' not in logins.stdout")
+       ("'-w /var/run/faillock/ -p wa -k logins' not in logins.stdout") or
+       ("'-w /var/log/lastlog -p wa -k logins' not in logins.stdout")
 
   tags:
     - "4.1.8"
