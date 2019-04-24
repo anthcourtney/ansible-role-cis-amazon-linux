@@ -33,7 +33,8 @@
 
     - name: Test playbook within docker container
       docker_container:
-        command: "/sbin/my_init -- ansible-playbook -i localhost, --e \"cis_level_1_exclusions=['3.2.8','5.3.4']\" playbook.yml"
+        #command: "/sbin/my_init -- ansible-playbook -i localhost, --e \"cis_level_1_exclusions=['3.2.8','5.3.4']\" playbook.yml"
+        command: "/sbin/my_init -- ansible-playbook -i localhost playbook.yml"
         detach: false
         image: "{{ docker_image_name }}"
         name: "{{ docker_container_name }}"
