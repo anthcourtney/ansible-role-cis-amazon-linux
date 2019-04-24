@@ -37,7 +37,7 @@ before_install:
   
 install:
   # Install ansible and ansible-review
-  - pip install ansible==$ANSIBLE_INSTALL_VERSION ansible-review
+  - pip install ansible==$ANSIBLE_INSTALL_VERSION ansible-review ansible-lint yamlint
 
   # Check ansible version
   - ansible --version
@@ -49,6 +49,7 @@ script:
   # Basic role syntax check
   - make syntax
   - make review
+  - make test-ansible-travis
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
