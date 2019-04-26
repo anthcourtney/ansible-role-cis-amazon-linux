@@ -1,0 +1,14 @@
+---
+
+# 4.1.3 Ensure auditing for processes that start prior to auditd is enabled (Scored)
+
+- name: 4.1.3 Ensure auditing for processes that start prior to auditd is enabled (Scored)
+  lineinfile:
+    dest: "{{ cis_grub_bootloader_filename }}"
+    regexp: "audit=."
+    line: "audit=1"
+  tags:
+    - level-1
+    - section-4
+    - "4.1.3"
+    - scored
