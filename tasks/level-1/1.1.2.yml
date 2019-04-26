@@ -11,7 +11,18 @@
     src: "{{item.device}}"
     opts: "{{item.opts}}"
   with_items:
-    - { mountpoint: '/tmp', device: 'tmpfs', fstype: 'tmpfs', opts: 'rw,nosuid,nodev,noexec,relatime' }
+    - "{{ fs_mounts | selectattr('mountpoint', 'equalto', '/tmp') | list }}"
+  tags:
+      - level-1
+      - section-1
+      - "1.1.2"
+      - scored
+
+- name: 1.1.2 - Ensure the tmp.mount service is enabled for boot time auto-start
+  systemd:
+    name: tmp.mount
+    enabled: yes
+    masked: no
   tags:
       - level-1
       - section-1

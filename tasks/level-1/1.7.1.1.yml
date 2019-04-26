@@ -8,10 +8,30 @@
 # generate motd, and which are related to system information which would otherwise be
 # displayed by mingetty options, are not present.
 # On amazon linux, this is the 30-banner script within /etc/update-motd.d/
-- name: 1.7.1.1 - Ensure mingetty options are not used within motd
+- name: 1.7.1.1 - Ensure message of the day doesn't print sensitive information
   file:
-    path: "/etc/update-motd.d/30-banner"
+    path: "/etc/update-motd.d/{{ item }}"
     state: absent
+  with_items:
+    - 30-banner
+    - 50-amazon-linux-extras-news
+    - 70-available-updates
+  tags:
+    - level-1
+    - 1.7.1.1
+    - scored
+
+- name: 1.7.1.1 - Ensure message of the day is configured properly
+  copy:
+    dest: "/etc/update-motd.d/99-banner"
+    content: "{{ cis_local_login_warning_banner }}"
+  tags:
+    - level-1
+    - 1.7.1.1
+    - scored
+
+- name: 1.7.1.1 - Ensure message of the day is configured properly
+  command: /usr/sbin/update-motd
   tags:
     - level-1
     - 1.7.1.1
