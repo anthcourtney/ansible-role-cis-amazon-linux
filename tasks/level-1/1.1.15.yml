@@ -3,13 +3,7 @@
 
 # 1.1.15 Ensure nodev option set on /dev/shm partition
 
-- name: 1.1.15 - Gather facts of all mounts, including non-disk mounts
-  script: facts/all_mounts.py
-  args:
-    executable: python
-  changed_when: false
-  check_mode: false
-  register: all_mounts
+- include: all_mounts_facts.yml
   tags:
     - level-1
     - section-1
