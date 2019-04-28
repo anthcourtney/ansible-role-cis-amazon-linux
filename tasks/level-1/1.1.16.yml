@@ -3,6 +3,19 @@
 
 # 1.1.16 Ensure nosuid option set on /dev/shm partition
 
+- name: 1.1.16 - Gather facts of all mounts, including non-disk mounts
+  script: facts/all_mounts.py
+  args:
+    executable: python
+  changed_when: false
+  check_mode: false
+  register: all_mounts
+  tags:
+    - level-1
+    - section-1
+    - "1.1.16"
+    - scored
+
 - name: 1.1.16 - Ensure nosuid option set on /dev/shm partition
   mount:
     name: "{{ item.mount }}"
@@ -11,7 +24,7 @@
     src: "{{ item.device }}"
     opts: "{{ item.options.split(',') | union(['nosuid']) | join(',') }}"
   when: item.mount == '/dev/shm'
-  with_items: "{{ ansible_mounts }}"
+  with_items: "{{ all_mounts.stdout | default('{}') | from_json }}"
   tags:
     - level-1
     - section-1
