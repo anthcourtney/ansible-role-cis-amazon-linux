@@ -1,15 +1,15 @@
 # Standards: 0.11
 ---
 
-# 2.2.8 Ensure DNS Server is not enabled
+# 2.1.16 Ensure NIS Server is not enabled
 
-- name: 2.2.8 - Ensure DNS Server is not enabled
+- name: 2.1.16 - Ensure NIS Server is not enabled
   service:
-    name: "named"
+    name: "ypserv"
     enabled: false
     state: stopped
   ignore_errors: true
   tags:
     - level-1
-    - "2.2.8"
+    - "2.1.16"
     - scored

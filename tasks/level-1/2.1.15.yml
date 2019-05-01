@@ -1,18 +1,18 @@
 # Standards: 0.11
 ---
 
-# 2.2.15 Ensure mail transfer agent is configured for local-only mode
+# 2.1.15 Ensure mail transfer agent is configured for local-only mode
 
-- name: 2.2.15 - Check if mail transfer agent is configured for local-only mode
+- name: 2.1.15 - Check if mail transfer agent is configured for local-only mode
   shell: "netstat -an | grep LIST | grep ':25[[:space:]]'"
   register: mta_2_2_15
   ignore_errors: true
   tags:
     - level-1
-    - "2.2.15"
+    - "2.1.15"
     - scored
 
-- name: 2.2.15 - Ensure mail transfer agent is configured for local-only mode
+- name: 2.1.15 - Ensure mail transfer agent is configured for local-only mode
   fail:
     msg: "Detected mail transfer agent listening on non-loopback address."
   when:
@@ -20,10 +20,10 @@
     - fail_on_manual_remediation_actions
   tags:
     - level-1
-    - "2.2.15"
+    - "2.1.15"
     - scored
 
-- name: 2.2.15 - Ensure mail transfer agent is configured for local-only mode
+- name: 2.1.15 - Ensure mail transfer agent is configured for local-only mode
   debug:
     msg: "*** ACTION REQUIRED *** Detected mail transfer agent listening on non-loopback address."
   when:
@@ -31,6 +31,6 @@
     - not fail_on_manual_remediation_actions
   tags:
     - level-1
-    - "2.2.15"
+    - "2.1.15"
     - scored
 

@@ -1,0 +1,86 @@
+# Standards: 0.11
+---
+
+# Miscellaneous services that are not mentioned in v1.0.0 of the Benchmark,
+# but carrier over from the original version of this role
+
+- name: misc - Ensure chargen services are not enabled
+  service:
+    name: "{{ item }}"
+    enabled: false
+    state: stopped
+  with_items:
+    - chargen-dgram
+    - chargen-stream
+  ignore_errors: true
+  tags:
+    - level-1
+    - section-2
+    - scored
+
+- name: misc - Ensure daytime services are not enabled
+  service:
+    name: "{{ item }}"
+    enabled: false
+    state: stopped
+  with_items:
+    - daytime-dgram
+    - daytime-stream
+  ignore_errors: true
+  tags:
+    - level-1
+    - section-2
+    - scored
+
+- name: misc - Ensure discard services are not enabled
+  service:
+    name: "{{ item }}"
+    enabled: false
+    state: stopped
+  with_items:
+    - discard-dgram
+    - discard-stream
+  ignore_errors: true
+  tags:
+    - level-1
+    - section-2
+    - scored
+
+- name: misc - Ensure echo services are not enabled
+  service:
+    name: "{{ item }}"
+    enabled: false
+    state: stopped
+  with_items:
+    - echo-dgram
+    - echo-stream
+  ignore_errors: true
+  tags:
+    - level-1
+    - section-2
+    - scored
+
+- name: misc - Ensure time services are not enabled
+  service:
+    name: "{{ item }}"
+    enabled: false
+    state: stopped
+  with_items:
+    - time-dgram
+    - time-stream
+  ignore_errors: true
+  tags:
+    - level-1
+    - section-2
+    - scored
+
+- name: misc - Ensure xinetd server is not enabled
+  service:
+    name: "xinetd"
+    enabled: false
+    state: stopped
+  ignore_errors: true
+  tags:
+    - level-1
+    - section-2
+    - scored
