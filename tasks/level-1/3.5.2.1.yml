@@ -1,12 +1,13 @@
 # Standards: 0.11
 ---
 
-# 3.6.2 Ensure default deny firewall policy
+# 3.5.2.1 Ensure IPv6 default deny firewall policy
 
-- name: 3.6.2 - Ensure default deny firewall policy(DROP INPUT)
+- name: 3.5.2.1 - Ensure IPv6 default deny firewall policy
   iptables:
     chain: "{{item}}"
     policy: DROP
+    ip_version: ipv6
   become: yes
   with_items:
     - INPUT
@@ -15,5 +16,5 @@
   tags:
     - level-1
     - section-3
-    - "3.6.2"
+    - "3.5.2.1"
     - scored

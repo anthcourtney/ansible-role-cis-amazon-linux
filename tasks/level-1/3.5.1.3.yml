@@ -1,0 +1,88 @@
+# Standards: 0.11
+---
+
+# 3.5.1.3 Ensure outbound and established connections are configured
+
+- name: 3.5.1.3 - Ensure outbound and established connections are configured
+  iptables:
+    chain: OUTPUT
+    protocol: tcp
+    match: state
+    ctstate: ESTABLISHED,NEW
+    jump: ACCEPT
+  become: yes
+  tags:
+    - level-1
+    - section-3
+    - "3.5.1.3"
+    - not-scored
+
+- name: 3.5.1.3 - Ensure outbound and established connections are configured
+  iptables:
+    chain: OUTPUT
+    protocol: udp
+    match: state
+    ctstate: ESTABLISHED,NEW
+    jump: ACCEPT
+  become: yes
+  tags:
+    - level-1
+    - section-3
+    - "3.5.1.3"
+    - not-scored
+
+- name: 3.5.1.3 - Ensure outbound and established connections are configured
+  iptables:
+    chain: OUTPUT
+    protocol: icmp
+    match: state
+    ctstate: ESTABLISHED,NEW
+    jump: ACCEPT
+  become: yes
+  tags:
+    - level-1
+    - section-3
+    - "3.5.1.3"
+    - not-scored
+
+- name: 3.5.1.3 - Ensure outbound and established connections are configured
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    match: state
+    ctstate: ESTABLISHED
+    jump: ACCEPT
+  become: yes
+  tags:
+    - level-1
+    - section-3
+    - "3.5.1.3"
+    - not-scored
+
+- name: 3.5.1.3 - Ensure outbound and established connections are configured
+  iptables:
+    chain: INPUT
+    protocol: udp
+    match: state
+    ctstate: ESTABLISHED
+    jump: ACCEPT
+  become: yes
+  tags:
+    - level-1
+    - section-3
+    - "3.5.1.3"
+    - not-scored
+
+- name: 3.5.1.3 - Ensure outbound and established connections are configured
+  iptables:
+    chain: INPUT
+    protocol: icmp
+    match: state
+    ctstate: ESTABLISHED
+    jump: ACCEPT
+  become: yes
+  tags:
+    - level-1
+    - section-3
+    - "3.5.1.3"
+    - not-scored
