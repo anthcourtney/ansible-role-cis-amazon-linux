@@ -4,7 +4,7 @@
 # Doesn't do anything other than checking the value set in the config. If specific site policies are defined, code can be added to tune the setting
 
 - name: 4.1.1.1 Ensure audit log storage size is configured (Not Scored)
-  command: grep max_log_file "{{ audit_log_file }}" # /etc/audit/auditd.conf
+  command: grep max_log_file "{{ cis_audit_auditd_filename }}" # /etc/audit/auditd.conf
   register: audit_log_max_size
   tags:
     - level-1

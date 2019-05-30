@@ -6,7 +6,7 @@
 ###############################################
 
 cis_apply_level_1_profile: true    # Whether Level 1 of the benchmark should be applied
-cis_apply_level_2_profile: false   # Whether Level 2 of the benchmark should be applied
+cis_apply_level_2_profile: true   # Whether Level 2 of the benchmark should be applied
 
 cis_level_1_exclusions: []  # A list of Level 1 recommendations to exclude (i.e. ['1.1.1.1'])
 cis_level_2_exclusions: []  # A list of Level 2 recommendations to exclude
@@ -14,6 +14,24 @@ cis_level_2_exclusions: []  # A list of Level 2 recommendations to exclude
 # Whether to fail when remediation items are found for recommendations which can't be automatically fixed.
 # If false, a debug message will be generated instead, with the preface *** ACTION REQUIRED ***..
 fail_on_manual_remediation_actions: false  # True or false.
+
+cis_target_os_distribution: "Amazon"
+cis_target_os_versions: 
+  - "2016.03"
+  - "2016.09"
+  - "2017.03"
+  - "2017.09"
+  - "2017.12"
+  - Candidate
+  - "(Karoo)"
+
+cis_modprobe_conf_filename: "/etc/modprobe.d/CIS.conf"
+cis_grub_bootloader_filename: "/boot/grub2/grub.cfg"
+cis_sysconfig_init_filename: "/etc/sysconfig/init"
+cis_security_limits_filename: "/etc/security/limits.conf"
+cis_audit_auditd_filename:  "/etc/audit/auditd.conf"
+cis_audit_rules_filename: "/etc/audit/rules.d/audit.rules"
+cis_sshd_config_filename: "/etc/ssh/sshd_config"
 
 ###############################################
 # Check specific values which can be overridden
@@ -73,32 +91,21 @@ cis_rsyslog_accept_remote_messages: false # Set to true if the host should accep
 # 4.2.2.3
 cis_syslog_ng_file_perms: "0640"
 
-# 5.2.5
+# 5.2
 cis_sshd_max_auth_tries: 4
-
-# 5.2.11
 cis_sshd_ciphers: "aes256-ctr,aes192-ctr,aes128-ctr"
-
-# 5.2.12
 cis_sshd_macs: "hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com"
-
-# 5.2.13
+cis_sshd_kex_algos: "curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256"
 cis_sshd_client_alive_interval: 300
 cis_sshd_client_alive_count_max: 0
-
-# 5.2.14
 cis_sshd_login_grace_time: 60
-
-# 5.2.15
-cis_sshd_allow_users: "" # A comma-delimited list of users to allow ssh access to
-cis_sshd_allow_groups: "" # A comma-delimited list of groups ot allow ssh access to
-cis_sshd_deny_users: "" # A comma-delimited list of users to deny ssh access for
-cis_sshd_deny_groups: "" # A comma-delimited list of groups to deny ssh access for
-
-# 5.2.16
+cis_sshd_allow_users: "ec2-user vagrant" # A comma-delimited list of users to allow ssh access to. TODO: Remove 'vault' once released
+cis_sshd_allow_groups: "ec2-user" # A comma-delimited list of groups to allow ssh access to
+cis_sshd_deny_users: "root" # A comma-delimited list of users to deny ssh access for
+cis_sshd_deny_groups: "root" # A comma-delimited list of groups to deny ssh access for
 cis_sshd_banner: "/etc/issue.net"
 
-# 5.3.1
+# 5.3
 cis_pwquality_minlen: "14" # Minimum number of characters required for passwords
 cis_pwquality_dcredit: "-1" # At least one digit must be provided
 cis_pwquality_ucredit: "-1" # At least one uppercase character must be provided
@@ -123,6 +130,11 @@ cis_umask_default: "027"
 cis_umask_shell_files:
 - /etc/bashrc
 - /etc/profile
+cis_umask_shell_additional_files_directory:
+- /etc/profile.d
+
+# 5.4.5
+cis_user_shell_timeout: 600
 
 # 5.5
 cis_wheel_group_members: "root"

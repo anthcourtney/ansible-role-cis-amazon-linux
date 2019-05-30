@@ -1,19 +1,19 @@
 # Standards: 0.11
 ---
 
-# 5.2.14 - Ensure only approved MAC algorithms are used
+# 5.2.17 - Ensure SSH LoginGraceTime is set to one minute or less
 
 - include: stat_sshd_config.yml
   tags:
     - level-1
     - section-5
-    - "5.2.14"
+    - "5.2.17"
     - scored
 
-- name: 5.2.14 - Ensure only approved MAC algorithms are used
+- name: 5.2.17 - Ensure SSH LoginGraceTime is set to one minute or less
   lineinfile:
-    regexp: "^MACs\\s+"
-    line: "MACs {{ cis_sshd_macs }}"
+    regexp: "^LoginGraceTime\\s+"
+    line: "LoginGraceTime {{ cis_sshd_login_grace_time }}"
     dest: "{{ cis_sshd_config_filename }}"
   when: sshd_config.stat.exists
   notify:
@@ -21,5 +21,5 @@
   tags:
     - level-1
     - section-5
-    - "5.2.14"
+    - "5.2.17"
     - scored
