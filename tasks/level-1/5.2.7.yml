@@ -8,9 +8,7 @@
     regexp: "^MaxAuthTries\\s+"
     line: "MaxAuthTries {{ cis_sshd_max_auth_tries }}"
     dest: "{{ cis_sshd_config_filename }}"
-  when: sshd_config.stat.exists
-  notify:
-    - Restart sshd
+  notify: "Restart sshd"
   tags:
     - level-1
     - section-5

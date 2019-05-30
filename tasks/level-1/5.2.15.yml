@@ -8,9 +8,7 @@
     regexp: "^KexAlgorithms\\s+"
     line: "KexAlgorithms {{ cis_sshd_kex_algos }}"
     dest: "{{ cis_sshd_config_filename }}"
-  when: sshd_config.stat.exists
-  notify:
-    - Restart sshd
+  notify: "Restart sshd"
   tags:
     - level-1
     - section-5

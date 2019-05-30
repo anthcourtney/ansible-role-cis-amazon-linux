@@ -9,7 +9,6 @@
     line: "Protocol 2"
     dest: "{{ cis_sshd_config_filename }}"
   notify: "Restart sshd"
-  when: sshd_config.stat.exists
   tags:
     - level-1
     - section-5

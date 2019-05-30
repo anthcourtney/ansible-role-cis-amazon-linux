@@ -8,9 +8,7 @@
     regexp: "^ClientAliveInterval\\s+"
     line: "ClientAliveInterval {{ cis_sshd_client_alive_interval }}"
     dest: "{{ cis_sshd_config_filename }}"
-  when: sshd_config.stat.exists
-  notify:
-    - Restart sshd
+  notify: "Restart sshd"
   tags:
     - level-1
     - section-5
@@ -22,9 +20,7 @@
     regexp: "^ClientAliveCountMax\\s+"
     line: "ClientAliveCountMax {{ cis_sshd_client_alive_count_max }}"
     dest: "{{ cis_sshd_config_filename }}"
-  when: sshd_config.stat.exists
-  notify:
-    - Restart sshd
+  notify: "Restart sshd"
   tags:
     - level-1
     - section-5

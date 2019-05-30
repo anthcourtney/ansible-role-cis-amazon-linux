@@ -3,3 +3,4 @@
 
 # 5.5 Ensure root login is restricted to system console
 # Not implemented, because of potential impact to su -, and we do not know which consoles are in physically secure locations
+# Please tune /etc/secretty manually per site circumstances
