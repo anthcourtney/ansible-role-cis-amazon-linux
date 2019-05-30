@@ -3,13 +3,6 @@
 
 # 5.2.5 - Ensure SSH LogLevel is appropriate
 
-- include: stat_sshd_config.yml
-  tags:
-    - level-1
-    - section-5
-    - "5.2.5"
-    - scored
-
 - name: 5.2.5 - Ensure SSH LogLevel is set to INFO
   lineinfile:
     regexp: "^LogLevel\\s+"

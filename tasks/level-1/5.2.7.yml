@@ -3,13 +3,6 @@
 
 # 5.2.7 -  Ensure SSH MaxAuthTries is set to 4 or less
 
-- include: stat_sshd_config.yml
-  tags:
-    - level-1
-    - section-5
-    - "5.2.7"
-    - scored
-
 - name: 5.2.7 - Ensure SSH MaxAuthTries is set to 4 or less
   lineinfile:
     regexp: "^MaxAuthTries\\s+"

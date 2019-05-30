@@ -3,13 +3,6 @@
 
 # 5.2.9 Ensure SSH HostbasedAuthentication is disabled
 
-- include: stat_sshd_config.yml
-  tags:
-    - level-1
-    - section-5
-    - "5.2.9"
-    - scored
-
 - name: 5.2.9 - Ensure SSH HostbasedAuthentication is disabled
   lineinfile:
     regexp: "^HostbasedAuthentication\\s+"

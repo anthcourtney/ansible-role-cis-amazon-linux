@@ -3,13 +3,6 @@
 
 # 5.2.6 - Ensure SSH IgnoreRhosts is enabled
 
-- include: stat_sshd_config.yml
-  tags:
-    - level-1
-    - section-5
-    - "5.2.6"
-    - scored
-
 - name: 5.2.6 - Ensure SSH IgnoreRhosts is enabled
   lineinfile:
     regexp: "^IgnoreRhosts\\s+"
