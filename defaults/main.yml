@@ -16,7 +16,7 @@ cis_level_2_exclusions: []  # A list of Level 2 recommendations to exclude
 fail_on_manual_remediation_actions: false  # True or false.
 
 cis_target_os_distribution: "Amazon"
-cis_target_os_versions: 
+cis_target_os_versions:
   - "2016.03"
   - "2016.09"
   - "2017.03"
