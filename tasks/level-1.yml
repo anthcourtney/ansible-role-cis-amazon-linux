@@ -183,7 +183,7 @@
   when: "'3.3.1' not in cis_level_1_exclusions"
 - include: "level-1/3.3.2.yml"
   when: "'3.3.2' not in cis_level_1_exclusions"
-- include: "level-1/3.3.3.yml"
+- include: "level-1/3.3.3.yml" # If 3.3.2 doesn't allow IP ranges explicitly as defined in cis_hosts_allow_all_ips, no host will be able to communicate
   when: "'3.3.3' not in cis_level_1_exclusions"
 - include: "level-1/3.3.4.yml"
   when: "'3.3.4' not in cis_level_1_exclusions"
