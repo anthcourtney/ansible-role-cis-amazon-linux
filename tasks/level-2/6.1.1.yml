@@ -6,7 +6,6 @@
 - name: 6.1.1 - Audit system file permissions
   shell: "rpm -Va --nomtime --nosize --nomd5 --nolinkto | egrep -v {{ cis_fs_permissions_exclusions | join(' | egrep -v ') }}"
   register: audit_6_1_1
-  become: yes
   failed_when: audit_6_1_1.rc not in [0,1]
   tags:
     - level-2
