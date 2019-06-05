@@ -139,6 +139,15 @@ cis_user_shell_timeout: 600
 # 5.5
 cis_wheel_group_members: "root"
 
+# 6.1.1
+# List of path regex to exclude when conducting filesystem permissions audit
+cis_fs_permissions_exclusions:
+- '/usr/lib.*/python.../site-packages'
+- '/etc/crontab'
+- '/etc/cron\..+' # things like /etc/cron.daily, /etc/cron.d, /etc/cron.deny
+- '/etc/at\.deny'
+- '/etc/cloud/cloud.cfg'
+
 fs_mounts:
   - mountpoint: '/tmp'
     device: 'tmpfs'

@@ -4,21 +4,10 @@
 # 6.1.1 Audit system file permissions
 
 - name: 6.1.1 - Audit system file permissions
-  command: rpm -Va --nomtime --nosize --nomd5 --nolinkto
+  shell: "rpm -Va --nomtime --nosize --nomd5 --nolinkto | egrep -v {{ cis_fs_permissions_exclusions | join(' | egrep -v ') }}"
   register: audit_6_1_1
-  no_log: True
-  when: not in_vagrant
-  tags:
-    - level-2
-    - section-6
-    - "6.1.1"
-    - scored
-
-- name: 6.1.1 - Audit system file permissions (within Vagrant)
-  command: rpm -Va --nomtime --nosize --nomd5 --nolinkto | egrep -v '/usr/lib64/python.../site-packages'
-  register: audit_6_1_1
-  no_log: True
-  when: in_vagrant
+  become: yes
+  failed_when: audit_6_1_1.rc not in [0,1]
   tags:
     - level-2
     - section-6
