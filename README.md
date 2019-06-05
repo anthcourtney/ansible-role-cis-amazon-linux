@@ -18,14 +18,14 @@ We are going to use "master" branch only for fully tested changes.
 We need more community support to make changes and most importantly to test and review changes. If you would like to participate, please send a note to [Anth](https://github.com/anthcourtney) or [Chandan](https://github.com/chandanchowdhury).
 
 The major work to be done are
-* CIS Benchmark v2.2.0
+* CIS Benchmark v1.0.0
 * Ansible 2.5 and above
 * Amazon Linux 2 LTS
 
 Introduction
 ------------
 
-This ansible role applies v2.0.0 of the CIS Amazon Linux Benchmark. <https://benchmarks.cisecurity.org/tools2/linux/CIS_Amazon_Linux_Benchmark_v2.0.0.pdf>
+This ansible role applies v1.0.0 of the CIS Amazon Linux Benchmark. <https://benchmarks.cisecurity.org/tools2/linux/CIS_Amazon_Linux_Benchmark_v2.0.0.pdf>
 
 This role was developed and tested against Amazon Linux 2016.03. It has been tested against Amazon Linux 2016.09 with equal success.
 
@@ -162,6 +162,7 @@ The following checks have not been implemented:
 * 4.3. The configuration of logrotate is site-specific.
 * 5.3.2. Multi-line editing of pam configuration files is considered too imprecise and dangerous, and is best solved by a supplied configuration file which addresses this and other related requirements.
 * 5.3.3. Multi-line editing of pam configuration files is considered too imprecise and dangerous, and is best solved by a supplied configuration file which addresses this and other related requirements.
+* 5.5. Not implemented, because of potential impact to su -, and due to not knowing which consoles are in physically secure locations within AWS/site premises.
 
 Compatibility
 -------------
@@ -198,5 +199,6 @@ Author Information
 ------------------
 
 This role was developed by [Anth Courtney](https://au.linkedin.com/in/anthcourtney).
+Updated for Amazon Linux 2 CIS Benchmark v1.0.0 by [Alp Ozcan](https://au.linkedin.com/in/gozcan)
 
 All feedback, issues and PRs are encouraged and appreciated.
