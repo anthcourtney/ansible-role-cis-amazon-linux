@@ -1,4 +1,11 @@
 # Standards: 0.11
 ---
 
+# A list of Level 1 recommendations to exclude (i.e. ['1.1.1.1'])
+cis_level_1_exclusions:
+  - '3.3.3' # breaks SSH unless we have an explicit hosts.allow list. We have AWS security groups anyway.
+
+# A list of Level 2 recommendations to exclude
+cis_level_2_exclusions: []
+
 full_upgrade: True
