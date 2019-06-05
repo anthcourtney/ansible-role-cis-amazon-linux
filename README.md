@@ -25,9 +25,9 @@ The major work to be done are
 Introduction
 ------------
 
-This ansible role applies v1.0.0 of the CIS Amazon Linux Benchmark. <https://benchmarks.cisecurity.org/tools2/linux/CIS_Amazon_Linux_Benchmark_v2.0.0.pdf>
+This ansible role applies v1.0.0 of the CIS Amazon Linux 2 Benchmark. The benchmark document is no longer directly available for download, but can be obtained with e-mail registration from [CIS](https://learn.cisecurity.org/benchmarks)
 
-This role was developed and tested against Amazon Linux 2016.03. It has been tested against Amazon Linux 2016.09 with equal success.
+This role was developed and tested against Amazon Linux 2 (2.0.20190313). It has been tested against Amazon Linux 2 (2.0.20190313) with equal success.
 
 Why Would I Use This Role?
 --------------------------
@@ -45,22 +45,19 @@ Please take the time to familarise yourself with the standard and with the confi
 
 An examples of items that should be immediately considered for exclusion (or at least, for modification of the related default values) include:
 
-* ```3.4.2``` and ```3.4.3```, which by default effectively limit access to the host (including via ssh) to localhost only.
+* ```3.3.2``` and ```3.3.3```, which by default effectively limit access to the host (including via ssh) to localhost only.
 
-Amazon Linux and SE Linux
+Amazon Linux 2 and SE Linux
 ----------------
 By default SElinux is disabled via grub in amazon linux.
 
-To enable edit ;
+The tasks in Section 1.6 of this role will enable SELinux. Alternatively, it can be manually enabled by following these steps:
 
-```/boot/grub/menu.lst```
-
+edit ```/boot/grub/menu.lst```
 Modifiy ```selinux=0  to  selinux=1```
-
 ```touch /etc/selinux/config```
 
 Also install the following package to allow the ansible SElinux module to function on the host.
-
 ```yum install libselinux-python```
 
 A reboot will be neccessary for the changes to take effect.
@@ -131,10 +128,10 @@ ansible-playbook playbook.yml -t level-1
 ansible-playbook playbook.yml -t section-3
 ```
 
-* Run tasks 1.3.1 and 2.2.10 only
+* Run tasks 1.3.1 and 2.1.10 only
 
 ```
-ansible-playbook playbook.yml -t 1.3.1,2.2.10
+ansible-playbook playbook.yml -t 1.3.1,2.1.10
 ```
 
 * Run scored tasks only
@@ -150,10 +147,8 @@ At present, only the Level 1 items of the benchmark are implemented. Level 2 ite
 
 The following checks have not been implemented:
 
-* 3.6.2. Firewall rulesets are environment specific.
-* 3.6.3. Firewall rulesets are environment specific.
-* 3.6.4. Firewall rulesets are environment specific.
-* 3.6.5. Firewall rulesets are environment specific.
+* 3.4.*. Firewall rulesets are environment specific.
+* 3.5.*. Firewall rulesets are environment specific.
 * 4.2.1.2. The determination of what should be logged and the destination of messages is environment specific.
 * 4.2.2.2. The determination of what should be logged and the destination of messages is environment specific.
 * 4.2.2.3. Inline editing of syslog-ng configuration file is considered too imprecise and is best solved by a supplied configuration file which addresses this and other related requirements.
@@ -167,20 +162,29 @@ The following checks have not been implemented:
 Compatibility
 -------------
 
-This role is compatible with the following versions of ansible:
+This role should be compatible with version ```2.6.15``` of Ansible.
+It should work with any point release within Ansible 2.6 major release, and there's a high likelihood of it working fine under Ansible 2.5, 2.7.
 
-* 2.3
-* 2.4
-* 2.5
-* 2.6
-* 2.7
-
-This role has not been tested against any other versions of ansible.
+Vagrant version ```2.2.4``` was used during the development & testing of Amazon Linux 2 revision of the role.
 
 Testing
 -------
 
-The following testing processes are applied by the developer of this role:
+A Vagrantfile is included in the ```misc/``` directory role. If desired, this file and the playbook can be copied two levels up from the role directory, resulting in this directory structure:
+
+```
+├── Vagrantfile
+├── ansible-role-cis-amazon-linux.yml
+└── roles
+    └── ansible-role-cis-amazon-linux
+```
+
+Then, to (re)run against a clean state of Amazon Linux 2 image:
+```vagrant destroy -f && vagrant up```
+
+You can log into the test VM via SSH by issuing ``` vagrant ssh```.
+
+Alternatively, the following testing processes are applied by the original developer of this role, and is untested with this version of the role made for Amazon Linux 2.
 
 * The syntax of the role is checked. See ```make syntax```.
 * ```ansible-review``` is run against the role and any warnings which are deemed appropriate are remediated. See ```make review```.
@@ -202,3 +206,8 @@ This role was developed by [Anth Courtney](https://au.linkedin.com/in/anthcourtn
 Updated for Amazon Linux 2 CIS Benchmark v1.0.0 by [Alp Ozcan](https://au.linkedin.com/in/gozcan)
 
 All feedback, issues and PRs are encouraged and appreciated.
+
+Credits
+-------
+
+Vagrant box used for testing was authored by [gbailey](https://app.vagrantup.com/gbailey)
