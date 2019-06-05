@@ -15,8 +15,7 @@
 
 - name: 6.1.1 - Audit system file permissions
   fail:
-    # msg: "{{ audit_6_1_1.stdout }}"
-    msg: "system file permissions audit failed"
+    msg: "{{ audit_6_1_1.stdout }}"
   when:
     - audit_6_1_1.stdout_lines is defined and audit_6_1_1.stdout_lines|length > 0
     - fail_on_manual_remediation_actions
