@@ -11,7 +11,6 @@
     ctstate: ESTABLISHED,NEW
     jump: ACCEPT
     ip_version: ipv6
-  become: yes
   tags:
     - level-1
     - section-3
@@ -26,7 +25,6 @@
     ctstate: ESTABLISHED,NEW
     jump: ACCEPT
     ip_version: ipv6
-  become: yes
   tags:
     - level-1
     - section-3
@@ -41,7 +39,6 @@
     ctstate: ESTABLISHED,NEW
     jump: ACCEPT
     ip_version: ipv6
-  become: yes
   tags:
     - level-1
     - section-3
@@ -56,7 +53,6 @@
     ctstate: ESTABLISHED
     jump: ACCEPT
     ip_version: ipv6
-  become: yes
   tags:
     - level-1
     - section-3
@@ -71,7 +67,6 @@
     ctstate: ESTABLISHED
     jump: ACCEPT
     ip_version: ipv6
-  become: yes
   tags:
     - level-1
     - section-3
@@ -86,7 +81,6 @@
     ctstate: ESTABLISHED
     jump: ACCEPT
     ip_version: ipv6
-  become: yes
   tags:
     - level-1
     - section-3

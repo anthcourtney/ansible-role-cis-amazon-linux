@@ -10,7 +10,6 @@
     match: state
     ctstate: ESTABLISHED,NEW
     jump: ACCEPT
-  become: yes
   tags:
     - level-1
     - section-3
@@ -24,7 +23,6 @@
     match: state
     ctstate: ESTABLISHED,NEW
     jump: ACCEPT
-  become: yes
   tags:
     - level-1
     - section-3
@@ -38,7 +36,6 @@
     match: state
     ctstate: ESTABLISHED,NEW
     jump: ACCEPT
-  become: yes
   tags:
     - level-1
     - section-3
@@ -52,7 +49,6 @@
     match: state
     ctstate: ESTABLISHED
     jump: ACCEPT
-  become: yes
   tags:
     - level-1
     - section-3
@@ -66,7 +62,6 @@
     match: state
     ctstate: ESTABLISHED
     jump: ACCEPT
-  become: yes
   tags:
     - level-1
     - section-3
@@ -80,7 +75,6 @@
     match: state
     ctstate: ESTABLISHED
     jump: ACCEPT
-  become: yes
   tags:
     - level-1
     - section-3

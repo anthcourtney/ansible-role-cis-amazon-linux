@@ -8,7 +8,6 @@
     chain: INPUT
     in_interface: "lo"
     jump: ACCEPT
-  become: yes
   tags:
     - level-1
     - section-3
@@ -20,7 +19,6 @@
     chain: OUTPUT
     out_interface: "lo"
     jump: ACCEPT
-  become: yes
   tags:
     - level-1
     - section-3
@@ -32,7 +30,6 @@
     chain: INPUT
     source: 127.0.0.0/8
     jump: DROP
-  become: yes
   tags:
     - level-1
     - section-3

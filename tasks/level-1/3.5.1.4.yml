@@ -12,7 +12,6 @@
     syn: match
     jump: ACCEPT
     comment: Accept new SSH connections.
-  become: yes
   tags:
     - level-1
     - section-3

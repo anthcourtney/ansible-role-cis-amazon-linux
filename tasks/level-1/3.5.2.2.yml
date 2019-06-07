@@ -9,7 +9,6 @@
     in_interface: "lo"
     jump: ACCEPT
     ip_version: ipv6
-  become: yes
   tags:
     - level-1
     - section-3
@@ -22,7 +21,6 @@
     out_interface: "lo"
     jump: ACCEPT
     ip_version: ipv6
-  become: yes
   tags:
     - level-1
     - section-3
@@ -35,7 +33,6 @@
     source: ::1/128
     jump: DROP
     ip_version: ipv6
-  become: yes
   tags:
     - level-1
     - section-3
