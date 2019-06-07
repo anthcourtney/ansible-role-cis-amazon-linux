@@ -27,3 +27,11 @@
     msg: "*** Running in ansible-container ***"
   when: in_vagrant is not defined
   tags: always
+
+- name: List Level-1 exclusions
+  debug:
+    var: cis_level_1_exclusions
+
+- name: List Level-2 exclusions
+  debug:
+    var: cis_level_2_exclusions
