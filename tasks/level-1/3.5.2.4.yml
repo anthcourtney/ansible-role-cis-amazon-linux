@@ -13,7 +13,6 @@
     jump: ACCEPT
     comment: Accept new SSH connections.
     ip_version: ipv6
-  become: yes
   tags:
     - level-1
     - section-3

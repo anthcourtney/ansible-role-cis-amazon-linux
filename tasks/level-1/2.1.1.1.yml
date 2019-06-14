@@ -1,9 +1,9 @@
 # Standards: 0.11
 ---
 
-# 2.2.1.1 Ensure time synchronisation is in use
+# 2.1.1.1 Ensure time synchronisation is in use
 
-- name: 2.2.1.1 - Ensure ntp is installed
+- name: 2.1.1.1 - Ensure ntp is installed if applicable
   package:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
@@ -14,10 +14,10 @@
   tags:
     - level-1
     - section-4
-    - "2.2.1.1"
+    - "2.1.1.1"
     - not-scored
 
-- name: 2.2.1.1 - Ensure chrony is installed
+- name: 2.1.1.1 - Ensure chrony is installed if applicable
   package:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
@@ -28,5 +28,5 @@
   tags:
     - level-1
     - section-4
-    - "2.2.1.1"
+    - "2.1.1.1"
     - not-scored

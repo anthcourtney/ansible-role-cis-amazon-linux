@@ -2,10 +2,10 @@
 
 galaxy_info:
   author: Anth Courtney
-  description: Implement CIS Amazon Linux V2 Benchmark
-  company: Anth Courtney
+  description: Implement CIS Amazon Linux V1 Benchmark for Amazon Linux 2
+  company: Anth Courtney, Alp Ozcan
   license: MIT
-  min_ansible_version: 2.3
+  min_ansible_version: 2.5
   platforms:
   - name: Amazon
     versions:
@@ -15,5 +15,6 @@ galaxy_info:
     - "2017.09"
     - "2017.12"
     - Candidate
+    - "(Karoo)"
   galaxy_tags: ['CIS','Linux','Amazon','hardening','benchmark','PCIDSS','compliance']
 dependencies: []

@@ -8,7 +8,6 @@
     chain: "{{item}}"
     policy: DROP
     ip_version: ipv6
-  become: yes
   with_items:
     - INPUT
     - FORWARD

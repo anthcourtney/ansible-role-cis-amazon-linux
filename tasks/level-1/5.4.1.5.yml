@@ -1,0 +1,30 @@
+# Standards: 0.11
+---
+
+# 5.4.1.5 Ensure all users last password change date is in the past
+
+- name: 5.4.1.5 - Obtain a list of user accounts
+  shell: "egrep ^[^:]+:[^\\!*] /etc/shadow | cut -d: -f1"
+  register: egrep_5_4_1_5
+  check_mode: no
+  changed_when: False
+  tags:
+    - level-1
+    - section-5
+    - "5.4.1.5"
+    - scored
+
+- name: 5.4.1.5 - Ensure all users' last password change date is in the past
+  command: "chage --list {{ item }}"
+  register: chage_list
+  with_items: "{{ egrep_5_4_1_5.stdout_lines }}"
+  tags:
+    - level-1
+    - section-5
+    - "5.4.1.5"
+    - scored
+
+# Needs to checked manually - in the typical case (out of the box state in Amazon Linux 2) we have no users that fit the above criteria
+- name: 5.4.1.5 - Ensure all users' last password change date is in the past
+  debug:
+    var: chage_list

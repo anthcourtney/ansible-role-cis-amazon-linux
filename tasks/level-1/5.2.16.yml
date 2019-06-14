@@ -1,23 +1,26 @@
 # Standards: 0.11
 ---
 
-# 5.2.16 - Ensure SSH warning banner is configured
+# 5.2.16 - Ensure SSH Idle Timeout Interval is configured
 
-- include: stat_sshd_config.yml
+- name: 5.2.16 - Ensure SSH Client Alive Interval is configured
+  lineinfile:
+    regexp: "^ClientAliveInterval\\s+"
+    line: "ClientAliveInterval {{ cis_sshd_client_alive_interval }}"
+    dest: "{{ cis_sshd_config_filename }}"
+  notify: "Restart sshd"
   tags:
     - level-1
     - section-5
     - "5.2.16"
     - scored
 
-- name: 5.2.16 - Ensure SSH warning banner is configured
+- name: 5.2.16 - Ensure SSH Client Alive Count Max is configured
   lineinfile:
-    regexp: "^Banner\\s+"
-    line: "Banner {{ cis_sshd_banner }}"
-    dest: "/etc/ssh/sshd_config"
-  when: sshd_config.stat.exists
-  notify:
-    - Restart sshd
+    regexp: "^ClientAliveCountMax\\s+"
+    line: "ClientAliveCountMax {{ cis_sshd_client_alive_count_max }}"
+    dest: "{{ cis_sshd_config_filename }}"
+  notify: "Restart sshd"
   tags:
     - level-1
     - section-5

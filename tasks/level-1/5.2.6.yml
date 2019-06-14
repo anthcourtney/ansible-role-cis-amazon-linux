@@ -1,23 +1,14 @@
 # Standards: 0.11
 ---
 
-# 5.2.6 - Ensure SSH IgnoreRhosts is enabled
+# 5.2.6 - Ensure SSH X11 forwarding is disabled
 
-- include: stat_sshd_config.yml
-  tags:
-    - level-1
-    - section-5
-    - "5.2.6"
-    - scored
-
-- name: 5.2.6 - Ensure SSH IgnoreRhosts is enabled
+- name: 5.2.6 - Ensure SSH X11 forwarding is disabled
   lineinfile:
-    regexp: "^IgnoreRhosts\\s+"
-    line: "IgnoreRhosts yes"
-    dest: "/etc/ssh/sshd_config"
-  when: sshd_config.stat.exists
-  notify:
-    - Restart sshd
+    regexp: "^X11Forwarding\\s+"
+    line: "X11Forwarding no"
+    dest: "{{ cis_sshd_config_filename }}"
+  notify: "Restart sshd"
   tags:
     - level-1
     - section-5

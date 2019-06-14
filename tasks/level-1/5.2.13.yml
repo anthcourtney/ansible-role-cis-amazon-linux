@@ -1,37 +1,14 @@
 # Standards: 0.11
 ---
 
-# 5.2.13 - Ensure SSH Idle Timeout Interval is configured
+# 5.2.13 - Ensure only strong ciphers are used
 
-- include: stat_sshd_config.yml
-  tags:
-    - level-1
-    - section-5
-    - "5.2.13"
-    - scored
-
-- name: 5.2.13 - Ensure SSH Client Alive Interval is configured
+- name: 5.2.13 - Ensure only strong ciphers are used
   lineinfile:
-    regexp: "^ClientAliveInterval\\s+"
-    line: "ClientAliveInterval {{ cis_sshd_client_alive_interval }}"
-    dest: "/etc/ssh/sshd_config"
-  when: sshd_config.stat.exists
-  notify:
-    - Restart sshd
-  tags:
-    - level-1
-    - section-5
-    - "5.2.13"
-    - scored
-
-- name: 5.2.13 - Ensure SSH Client Alive Count Max is configured
-  lineinfile:
-    regexp: "^ClientAliveCountMax\\s+"
-    line: "ClientAliveCountMax {{ cis_sshd_client_alive_count_max }}"
-    dest: "/etc/ssh/sshd_config"
-  when: sshd_config.stat.exists
-  notify:
-    - Restart sshd
+    regexp: "^Ciphers\\s+"
+    line: "Ciphers {{ cis_sshd_ciphers }}"
+    dest: "{{ cis_sshd_config_filename }}"
+  notify: "Restart sshd"
   tags:
     - level-1
     - section-5

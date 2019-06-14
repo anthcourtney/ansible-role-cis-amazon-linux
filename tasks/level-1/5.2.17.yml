@@ -1,0 +1,16 @@
+# Standards: 0.11
+---
+
+# 5.2.17 - Ensure SSH LoginGraceTime is set to one minute or less
+
+- name: 5.2.17 - Ensure SSH LoginGraceTime is set to one minute or less
+  lineinfile:
+    regexp: "^LoginGraceTime\\s+"
+    line: "LoginGraceTime {{ cis_sshd_login_grace_time }}"
+    dest: "{{ cis_sshd_config_filename }}"
+  notify: "Restart sshd"
+  tags:
+    - level-1
+    - section-5
+    - "5.2.17"
+    - scored
