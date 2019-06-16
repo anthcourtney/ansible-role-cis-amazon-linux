@@ -16,16 +16,16 @@
   when: (ansible_distribution is not defined) or (ansible_distribution_version is not defined) or (ansible_distribution_version not in cis_target_os_versions) or (ansible_distribution != cis_target_os_distribution)
   tags: always
 
-- name: Running in Vagrant?
+- name: Running in VM?
   debug:
-    msg: "*** Running in Vagrant ***"
+    msg: "*** Running in a Virtual Machine ***"
   when: in_container is not defined
   tags: always
 
 - name: Running in ansible-container?
   debug:
     msg: "*** Running in ansible-container ***"
-  when: in_vagrant is not defined
+  when: in_vm is not defined
   tags: always
 
 - name: List Level-1 exclusions
