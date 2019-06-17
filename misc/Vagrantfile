@@ -6,14 +6,20 @@ Vagrant.configure(2) do |config|
 
   config.ssh.insert_key = false
 
-  # Needed to avoid error with missing Ansible filters etc.
-  config.vm.provision "shell", inline: "curl 'https://bootstrap.pypa.io/get-pip.py' -o 'get-pip.py' && python 'get-pip.py' && sudo pip install --upgrade Jinja2"
+  # In order to avoid error with missing Ansible filters, we install the latest Jinja2.
+  # This in turn requires pip to be installed. While at it, we install Ansible ourselves.
+  $script = <<-SCRIPT
+  yum -y install python3 python3-devel python3-pip
+  pip3 install --upgrade pip
+  /usr/local/bin/pip3 install --upgrade Jinja2 ansible==2.6.15
+  SCRIPT
+
+  config.vm.provision "shell", inline: $script
 
   config.vm.provision "ansible_local" do |ansible|
     ansible.verbose = true
+    ansible.install = false
     ansible.playbook = "ansible-role-cis-amazon-linux.yml"
-    ansible.install_mode = "pip"
-    ansible.version = "2.6.15"
     ansible.extra_vars = {
       in_vm: true
     }
