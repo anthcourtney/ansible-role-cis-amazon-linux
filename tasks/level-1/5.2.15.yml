@@ -6,7 +6,7 @@
 - name: 5.2.15 - Ensure only approved key exhcnage algorithms are used
   lineinfile:
     regexp: "^KexAlgorithms\\s+"
-    line: "KexAlgorithms {{ cis_sshd_kex_algos }}"
+    line: "KexAlgorithms {{ cis_sshd_kex_algorithms }}"
     dest: "{{ cis_sshd_config_filename }}"
   notify: "Restart sshd"
   tags:
