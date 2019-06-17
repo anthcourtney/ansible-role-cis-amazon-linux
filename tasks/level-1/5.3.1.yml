@@ -9,8 +9,9 @@
     type: password
     control: requisite
     module_path: pam_pwquality.so
-    module_arguments: 'try_first_pass
-        retry=3'
+    module_arguments:
+      - try_first_pass
+      - retry=3
     state: updated
   with_items:
     - password-auth
