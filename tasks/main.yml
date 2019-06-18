@@ -20,3 +20,6 @@
 - include: "level-2.yml"
   become: yes
   when: cis_apply_level_2_profile and in_vm is defined
+
+- name: flush handlers
+  meta: flush_handlers
