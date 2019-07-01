@@ -16,6 +16,12 @@
   when: (ansible_distribution is not defined) or (ansible_distribution_version is not defined) or (ansible_distribution_version not in cis_target_os_versions) or (ansible_distribution != cis_target_os_distribution)
   tags: always
 
+- name: Sanity check
+  fail:
+    msg: "One of the variables in_vm or in_container must be set for this role to have any effect!"
+  when: in_container is not defined and in_vm is not defined
+  tags: always
+
 - name: Running in VM?
   debug:
     msg: "*** Running in a Virtual Machine ***"
