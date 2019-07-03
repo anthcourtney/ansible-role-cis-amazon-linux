@@ -144,3 +144,5 @@ cis_fs_permissions_exclusions:
 - '/etc/cron\..+' # things like /etc/cron.daily, /etc/cron.d, /etc/cron.deny
 - '/etc/at\.deny'
 - '/etc/cloud/cloud.cfg'
+
+full_upgrade: true
