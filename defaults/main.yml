@@ -103,7 +103,7 @@ cis_sshd_client_alive_interval: 300
 cis_sshd_client_alive_count_max: 0
 cis_sshd_login_grace_time: 60
 cis_sshd_allow_users: "ec2-user vagrant" # A comma-delimited list of users to allow ssh access to.
-cis_sshd_allow_groups: "ec2-user" # A comma-delimited list of groups to allow ssh access to
+cis_sshd_allow_groups: "ec2-user vagrant" # A comma-delimited list of groups to allow ssh access to
 cis_sshd_deny_users: "root" # A comma-delimited list of users to deny ssh access for
 cis_sshd_deny_groups: "root" # A comma-delimited list of groups to deny ssh access for
 cis_sshd_banner: "/etc/issue.net"
