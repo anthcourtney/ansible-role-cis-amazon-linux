@@ -3,7 +3,7 @@
 
 # 5.2.14 - Ensure only approved MAC algorithms are used
 
-- name: 5.2.14 - Ensure only approved MAC algorithms are used
+- name: 5.2.14 - Ensure only strong MAC algorithms are used
   lineinfile:
     regexp: "^MACs\\s+"
     line: "MACs {{ cis_sshd_macs }}"
