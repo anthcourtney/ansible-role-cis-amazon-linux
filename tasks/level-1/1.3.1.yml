@@ -13,7 +13,7 @@
     - "1.3.1"
     - scored
 
-- name: 1.3.1 - Check that aide database exists
+- name: 1.3.1 - Check if AIDE database exists
   stat:
     path: "{{ cis_aide_database_filename }}"
   register: aide_1_3_1
@@ -24,7 +24,7 @@
     - scored
 
 # We expect that 'aide --init' has been run and the generated database has been moved
-- name: 1.3.1 - Ensure aide database exists
+- name: 1.3.1 - Ensure AIDE database exists
   command: "{{ item }}"
   when: aide_1_3_1.stat.exists is not defined or not aide_1_3_1.stat.exists
   with_items:

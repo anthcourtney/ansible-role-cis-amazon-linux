@@ -3,7 +3,7 @@
 
 # 5.2.15 - Ensure only strong key exhcnage algorithms are used
 
-- name: 5.2.15 - Ensure only approved key exhcnage algorithms are used
+- name: 5.2.15 - Ensure only strong key exchange algorithms are used
   lineinfile:
     regexp: "^KexAlgorithms\\s+"
     line: "KexAlgorithms {{ cis_sshd_kex_algorithms }}"
