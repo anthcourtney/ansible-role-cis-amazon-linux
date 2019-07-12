@@ -1,0 +1,52 @@
+# Standards: 0.11
+---
+
+# 5.2.18 Ensure SSH access is limited
+
+- name: 5.2.18 - Configure SSH AllowUsers
+  lineinfile:
+    regexp: "^#?AllowUsers\\s+"
+    line: "AllowUsers {{ cis_sshd_allow_users }}"
+    dest: "{{ cis_sshd_config_filename }}"
+  notify: Restart sshd
+  tags:
+    - level-1
+    - section-5
+    - "5.2.18"
+    - scored
+
+- name: 5.2.18 - Configure SSH AllowGroups
+  lineinfile:
+    regexp: "^#?AllowGroups\\s+"
+    line: "AllowGroups {{ cis_sshd_allow_groups }}"
+    dest: "{{ cis_sshd_config_filename }}"
+  notify: Restart sshd
+  tags:
+    - level-1
+    - section-5
+    - "5.2.18"
+    - scored
+
+- name: 5.2.18 - Configure SSH DenyUsers
+  lineinfile:
+    regexp: "^#?DenyUsers\\s+"
+    line: "DenyUsers {{ cis_sshd_deny_users }}"
+    dest: "{{ cis_sshd_config_filename }}"
+  notify: Restart sshd
+  tags:
+    - level-1
+    - section-5
+    - "5.2.18"
+    - scored
+
+- name: 5.2.18 - Configure SSH DenyGroups
+  lineinfile:
+    regexp: "^#?DenyGroups\\s+"
+    line: "DenyGroups {{ cis_sshd_deny_groups }}"
+    dest: "{{ cis_sshd_config_filename }}"
+  notify: Restart sshd
+  tags:
+    - level-1
+    - section-5
+    - "5.2.18"
+    - scored

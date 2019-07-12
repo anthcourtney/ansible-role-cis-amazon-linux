@@ -3,22 +3,14 @@
 
 # 5.2.1 Ensure permissions on /etc/ssh/sshd_config are configured
 
-- include: stat_sshd_config.yml
-  tags:
-    - level-1
-    - section-5
-    - "5.2.1"
-    - scored
-
 - name: 5.2.1 - Ensure permissions on /etc/ssh/sshd_config are configured
   file:
-    path: /etc/ssh/sshd_config
+    path: "{{ cis_sshd_config_filename }}"
     owner: root
     group: root
     mode: 0600
-  when: sshd_config.stat.exists
   tags:
-    - level-1
-    - section-5
-    - "5.2.1"
-    - scored
+  - level-1
+  - section-5
+  - "5.2.1"
+  - scored

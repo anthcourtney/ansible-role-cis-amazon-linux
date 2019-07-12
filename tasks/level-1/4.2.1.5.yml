@@ -11,7 +11,7 @@
     state: present
   when: cis_enable_rsyslog and cis_rsyslog_accept_remote_messages
   with_items:
-    - { regexp: "^#?\\$ModLoad\\s+imtcp.so", line: "$ModLoad imtcp.so" }
+    - { regexp: "^#?\\$ModLoad\\s+imtcp", line: "$ModLoad imtcp" }
     - { regexp: "^#?\\$InputTCPServerRun\\s+", line: "$InputTCPServerRun 514" }
   notify: Restart rsyslog
   tags:
@@ -27,7 +27,7 @@
     state: absent
   when: cis_enable_rsyslog and not cis_rsyslog_accept_remote_messages
   with_items:
-    - "^#?\\$ModLoad\\s+imtcp.so"
+    - "^#?\\$ModLoad\\s+imtcp"
     - "^#?\\$InputTCPServerRun\\s+514"
   notify: Restart rsyslog
   tags:

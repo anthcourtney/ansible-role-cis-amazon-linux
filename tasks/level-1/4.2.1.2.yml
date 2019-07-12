@@ -1,9 +1,9 @@
 # Standards: 0.11
 ---
 
-# 4.2.1.2 Ensure logging is configured
+# 4.2.1.2 Ensure logging is configured (Not Scored)
 
-- name: 4.2.1.2 - Ensure logging is configured
+- name: 4.2.1.2 - Ensure logging is configured (Not Scored)
   debug:
     msg: "WARNING - This check has not been implemented yet."
   tags:

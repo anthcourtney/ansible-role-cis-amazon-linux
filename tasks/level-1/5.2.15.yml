@@ -1,69 +1,14 @@
 # Standards: 0.11
 ---
 
-# 5.2.15 Ensure SSH access is limited
+# 5.2.15 - Ensure only strong key exhcnage algorithms are used
 
-- include: stat_sshd_config.yml
-  tags:
-    - level-1
-    - section-5
-    - "5.2.15"
-    - scored
-
-- name: 5.2.15 - Configure SSH AllowUsers
+- name: 5.2.15 - Ensure only strong key exchange algorithms are used
   lineinfile:
-    regexp: "^#?AllowUsers\\s+"
-    line: "AllowUsers {{ cis_sshd_allow_users }}"
-    dest: "/etc/ssh/sshd_config"
-  when:
-    - sshd_config.stat.exists
-    - cis_sshd_allow_users is defined and cis_sshd_allow_users|trim != ""
-  notify: Restart sshd
-  tags:
-    - level-1
-    - section-5
-    - "5.2.15"
-    - scored
-
-- name: 5.2.15 - Configure SSH AllowGroups
-  lineinfile:
-    regexp: "^#?AllowGroups\\s+"
-    line: "AllowGroups {{ cis_sshd_allow_groups }}"
-    dest: "/etc/ssh/sshd_config"
-  when:
-    - sshd_config.stat.exists
-    - cis_sshd_allow_groups is defined and cis_sshd_allow_groups|trim != ""
-  notify: Restart sshd
-  tags:
-    - level-1
-    - section-5
-    - "5.2.15"
-    - scored
-
-- name: 5.2.15 - Configure SSH DenyUsers
-  lineinfile:
-    regexp: "^#?DenyUsers\\s+"
-    line: "DenyUsers {{ cis_sshd_deny_users }}"
-    dest: "/etc/ssh/sshd_config"
-  when:
-    - sshd_config.stat.exists
-    - cis_sshd_deny_users is defined and cis_sshd_deny_users|trim != ""
-  notify: Restart sshd
-  tags:
-    - level-1
-    - section-5
-    - "5.2.15"
-    - scored
-
-- name: 5.2.15 - Configure SSH DenyGroups
-  lineinfile:
-    regexp: "^#?DenyGroups\\s+"
-    line: "DenyGroups {{ cis_sshd_deny_groups }}"
-    dest: "/etc/ssh/sshd_config"
-  when:
-    - sshd_config.stat.exists
-    - cis_sshd_deny_groups is defined and cis_sshd_deny_groups|trim != ""
-  notify: Restart sshd
+    regexp: "^KexAlgorithms\\s+"
+    line: "KexAlgorithms {{ cis_sshd_kex_algorithms }}"
+    dest: "{{ cis_sshd_config_filename }}"
+  notify: "Restart sshd"
   tags:
     - level-1
     - section-5

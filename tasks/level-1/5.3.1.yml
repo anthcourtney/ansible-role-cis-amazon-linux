@@ -3,6 +3,25 @@
 
 # 5.3.1 Ensure password creation requirements are configured
 
+- name: 5.3.1 - Ensure password creation requirements are honoured by PAM
+  pamd:
+    name: "{{ item }}"
+    type: password
+    control: requisite
+    module_path: pam_pwquality.so
+    module_arguments:
+      - try_first_pass
+      - retry=3
+    state: updated
+  with_items:
+    - password-auth
+    - system-auth
+  tags:
+    - level-1
+    - section-5
+    - "5.3.1"
+    - scored
+
 - name: 5.3.1 - Ensure password creation requirements are configured
   lineinfile:
     dest: "/etc/security/pwquality.conf"

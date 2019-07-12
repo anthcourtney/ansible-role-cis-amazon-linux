@@ -1,0 +1,20 @@
+# Standards: 0.11
+---
+
+# 3.5.2.4 Ensure IPv6 firewall rules exist for all open ports
+
+- name: 3.5.2.4 - Ensure IPv6 firewall rules exist for accepting SSH connections
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    destination_port: "22"
+    ctstate: NEW
+    syn: match
+    jump: ACCEPT
+    comment: Accept new SSH connections.
+    ip_version: ipv6
+  tags:
+    - level-1
+    - section-3
+    - "3.5.2.4"
+    - not-scored

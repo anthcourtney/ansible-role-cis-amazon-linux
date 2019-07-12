@@ -1,31 +1,12 @@
 # Standards: 0.11
 ---
 
-# 3.3.1 Ensure IPv6 router advertisements are not accepted
+# 3.3.1 Ensure TCP Wrappers is installed
 
-- name: 3.3.1 - Ensure IPv6 router advertisements are not accepted
-  sysctl:
-    ignoreerrors: yes
-    name: "{{ item }}"
-    value: 0
-    state: present
-  with_items:
-    - "net.ipv6.conf.all.accept_ra"
-    - "net.ipv6.conf.default.accept_ra"
-  ignore_errors: true
-  tags:
-    - level-1
-    - section-3
-    - "3.3.1"
-    - scored
-
-- name: 3.3.1 - Ensure IPv6 router advertisements are not accepted by active kernel parameters
-  command: "{{ item }}"
-  with_items:
-    - "sysctl -w net.ipv6.conf.all.accept_ra=0"
-    - "sysctl -w net.ipv6.conf.default.accept_ra=0"
-    - "sysctl -w net.ipv4.route.flush=1"
-  ignore_errors: true
+- name: 3.3.1 - Ensure TCP Wrappers is installed
+  yum:
+    name: "tcp_wrappers"
+    state: latest
   tags:
     - level-1
     - section-3

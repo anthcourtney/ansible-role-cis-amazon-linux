@@ -1,35 +1,35 @@
 # Standards: 0.11
 ---
 
-# 3.3.3 - Ensure IPv6 is disabled
+# 3.3.3 Ensure /etc/hosts.deny is configured
 
-- name: 3.3.3 - Check if CIS modprobe configuration file exists
+- name: 3.3.3 - Check if /etc/hosts.deny configuration file exists
   stat:
-    path: "{{ cis_modprobe_conf_filename }}"
-  register: modprobe_3_3_3
+    path: "/etc/hosts.deny"
+  register: hosts_deny_3_3_3
   tags:
     - level-1
     - section-3
     - "3.3.3"
     - scored
 
-- name: 3.3.3 - Ensure IPv6 is disabled
+- name: 3.3.3 - Ensure /etc/hosts.deny is configured
   copy:
-    dest: "{{ cis_modprobe_conf_filename }}"
-    content: "options ipv6 disable=1\n"
-  when: modprobe_3_3_3.stat.exists is not defined or not modprobe_3_3_3.stat.exists
+    path: "/etc/hosts.deny"
+    content: "ALL: ALL\n"
+  when: hosts_deny_3_3_3.stat.exists is not defined or not hosts_deny_3_3_3.stat.exists
   tags:
     - level-1
     - section-3
     - "3.3.3"
     - scored
 
-- name: 3.3.3 - Ensure IPv6 is disabled
+- name: 3.3.3 - Ensure /etc/hosts.deny is configured
   lineinfile:
-    dest: "{{ cis_modprobe_conf_filename }}"
-    regexp: "^options ipv6 disable="
-    line: "options ipv6 disable=1"
-  when: modprobe_3_3_3.stat.exists is defined and modprobe_3_3_3.stat.exists
+    dest: "/etc/hosts.deny"
+    regexp: "^ALL:"
+    line: "ALL: ALL"
+  when: hosts_deny_3_3_3.stat.exists is defined and hosts_deny_3_3_3.stat.exists
   tags:
     - level-1
     - section-3

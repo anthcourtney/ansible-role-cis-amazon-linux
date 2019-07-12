@@ -1,0 +1,14 @@
+# Standards: 0.11
+---
+
+# 2.2.1 Ensure NIS Client is not installed
+
+- name: 2.2.1 - Ensure NIS Client is not installed
+  yum:
+    name: "ypbind"
+    state: absent
+  tags:
+    - level-1
+    - section-2
+    - "2.2.1"
+    - scored

@@ -1,0 +1,36 @@
+# Standards: 0.11
+---
+
+# 2.1.1.2 Ensure ntp is configured
+- name: 2.1.1.2 Set Options -u ntp:ntp in /etc/sysconfig/ntpd
+  replace:
+    path: /etc/sysconfig/ntpd
+    regexp: '^OPTIONS=.*$'
+    replace: 'OPTIONS="-u ntp:ntp"'
+  when: cis_enable_ntp and not cis_enable_chrony
+  tags:
+    - level-1
+    - "2.1.1.2"
+    - scored
+
+- name: 2.1.1.2 Set Restrict -6
+  lineinfile:
+    path: /etc/ntp.conf
+    insertbefore: 'restrict default nomodify notrap nopeer noquery'
+    line: 'restrict -6 default kod nomodify notrap nopeer noquery'
+  when: cis_enable_ntp and not cis_enable_chrony
+  tags:
+    - level-1
+    - "2.1.1.2"
+    - scored
+
+- name: 2.1.1.2 Set Restrict -4
+  lineinfile:
+    path: /etc/ntp.conf
+    insertbefore: 'restrict -6 default kod nomodify notrap nopeer noquery'
+    line: 'restrict -4 default kod nomodify notrap nopeer noquery'
+  when: cis_enable_ntp and not cis_enable_chrony
+  tags:
+    - level-1
+    - "2.1.1.2"
+    - scored

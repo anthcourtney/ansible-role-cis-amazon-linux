@@ -1,13 +1,14 @@
 # Standards: 0.11
 ---
 
-# 2.2.2 Ensure X Window System is not installed
+# 2.2.2 Ensure rsh client is not installed
 
-- name: 2.2.2 - Ensure X Window System is not installed
+- name: 2.2.2 - Ensure rsh client is not installed
   yum:
-    name: "xorg-x11*"
+    name: "rsh"
     state: absent
   tags:
     - level-1
+    - section-2
     - "2.2.2"
     - scored

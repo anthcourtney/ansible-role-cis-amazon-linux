@@ -4,10 +4,22 @@
 - include: preflight.yml
   when: cis_apply_level_1_profile or cis_apply_level_2_profile
 
+# In container, we're root already. We don't want to install sudo if we can help it
+- include: "level-1.yml"
+  become: no
+  when: cis_apply_level_1_profile and in_container is defined
+
+- include: "level-2.yml"
+  become: no
+  when: cis_apply_level_2_profile and in_container is defined
+
 - include: "level-1.yml"
   become: yes
-  when: cis_apply_level_1_profile
+  when: cis_apply_level_1_profile and in_vm is defined
 
 - include: "level-2.yml"
   become: yes
-  when: cis_apply_level_2_profile
+  when: cis_apply_level_2_profile and in_vm is defined
+
+- name: flush handlers
+  meta: flush_handlers

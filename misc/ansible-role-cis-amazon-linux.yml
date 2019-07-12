@@ -1,0 +1,8 @@
+---
+- hosts: all
+  connection: local
+  gather_facts: true
+  become: yes
+
+  roles:
+    - ansible-role-cis-amazon-linux

@@ -1,22 +1,18 @@
 # Standards: 0.11
 ---
 
-# 5.2.2 - Ensure SSH Protocol is set to 2
+# 5.2.2 Ensure permissions on SSH private host key files are configured
 
-- include: stat_sshd_config.yml
+- name: 5.2.2 Ensure permissions on SSH private host key files are configured
+  command: find /etc/ssh -xdev -type f -name 'ssh_host_*_key' -exec chown root:ssh_keys {} \;
   tags:
     - level-1
     - section-5
     - "5.2.2"
     - scored
 
-- name: 5.2.2 - Ensure SSH Protocol is set to 2
-  lineinfile:
-    regexp: "^Protocol\\s+"
-    line: "Protocol 2"
-    dest: "/etc/ssh/sshd_config"
-  notify: "Restart sshd"
-  when: sshd_config.stat.exists
+- name: 5.2.2 Ensure permissions on SSH private host key files are configured
+  command: find /etc/ssh -xdev -type f -name 'ssh_host_*_key' -exec chmod 0640 {} \;
   tags:
     - level-1
     - section-5

@@ -1,0 +1,16 @@
+# Standards: 0.11
+---
+
+# 5.2.19 - Ensure SSH warning banner is configured
+
+- name: 5.2.19 - Ensure SSH warning banner is configured
+  lineinfile:
+    regexp: "^Banner\\s+"
+    line: "Banner {{ cis_sshd_banner }}"
+    dest: "{{ cis_sshd_config_filename }}"
+  notify: "Restart sshd"
+  tags:
+    - level-1
+    - section-5
+    - "5.2.19"
+    - scored

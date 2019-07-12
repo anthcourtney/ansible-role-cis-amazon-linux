@@ -3,7 +3,7 @@
 
 # 1.5.4 Ensure prelink is disabled
 
-- name: Check if prelink binary exists
+- name: 1.5.4 - Check if prelink binary exists
   command: which prelink
   ignore_errors: true
   register: which_1_5_4
@@ -12,7 +12,7 @@
     - "1.5.4"
     - scored
 
-- name: Restore prelinked binaries
+- name: 1.5.4 - Restore prelinked binaries
   command: prelink -ua
   when: which_1_5_4.rc is defined and which_1_5_4.rc == 0
   tags:
@@ -20,7 +20,7 @@
     - "1.5.4"
     - scored
 
-- name: Ensure prelink is disabled
+- name: 1.5.4 - Ensure prelink is disabled
   yum:
     name: prelink
     state: absent

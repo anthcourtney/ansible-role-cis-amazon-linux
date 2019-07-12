@@ -1,23 +1,14 @@
 # Standards: 0.11
 ---
 
-# 5.2.9 - Ensure SSH PermitEmptyPasswords is disabled
+# 5.2.9 Ensure SSH HostbasedAuthentication is disabled
 
-- include: stat_sshd_config.yml
-  tags:
-    - level-1
-    - section-5
-    - "5.2.9"
-    - scored
-
-- name: 5.2.9 - Ensure SSH PermitEmptyPasswords is disabled
+- name: 5.2.9 - Ensure SSH HostbasedAuthentication is disabled
   lineinfile:
-    regexp: "^PermitEmptyPasswords\\s+"
-    line: "PermitEmptyPasswords no"
-    dest: "/etc/ssh/sshd_config"
-  when: sshd_config.stat.exists
-  notify:
-    - Restart sshd
+    regexp: "^HostbasedAuthentication\\s+"
+    line: "HostbasedAuthentication no"
+    dest: "{{ cis_sshd_config_filename }}"
+  notify: "Restart sshd"
   tags:
     - level-1
     - section-5

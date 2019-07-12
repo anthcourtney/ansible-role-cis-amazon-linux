@@ -7,7 +7,7 @@
   sysctl:
     ignoreerrors: yes
     name: kernel.randomize_va_space
-    value: 2
+    value: "2"
     state: present
   tags:
     - level-1

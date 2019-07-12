@@ -1,26 +1,9 @@
 # Standards: 0.11
 ---
 
-# 5.5 Ensure access to the su command is restricted
-
-- name: 5.5 - Ensure access to the su command is restricted
-  lineinfile:
-    regexp: "^auth\\s.*\\spam_wheel.so\\s"
-    line: "auth required pam_wheel.so use_uid"
-    dest: "/etc/pam.d/su"
-  tags:
-    - level-1
-    - section-5
-    - "5.5"
-    - scored
-
-- name: 5.5 - Configure wheel group members who can access the su command
-  lineinfile:
-    regexp: "^wheel:"
-    line: "wheel:x:10:{{ cis_wheel_group_members }}"
-    dest: "/etc/group"
-  tags:
-    - level-1
-    - section-5
-    - "5.5"
-    - scored
+# 5.5 Ensure root login is restricted to system console
+- name: Warn
+  debug:
+    msg:
+      - "Not implemented, because of potential impact to su -, and we do not know which consoles are in physically secure locations."
+      - "Please tune /etc/secretty manually per site circumstances."

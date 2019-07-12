@@ -5,13 +5,13 @@
 
 - name: 1.1.14 - Ensure nodev option set on /home partition
   mount:
-    name: "{{ item.mount }}"
+    name: "{{ item.mountpoint }}"
     state: mounted
     fstype: "{{ item.fstype }}"
     src: "{{ item.device }}"
-    opts: "{{ item.options.split(',') | union(['nodev']) | join(',') }}"
-  when: item.mount == '/home'
-  with_items: "{{ ansible_mounts }}"
+    opts: "{{ item.opts.split(',') | union(['nodev']) | join(',') }}"
+  when: item.mountpoint == '/home'
+  with_items: "{{ fs_mounts }}"
   tags:
     - level-1
     - section-1

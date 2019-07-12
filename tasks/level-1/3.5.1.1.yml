@@ -1,0 +1,18 @@
+# Standards: 0.11
+---
+
+# 3.5.1.1 Ensure default deny firewall policy
+
+- name: 3.5.1.1 - Ensure default deny firewall policy
+  iptables:
+    chain: "{{item}}"
+    policy: DROP
+  with_items:
+    - INPUT
+    - FORWARD
+    - OUTPUT
+  tags:
+    - level-1
+    - section-3
+    - "3.5.1.1"
+    - scored
