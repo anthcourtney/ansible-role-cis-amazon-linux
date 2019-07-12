@@ -25,13 +25,17 @@
     - '-a always,exit -F arch=b32 -S sethostname -S setdomainname -k system-locale'
     - '-w /etc/issue -p wa -k system-locale'
     - '-w /etc/issue.net -p wa -k system-locale'
+    - '-w /etc/hosts -p wa -k system-locale'
     - '-w /etc/sysconfig/network -p wa -k system-locale'
+    - '-w /etc/sysconfig/network-scripts/ -p wa -k system-locale'
   when:
     ("'-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale' not in system-locale.stdout") or
     ("'-a always,exit -F arch=b32 -S sethostname -S setdomainname -k system-locale' not in system-locale.stdout") or
     ("'-w /etc/issue -p wa -k system-locale' not in system-locale.stdout") or
     ("'-w /etc/issue.net -p wa -k system-locale' not in system-locale.stdout") or
-    ("'-w /etc/sysconfig/network -p wa -k system-locale' not in system-locale.stdout")
+    ("'-w /etc/hosts -p wa -k system-locale' not in system-locale.stdout") or
+    ("'-w /etc/sysconfig/network -p wa -k system-locale' not in system-locale.stdout") or
+    ("'-w /etc/sysconfig/network-scripts/ -p wa -k system-locale' not in system-locale.stdout")
   tags:
     - "4.1.6"
     - level-2
