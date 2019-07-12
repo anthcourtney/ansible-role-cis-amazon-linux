@@ -1,12 +1,12 @@
 # Standards: 0.11
 ---
 
-# 5.2.6 - Ensure SSH IgnoreRhosts is enabled
+# 5.2.6 - Ensure SSH X11 forwarding is disabled
 
-- name: 5.2.6 - Ensure SSH IgnoreRhosts is enabled
+- name: 5.2.6 - Ensure SSH X11 forwarding is disabled
   lineinfile:
-    regexp: "^IgnoreRhosts\\s+"
-    line: "IgnoreRhosts yes"
+    regexp: "^X11Forwarding\\s+"
+    line: "X11Forwarding no"
     dest: "{{ cis_sshd_config_filename }}"
   notify: "Restart sshd"
   tags:
