@@ -20,7 +20,7 @@
     dest: "{{ cis_audit_auditd_filename }}"
     state: present
   notify: Restart auditd
-  when: auditd_4_1_1_2.stat.exists is not defined or not auditd_4_1_1_2.stat.exists
+  when: auditd_4_1_1_3.stat.exists
   tags:
     - level-2
     - section-4
