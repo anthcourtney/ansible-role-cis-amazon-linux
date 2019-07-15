@@ -14,13 +14,14 @@
     state: installed
 
 - name: 1.6.1.1 Ensure SELinux is enabled in bootloader configuration if it was previously disabled (Scored)
-  lineinfile:
-    dest: "{{ cis_grub_bootloader_filename }}"
-    regexp: "{{ item }}=."
-    line: "{{ item }}=1"
+  replace:
+    dest: "{{ cis_grub_configuration_filename }}"
+    regexp: '^(GRUB_CMDLINE_LINUX_DEFAULT=.*)\"$'
+    replace: '\1 {{ item }}=1"'
   with_items:
     - selinux
     - enforcing
+  notify: Reconfigure GRUB
   tags:
     - level-1
     - "1.6.1.1"

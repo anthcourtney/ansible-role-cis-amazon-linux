@@ -37,11 +37,11 @@
     - scored
 
 - name: 3.6 - Disable IPv6 (bootloader)
-  lineinfile:
-    backrefs: yes
-    dest: "{{ cis_grub_bootloader_filename }}"
-    regexp: "(linux16.+$)"
-    line: '\1 ipv6.disable=1'
+  replace:
+    dest: "{{ cis_grub_configuration_filename }}"
+    regexp: '^(GRUB_CMDLINE_LINUX_DEFAULT=.*)\"$'
+    replace: '\1 ipv6.disable=1"'
+  notify: Reconfigure GRUB
   tags:
     - level-2
     - section-3

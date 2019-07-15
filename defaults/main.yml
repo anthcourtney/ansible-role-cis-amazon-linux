@@ -25,6 +25,7 @@ cis_target_os_versions: [ "(Karoo)" ]
 
 cis_modprobe_conf_filename: "/etc/modprobe.d/CIS.conf"
 cis_grub_bootloader_filename: "/boot/grub2/grub.cfg"
+cis_grub_configuration_filename: "/etc/default/grub"
 cis_sysconfig_init_filename: "/etc/sysconfig/init"
 cis_security_limits_filename: "/etc/security/limits.conf"
 cis_audit_auditd_filename:  "/etc/audit/auditd.conf"
