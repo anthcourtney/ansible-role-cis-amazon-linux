@@ -22,12 +22,12 @@
   with_items:
     - '# 4.1.9 Ensure login and logout events are collected'
     - '-w /var/run/utmp -p wa -k session'
-    - '-w /var/log/wtmp -p wa -k session'
-    - '-w /var/log/btmp -p wa -k session'
+    - '-w /var/log/wtmp -p wa -k logins'
+    - '-w /var/log/btmp -p wa -k logins'
   when:
     ("'-w /var/run/utmp -p wa -k session' not in session.stdout") or
-    ("'-w /var/log/wtmp -p wa -k session' not in session.stdout") or
-    ("'-w /var/log/btmp -p wa -k session' not in session.stdout")
+    ("'-w /var/log/wtmp -p wa -k logins' not in session.stdout") or
+    ("'-w /var/log/btmp -p wa -k logins' not in session.stdout")
   tags:
     - "4.1.9"
     - level-2
