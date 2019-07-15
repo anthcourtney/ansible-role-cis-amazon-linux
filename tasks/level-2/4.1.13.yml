@@ -21,20 +21,13 @@
     line: "{{ item }}"
   with_items:
     - '# 4.1.13 Ensure successful file system mounts are collected (Scored)'
-    - '-a always,exit -F arch=b64 -S mount -F auid>=500 -F auid!=4294967295 -k mounts'
-    - '-a always,exit -F arch=b32 -S mount -F auid>=500 -F auid!=4294967295 -k mounts'
+    - '-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts'
+    - '-a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts'
   when:
-    ("'-a always,exit -F arch=b64 -S mount -F auid>=500 -F auid!=4294967295 -k mounts' not in mounts.stdout") or
-    ("'-a always,exit -F arch=b32 -S mount -F auid>=500 -F auid!=4294967295 -k mounts' not in mounts.stdout")
+    ("'-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts' not in mounts.stdout") or
+    ("'-a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts' not in mounts.stdout")
   tags:
     - "4.1.13"
     - level-1
     - section-4
     - scored
-
-
-
-
-
-
-

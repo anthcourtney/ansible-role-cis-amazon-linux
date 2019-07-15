@@ -24,21 +24,14 @@
     - '-w /sbin/insmod -p x -k modules'
     - '-w /sbin/rmmod -p x -k modules'
     - '-w /sbin/modprobe -p x -k modules'
-    - '-a always,exit arch=b64 -S init_module -S delete_module -k modules'
+    - '-a always,exit -F arch=b64 -S init_module -S delete_module -k modules'
   when:
     ("'-w /sbin/insmod -p x -k modules' not in modules.stdout") or
     ("'-w /sbin/rmmod -p x -k modules' not in modules.stdout") or
     ("'-w /sbin/modprobe -p x -k modules' not in modules.stdout") or
-    ("'-a always,exit arch=b64 -S init_module -S delete_module -k modules' not in modules.stdout")
+    ("'-a always,exit -F arch=b64 -S init_module -S delete_module -k modules' not in modules.stdout")
   tags:
     - "4.1.17"
     - level-2
     - section-4
     - scored
-
-
-
-
-
-
-

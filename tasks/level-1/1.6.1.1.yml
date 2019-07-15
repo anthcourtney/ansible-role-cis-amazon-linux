@@ -13,24 +13,15 @@
     name: policycoreutils-python
     state: installed
 
-- name: 1.6.1.1 Check if SELinux is disabled in bootloader configuration (Scored)
-  command: egrep -q 'selinux=0|enforcing=0' "{{ cis_grub_bootloader_filename }}"
-  register: line_matched
-  ignore_errors: true
-  tags:
-    - level-1
-    - "1.6.1.1"
-    - scored
-
-- name: 1.6.1.1 Ensure SELinux is not disabled in bootloader configuration (Scored)
-  lineinfile:
-    dest: "{{ cis_grub_bootloader_filename }}"
-    regexp: "{{ item }}=."
-    line: "{{ item }}=1"
-  when: line_matched.rc == '0'
+- name: 1.6.1.1 Ensure SELinux is enabled in bootloader configuration if it was previously disabled (Scored)
+  replace:
+    dest: "{{ cis_grub_configuration_filename }}"
+    regexp: '^(GRUB_CMDLINE_LINUX_DEFAULT=.*)\"$'
+    replace: '\1 {{ item }}=1"'
   with_items:
     - selinux
     - enforcing
+  notify: Reconfigure GRUB
   tags:
     - level-1
     - "1.6.1.1"
