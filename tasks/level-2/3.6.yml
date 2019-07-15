@@ -40,7 +40,7 @@
   lineinfile:
     backrefs: yes
     dest: "{{ cis_grub_bootloader_filename }}"
-    regexp: "linux16.+$"
+    regexp: "(linux16.+$)"
     line: '\1 ipv6.disable=1'
   tags:
     - level-2
