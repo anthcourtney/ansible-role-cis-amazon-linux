@@ -24,6 +24,7 @@
     - '-w /var/log/sudo.log -p wa -k actions'
   when:
     ("'-w /var/log/sudo.log -p wa -k actions' not in scope.stdout")
+  notify: Generate auditd rules
   tags:
     - "4.1.16"
     - level-2

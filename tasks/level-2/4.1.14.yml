@@ -26,6 +26,7 @@
   when:
     ("'-a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 -F auid!=4294967295 -k delete' not in delete.stdout") or
     ("'-a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 -F auid!=4294967295 -k delete' not in delete.stdout")
+  notify: Generate auditd rules
   tags:
     - "4.1.14"
     - level-1

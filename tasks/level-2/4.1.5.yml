@@ -32,6 +32,7 @@
     ("'-w /etc/gshadow -p wa -k identity' not in identity.stdout") or
     ("'-w /etc/shadow -p wa -k identity' not in identity.stdout") or
     ("'-w /etc/security/opasswd -p wa -k identity' not in identity.stdout")
+  notify: Generate auditd rules
   tags:
     - "4.1.5"
     - level-2

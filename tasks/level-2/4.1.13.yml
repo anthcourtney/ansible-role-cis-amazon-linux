@@ -26,6 +26,7 @@
   when:
     ("'-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts' not in mounts.stdout") or
     ("'-a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts' not in mounts.stdout")
+  notify: Generate auditd rules
   tags:
     - "4.1.13"
     - level-1

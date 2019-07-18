@@ -26,6 +26,7 @@
   when:
     ("'-w /etc/sudoers -p wa -k scope' not in scope.stdout") or
     ("'-w /etc/sudoers.d -p wa -k scope' not in scope.stdout")
+  notify: Generate auditd rules
   tags:
     - "4.1.15"
     - level-2

@@ -29,6 +29,7 @@
     ("'-a always,exit -F arch=b64 -S clock_settime -k time-change' not in time-change.stdout") or
     ("'-a always,exit -F arch=b32 -S clock_settime -k time-change' not in time-change.stdout") or
     ("'-w /etc/localtime -p wa -k time-change' not in time-change.stdout")
+  notify: Generate auditd rules
   tags:
     - "4.1.4"
     - level-2
