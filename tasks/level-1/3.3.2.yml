@@ -1,33 +1,43 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
-# 3.3.2 Ensure IPv6 redirects are not accepted
+# 3.3.2 Ensure /etc/hosts.allow is configured
 
-- name: 3.3.2 - Ensure IPv6 redirects are not accepted
-  sysctl:
-    ignoreerrors: yes
-    name: "{{ item }}"
-    value: 0
-    state: present
-  with_items:
-    - "net.ipv6.conf.all.accept_redirects"
-    - "net.ipv6.conf.default.accept_redirects"
-  ignore_errors: true
+- name: 3.3.2 - Check if /etc/hosts.allow configuration file exists
+  stat:
+    path: "/etc/hosts.allow"
+  register: hosts_allow
   tags:
     - level-1
     - section-3
+    - section-3.3
+    - section-3.3.2
     - "3.3.2"
     - scored
 
-- name: 3.3.2 - Ensure IPv6 redirects are not accepted by active kernel parameters
-  command: "{{ item }}"
-  with_items:
-    - "sysctl -w net.ipv6.conf.all.accept_redirects=0"
-    - "sysctl -w net.ipv6.conf.default.accept_redirects=0"
-    - "sysctl -w net.ipv6.route.flush=1"
-  ignore_errors: true
+- name: 3.3.2 - Ensure /etc/hosts.allow is configured
+  copy:
+    path: "/etc/hosts.allow"
+    content: "ALL: ALL\n"
+  when: hosts_allow.stat.exists is not defined or not hosts_allow.stat.exists
   tags:
     - level-1
     - section-3
+    - section-3.3
+    - section-3.3.2
+    - "3.3.2"
+    - scored
+
+- name: 3.3.2 - Ensure /etc/hosts.allow is configured
+  lineinfile:
+    dest: "/etc/hosts.allow"
+    regexp: "^ALL:"
+    line: "ALL: ALL"
+  when: hosts_allow.stat.exists is defined and hosts_allow.stat.exists
+  tags:
+    - level-1
+    - section-3
+    - section-3.3
+    - section-3.3.2
     - "3.3.2"
     - scored

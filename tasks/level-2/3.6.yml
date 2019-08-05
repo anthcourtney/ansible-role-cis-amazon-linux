@@ -1,0 +1,15 @@
+# Standards: 1.0.0
+---
+
+# 3.6 Disable IPv6 (Not Scored)
+
+- name: 3.6 - Disable IPv6
+  debug:
+    msg: "WARNING - This check has not been implemented yet."
+  tags:
+    - level-2
+    - section-3
+    - section-3.6
+    - "3.6"
+    - not-scored
+    - todo

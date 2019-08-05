@@ -1,37 +1,44 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 5.4.2 Ensure system accounts are non-login
 
 - name: 5.4.2 - Retrieve system accounts
   shell: "awk -F: '($3 < 500) {print $1 }' /etc/passwd | grep -v ^#"
-  register: audit_5_4_2
-  check_mode: no
-  changed_when: False
+  register: audit
+  check_mode: false
+  changed_when: false
   tags:
     - level-1
     - section-5
+    - section-5.4
+    - section-5.4.2
     - "5.4.2"
     - scored
 
 - name: 5.4.2 - Lock system user passwords
   command: "usermod -L {{ item }}"
-  with_items: "{{ audit_5_4_2.stdout_lines }}"
+  with_items: "{{ audit.stdout_lines }}"
   when: item != "root"
   tags:
     - level-1
     - section-5
+    - section-5.4
+    - section-5.4.2
     - "5.4.2"
     - scored
+    - non-idempotent
 
 - name: 5.4.2 - Ensure system accounts are non-login
   user:
     name: "{{ item }}"
     shell: "/sbin/nologin"
-  with_items: "{{ audit_5_4_2.stdout_lines }}"
+  with_items: "{{ audit.stdout_lines }}"
   when: "item not in cis_skip_lock_users"
   tags:
     - level-1
     - section-5
+    - section-5.4
+    - section-5.4.2
     - "5.4.2"
     - scored

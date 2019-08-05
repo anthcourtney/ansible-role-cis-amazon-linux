@@ -1,0 +1,17 @@
+# Standards: 1.0.0
+---
+
+# 1.6.1.4 Ensure SETroubleshoot is not installed (Scored)
+
+- name: 1.6.1.4 - Ensure SETroubleshoot is not installed (Scored)
+  yum:
+    name: mcstrans
+    state: removed
+  tags:
+    - level-2
+    - section-1
+    - section-1.6
+    - section-1.6.1
+    - section-1.6.1.5
+    - "1.6.1.5"
+    - scored

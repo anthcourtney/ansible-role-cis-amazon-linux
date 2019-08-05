@@ -1,21 +1,19 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 cis_target_os_distribution: "Amazon"
-cis_target_os_versions: 
-  - "2016.03"
-  - "2016.09"
-  - "2017.03"
-  - "2017.09"
-  - "2017.12"
-  - Candidate
+cis_target_os_versions:
+  - "(Karoo)"
 
 cis_modprobe_conf_filename: "/etc/modprobe.d/CIS.conf"
 cis_aide_database_filename: "/var/lib/aide/aide.db.gz"
-cis_grub_bootloader_filename: "/boot/grub/menu.lst"
+cis_grub_bootloader_filename: "/boot/grub2/grub.cfg"
 cis_sysconfig_init_filename: "/etc/sysconfig/init"
 cis_security_limits_filename: "/etc/security/limits.conf"
-cis_audit_auditd_filename:  "/etc/audit/auditd.conf"
+cis_audit_auditd_filename: "/etc/audit/auditd.conf"
 cis_audit_rules_filename: "/etc/audit/audit.rules"
 
-full_upgrade: True
+full_upgrade: true
+in_container: "{{ ansible_virtualization_role is defined and
+                  ansible_virtualization_role == 'guest' and
+                  ansible_virtualization_type in ['lxc', 'docker'] }}"

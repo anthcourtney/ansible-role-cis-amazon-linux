@@ -1,0 +1,22 @@
+# Standards: 1.0.0
+---
+
+# 1.1.13 Ensure separate partition exists for /home (Scored)
+
+- name: 1.1.13 - Ensure separate partition exists for /home (Scored)
+  mount:
+    name: "{{ item.mountpoint }}"
+    state: present
+    fstype: "{{item.fstype}}"
+    src: "{{item.device}}"
+  with_items:
+    - mountpoint: "{{cis_partition_mnt_home}}"
+      device: "{{cis_partition_dev_home}}"
+      fstype: "{{cis_partition_fs_home}}"
+  tags:
+    - level-2
+    - section-1
+    - section-1.1
+    - section-1.1.13
+    - "1.1.13"
+    - scored

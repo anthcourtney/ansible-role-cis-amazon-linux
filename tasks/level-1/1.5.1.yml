@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 1.5.1 Ensure core dumps are restricted
@@ -6,9 +6,12 @@
 - name: 1.5.1 - Check if security limits file exists
   stat:
     path: "{{ cis_security_limits_filename }}"
-  register: security_limits_1_5_1
+  register: security_limits
   tags:
     - level-1
+    - section-1
+    - section-1.5
+    - section-1.5.1
     - "1.5.1"
     - scored
 
@@ -16,9 +19,12 @@
   copy:
     dest: "{{ cis_security_limits_filename }}"
     content: "* hard core 0\n"
-  when: security_limits_1_5_1.stat.exists is not defined or not security_limits_1_5_1.stat.exists
+  when: security_limits.stat.exists is not defined or not security_limits.stat.exists
   tags:
     - level-1
+    - section-1
+    - section-1.5
+    - section-1.5.1
     - "1.5.1"
     - scored
 
@@ -29,20 +35,24 @@
     limit_type: "hard"
     domain: "*"
     value: "0"
-  when: security_limits_1_5_1.stat.exists is defined and security_limits_1_5_1.stat.exists
+  when: security_limits.stat.exists is defined and security_limits.stat.exists
   tags:
     - level-1
+    - section-1
+    - section-1.5
+    - section-1.5.1
     - "1.5.1"
     - scored
 
 - name: 1.5.1 - Prevent suid programs from dumping core
   sysctl:
-    ignoreerrors: yes
     name: fs.suid_dumpable
     value: 0
-    state: present
+  when: not in_container
   tags:
     - level-1
+    - section-1
+    - section-1.5
+    - section-1.5.1
     - "1.5.1"
     - scored
-

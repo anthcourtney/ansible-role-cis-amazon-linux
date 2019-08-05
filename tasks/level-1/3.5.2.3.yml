@@ -1,0 +1,112 @@
+# Standards: 1.0.0
+---
+
+# 3.5.2.3 Ensure outbound and established connections are configured
+
+- name: 3.5.2.3 - Ensure IPv6 outbound and established connections are configured
+  iptables:
+    ip_version: ipv6
+    chain: OUTPUT
+    protocol: tcp
+    match: state
+    ctstate: ESTABLISHED,NEW
+    jump: ACCEPT
+  when: not in_container
+  tags:
+    - level-1
+    - section-3
+    - section-3.5
+    - section-3.5.2
+    - section-3.5.2.3
+    - "3.5.2.3"
+    - not-scored
+
+- name: 3.5.2.3 - Ensure IPv6 outbound and established connections are configured
+  iptables:
+    ip_version: ipv6
+    chain: OUTPUT
+    protocol: udp
+    match: state
+    ctstate: ESTABLISHED,NEW
+    jump: ACCEPT
+  when: not in_container
+  tags:
+    - level-1
+    - section-3
+    - section-3.5
+    - section-3.5.2
+    - section-3.5.2.3
+    - "3.5.2.3"
+    - not-scored
+
+- name: 3.5.2.3 - Ensure IPv6 outbound and established connections are configured
+  iptables:
+    ip_version: ipv6
+    chain: OUTPUT
+    protocol: icmp
+    match: state
+    ctstate: ESTABLISHED,NEW
+    jump: ACCEPT
+  when: not in_container
+  tags:
+    - level-1
+    - section-3
+    - section-3.5
+    - section-3.5.2
+    - section-3.5.2.3
+    - "3.5.2.3"
+    - not-scored
+
+- name: 3.5.2.3 - Ensure IPv6 outbound and established connections are configured
+  iptables:
+    ip_version: ipv6
+    chain: INPUT
+    protocol: tcp
+    match: state
+    ctstate: ESTABLISHED
+    jump: ACCEPT
+  when: not in_container
+  tags:
+    - level-1
+    - section-3
+    - section-3.5
+    - section-3.5.2
+    - section-3.5.2.3
+    - "3.5.2.3"
+    - not-scored
+
+- name: 3.5.2.3 - Ensure IPv6 outbound and established connections are configured
+  iptables:
+    ip_version: ipv6
+    chain: INPUT
+    protocol: udp
+    match: state
+    ctstate: ESTABLISHED
+    jump: ACCEPT
+  when: not in_container
+  tags:
+    - level-1
+    - section-3
+    - section-3.5
+    - section-3.5.2
+    - section-3.5.2.3
+    - "3.5.2.3"
+    - not-scored
+
+- name: 3.5.2.3 - Ensure IPv6 outbound and established connections are configured
+  iptables:
+    ip_version: ipv6
+    chain: INPUT
+    protocol: icmp
+    match: state
+    ctstate: ESTABLISHED
+    jump: ACCEPT
+  when: not in_container
+  tags:
+    - level-1
+    - section-3
+    - section-3.5
+    - section-3.5.2
+    - section-3.5.2.3
+    - "3.5.2.3"
+    - not-scored

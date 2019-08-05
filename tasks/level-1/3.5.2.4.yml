@@ -1,0 +1,36 @@
+# Standards: 1.0.0
+---
+
+# 3.5.2.4 Ensure firewall rules exist for all open ports
+
+- name: 3.5.2.4 - Ensure IPv6 firewall rules exist for all open ports
+  debug:
+    msg: "WARNING - We are already checking this as part of security groups."
+  tags:
+    - level-1
+    - section-3
+    - section-3.5
+    - section-3.5.2
+    - section-3.5.2.4
+    - "3.5.2.4"
+    - not-scored
+
+- name: 3.5.2.4 - Ensure IPv6 firewall rules exist for accepting SSH connections
+  iptables:
+    ip_version: ipv6
+    chain: INPUT
+    protocol: tcp
+    destination_port: 22
+    ctstate: NEW
+    syn: match
+    jump: ACCEPT
+    comment: Accept new SSH connections.
+  when: not in_container
+  tags:
+    - level-1
+    - section-3
+    - section-3.5
+    - section-3.5.2
+    - section-3.5.2.4
+    - "3.5.2.4"
+    - not-scored

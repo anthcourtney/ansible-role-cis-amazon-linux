@@ -1,7 +1,7 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
-# 1.2.3 - Ensure gpgcheck is globally activated
+# 1.2.3 Ensure gpgcheck is globally activated
 
 - name: 1.2.3 - Get all repos on remote host
   find:
@@ -10,6 +10,9 @@
   register: yum_repos
   tags:
     - level-1
+    - section-1
+    - section-1.2
+    - section-1.2.3
     - "1.2.3"
     - scored
 
@@ -20,6 +23,9 @@
     dest: "/etc/yum.conf"
   tags:
     - level-1
+    - section-1
+    - section-1.2
+    - section-1.2.3
     - "1.2.3"
     - scored
 
@@ -31,5 +37,8 @@
   with_items: "{{ yum_repos.files }}"
   tags:
     - level-1
+    - section-1
+    - section-1.2
+    - section-1.2.3
     - "1.2.3"
     - scored

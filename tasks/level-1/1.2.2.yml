@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 1.2.2 Ensure GPG keys are configured
@@ -6,9 +6,19 @@
 # The remediation actions for this recommendation are site-specific, therefore we test that
 # executing the specified rpm command results in no errors.
 - name: 1.2.2 - Ensure GPG keys are configured
-  shell: rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
+  block:
+    - name: 1.2.2 - Verify GPG keys are configured correctly
+      command: rpm -q gpg-pubkey --qf '%{name}-%{version}-%{release} --> %{summary}\n'
+      register: rpm
+      changed_when: false
+    - debug:
+        msg: "{{ rpm.stdout }}"
+  when: cis_audit
   tags:
     - level-1
+    - section-1
+    - section-1.2
+    - section-1.2.2
     - "1.2.2"
     - scored
-
+    - lint  # ANSIBLE0006, ANSIBLE0012

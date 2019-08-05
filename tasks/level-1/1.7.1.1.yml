@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 1.7.1.1 Ensure message of the day is configured properly
@@ -8,11 +8,28 @@
 # generate motd, and which are related to system information which would otherwise be
 # displayed by mingetty options, are not present.
 # On amazon linux, this is the 30-banner script within /etc/update-motd.d/
-- name: 1.7.1.1 - Ensure mingetty options are not used within motd
+- name: 1.7.1.1 - Remove the default Amazon Linux 2 Banner and ensure message of the day is configured properly                          #### Changed from something to
   file:
-    path: "/etc/update-motd.d/30-banner"
+    path: "/etc/update-motd.d/"
     state: absent
   tags:
     - level-1
-    - 1.7.1.1
+    - section-1
+    - section-1.7
+    - section-1.7.1
+    - section-1.7.1.1
+    - "1.7.1.1"
+    - scored
+
+- name: 1.7.1.1 - Ensure message of the day is configured properly                          #### Changed from something to
+  copy:
+    content: "{{ cis_motd_banner }}"
+    dest: "/etc/motd"
+  tags:
+    - level-1
+    - section-1
+    - section-1.7
+    - section-1.7.1
+    - section-1.7.1.1
+    - "1.7.1.1"
     - scored

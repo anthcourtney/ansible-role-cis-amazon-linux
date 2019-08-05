@@ -15,3 +15,6 @@
   service:
     name: auditd
     state: restarted
+
+- name: run sysctl
+  command: sysctl -p

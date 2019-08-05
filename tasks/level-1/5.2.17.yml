@@ -1,0 +1,29 @@
+# Standards: 1.0.0
+---
+
+# 5.2.17 Ensure SSH LoginGraceTime is set to one minute or less
+
+- include: stat_sshd_config.yml
+  tags:
+    - level-1
+    - section-5
+    - section-5.2
+    - section-5.2.17
+    - "5.2.17"
+    - scored
+
+- name: 5.2.17 - Ensure SSH LoginGraceTime is set to one minute or less
+  lineinfile:
+    regexp: "^LoginGraceTime\\s+"
+    line: "LoginGraceTime {{ cis_sshd_login_grace_time }}"
+    dest: "/etc/ssh/sshd_config"
+  when: sshd_config.stat.exists
+  notify:
+    - Restart sshd
+  tags:
+    - level-1
+    - section-5
+    - section-5.2
+    - section-5.2.17
+    - "5.2.17"
+    - scored

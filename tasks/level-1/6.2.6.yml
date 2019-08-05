@@ -1,40 +1,43 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 6.2.6 Ensure root PATH Integrity
 
 - name: 6.2.6 - Audit root PATH Integrity
   script: "{{ role_path }}/files/audit_6.2.6.sh"
-  check_mode: no
-  changed_when: False
-  register: audit_6_2_6
+  register: audit
   tags:
     - level-1
     - section-6
+    - section-6.2
+    - section-6.2.6
     - "6.2.6"
     - scored
 
 - name: 6.2.6 - Ensure root PATH Integrity
   fail:
-    msg: "{{ audit_6_2_6.stdout_lines }}"
+    msg: "{{ audit.stdout_lines }}"
   when:
-    - audit_6_2_6.stdout_lines is defined and audit_6_2_6.stdout_lines|length > 0
+    - audit.stdout_lines is defined and audit.stdout_lines|length > 0
     - fail_on_manual_remediation_actions
   tags:
     - level-1
     - section-6
+    - section-6.2
+    - section-6.2.6
     - "6.2.6"
     - scored
 
 - name: 6.2.6 - Ensure root PATH Integrity
   debug:
-    msg: "*** ACTION REQUIRED *** {{ audit_6_2_6.stdout }}"
+    msg: "*** ACTION REQUIRED *** {{ audit.stdout }}"
   when:
-    - audit_6_2_6.stdout_lines is defined and audit_6_2_6.stdout_lines|length > 0
+    - audit.stdout_lines is defined and audit.stdout_lines|length > 0
     - not fail_on_manual_remediation_actions
   tags:
     - level-1
     - section-6
+    - section-6.2
+    - section-6.2.6
     - "6.2.6"
     - scored
-

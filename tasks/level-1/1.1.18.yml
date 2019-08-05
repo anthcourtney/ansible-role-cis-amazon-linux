@@ -1,12 +1,45 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 1.1.18 Ensure sticky bit is set on all world-writable directories
 
 - name: 1.1.18 - Ensure sticky bit is set on all world-writable directories
-  shell: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d -perm -0002 2>/dev/null | xargs chmod a+t"
+  block:
+    - name: 1.1.18 - Ensure findutils is installed
+      yum:
+        name: findutils
+
+    - name: 1.1.18 - Find all world-writable directories without sticky bit
+      shell: "df --local -P
+              | awk {'if (NR!=1) print $6'}
+              | xargs -I '{}' grep '[[:space:]]{}[[:space:],]' /proc/mounts
+              | grep -v '[[:space:]]ro[[:space:],]'
+              | awk -F '[ ,]' {'print $2'}
+              | xargs -I '{}' find '{}' -xdev -type d ! -perm /1000 -perm -0002"
+      register: find
+      changed_when: false
+
+    - name: 1.1.18 - Set files fact
+      set_fact:
+        files: "{{ find.stdout_lines }}"
+
+    - debug:
+        msg: |-
+          Directories that require permission update:
+          {% for file in files %}
+          - {{ file }}
+          {% endfor %}
+      when: cis_audit and files
+
+    - name: 1.1.18 - Set sticky bit on directory
+      file:
+        path: "{{ item }}"
+        mode: "a+t"
+      with_items: "{{ files }}"
   tags:
     - level-1
     - section-1
+    - section-1.1
+    - section-1.1.18
     - "1.1.18"
     - scored

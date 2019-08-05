@@ -1,26 +1,22 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 3.1.1 Ensure IP forwarding is disabled
 
-- name: 3.1.1 - Ensure IP forwarding is disabled
-  sysctl:
-    name: net.ipv4.ip_forward
-    value: 0
-    state: present
-  tags:
-    - level-1
-    - section-3
-    - "3.1.1"
-    - scored
-
 - name: 3.1.1 - Ensure IP forwarding is disabled in active kernel parameters
-  command: "{{ item }}"
-  with_items:
-    - "sysctl -w net.ipv4.ip_forward=0"
-    - "sysctl -w net.ipv4.route.flush=1"
+  sysctl:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_dict:
+    "net.ipv4.ip_forward": 0
+    "net.ipv6.conf.all.forwarding": 0
+    "net.ipv4.route.flush": 1
+    "net.ipv6.route.flush": 1
+  when: not in_container
   tags:
     - level-1
     - section-3
+    - section-3.1
+    - section-3.1.1
     - "3.1.1"
     - scored

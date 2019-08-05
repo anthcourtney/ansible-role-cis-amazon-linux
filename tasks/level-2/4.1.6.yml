@@ -1,21 +1,22 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 4.1.6 Ensure events that modify the system's network environment are collected(Scored)
 
-- name: 4.1.6 Ensure events that modify the system's network environment are collected(Scored)
-  shell: "grep system-locale {{ cis_audit_rules_filename }}"
+- name: 4.1.6 - Ensure events that modify the system's network environment are collected(Scored)
+  command: "grep system-locale {{ cis_audit_rules_filename }}"
   register: system-locale
-  changed_when: False
+  changed_when: false
   ignore_errors: true
   tags:
-    - "4.1.6"
     - level-2
     - section-4
+    - section-4.1
+    - section-4.1.6
+    - "4.1.6"
     - scored
 
-
-- name: 4.1.6 Ensure events that modify the system's network environment are collected(Scored)(Verify registered output matches)
+- name: 4.1.6 - Ensure events that modify the system's network environment are collected(Scored)(Verify registered output matches)
   lineinfile:
     dest: "{{ cis_audit_rules_filename }}"
     line: "{{ item }}"
@@ -26,14 +27,16 @@
     - '-w /etc/issue -p wa -k system-locale'
     - '-w /etc/issue.net -p wa -k system-locale'
     - '-w /etc/sysconfig/network -p wa -k system-locale'
-  when:
+  when: >
     ("'-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale' not in system-locale.stdout") or
     ("'-a always,exit -F arch=b32 -S sethostname -S setdomainname -k system-locale' not in system-locale.stdout") or
     ("'-w /etc/issue -p wa -k system-locale' not in system-locale.stdout") or
     ("'-w /etc/issue.net -p wa -k system-locale' not in system-locale.stdout") or
     ("'-w /etc/sysconfig/network -p wa -k system-locale' not in system-locale.stdout")
   tags:
-    - "4.1.6"
     - level-2
     - section-4
+    - section-4.1
+    - section-4.1.6
+    - "4.1.6"
     - scored

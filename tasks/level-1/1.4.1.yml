@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 1.4.1 Ensure permissions on bootloader config are configured
@@ -6,9 +6,12 @@
 - name: 1.4.1 - Check if grub bootloader file exists
   stat:
     path: "{{ cis_grub_bootloader_filename }}"
-  register: grub_1_4_1
+  register: grub
   tags:
     - level-1
+    - section-1
+    - section-1.4
+    - section-1.4.1
     - "1.4.1"
     - scored
 
@@ -17,10 +20,13 @@
     path: "{{ cis_grub_bootloader_filename }}"
     owner: root
     group: root
-    mode:  "og-rwx"
+    mode: "og-rwx"
     state: file
-  when: grub_1_4_1.stat.exists
+  when: grub.stat.exists
   tags:
     - level-1
+    - section-1
+    - section-1.4
+    - section-1.4.1
     - "1.4.1"
     - scored

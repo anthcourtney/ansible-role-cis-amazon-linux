@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 4.2.1.2 Ensure logging is configured
@@ -9,6 +9,9 @@
   tags:
     - level-1
     - section-4
+    - section-4.2
+    - section-4.2.1
+    - section-4.2.1.2
     - "4.2.1.2"
     - not-scored
     - todo

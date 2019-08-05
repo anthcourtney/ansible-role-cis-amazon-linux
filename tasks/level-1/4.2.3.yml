@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 4.2.3 Ensure rsyslog or syslog-ng is installed
@@ -14,6 +14,8 @@
   tags:
     - level-1
     - section-4
+    - section-4.2
+    - section-4.2.3
     - "4.2.3"
     - scored
 
@@ -29,5 +31,7 @@
   tags:
     - level-1
     - section-4
+    - section-4.2
+    - section-4.2.3
     - "4.2.3"
     - scored

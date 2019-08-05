@@ -1,0 +1,20 @@
+# Standards: 1.0.0
+---
+
+# 2.1.13 Ensure HTTP Proxy Server is not enabled
+
+- name: 2.1.13 - Ensure HTTP Proxy Server is not enabled
+  systemd:
+    name: "squid"
+    enabled: false
+    state: stopped
+  register: systemd
+  failed_when: systemd is failed and not 'Could not find the requested service' in systemd.msg
+  when: not in_container
+  tags:
+    - level-1
+    - section-2
+    - section-2.1
+    - section-2.1.13
+    - "2.1.13"
+    - scored

@@ -1,0 +1,17 @@
+# Standards: 1.0.0
+---
+
+# 4.1.1.1 Ensure audit log storage size is configured (Not Scored)
+
+- name: 4.1.1.1 - Ensure audit log storage size is configured
+  debug:
+    msg: "WARNING - This check has not been implemented yet."
+  tags:
+    - level-2
+    - section-4
+    - section-4.1
+    - section-4.1.1
+    - section-4.1.1.1
+    - "4.1.1.1"
+    - not-scored
+    - todo

@@ -1,37 +1,46 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
-# 1.1.1.4 - Ensure mounting of hfs filesystems is disabled
+# 1.1.1.4 Ensure mounting of squashfs filesystems is disabled
 
 - name: 1.1.1.4 - Check if CIS modprobe configuration file exists
   stat:
     path: "{{ cis_modprobe_conf_filename }}"
-  register: modprobe_1_1_1_4
+  register: modprobe
   tags:
     - level-1
     - section-1
+    - section-1.1
+    - section-1.1.1
+    - section-1.1.1.4
     - "1.1.1.4"
     - scored
 
-- name: 1.1.1.4 - Ensure mounting of hfs filesystems is disabled
+- name: 1.1.1.4 - Ensure mounting of squashfs filesystems is disabled
   copy:
     dest: "{{ cis_modprobe_conf_filename }}"
-    content: "install hfs /bin/true\n"
-  when: modprobe_1_1_1_4.stat.exists is not defined or not modprobe_1_1_1_4.stat.exists
+    content: "install squashfs /bin/true\n"
+  when: modprobe.stat.exists is not defined or not modprobe.stat.exists
   tags:
     - level-1
     - section-1
+    - section-1.1
+    - section-1.1.1
+    - section-1.1.1.4
     - "1.1.1.4"
     - scored
 
-- name: 1.1.1.4 - Ensure mounting of hfs filesystems is disabled
+- name: 1.1.1.4 - Ensure mounting of squashfs filesystems is disabled
   lineinfile:
     dest: "{{ cis_modprobe_conf_filename }}"
-    regexp: "^install hfs\\s+"
-    line: "install hfs /bin/true"
-  when: modprobe_1_1_1_4.stat.exists is defined and modprobe_1_1_1_4.stat.exists
+    regexp: "^install squashfs"
+    line: "install squashfs /bin/true"
+  when: modprobe.stat.exists is defined and modprobe.stat.exists
   tags:
     - level-1
     - section-1
+    - section-1.1
+    - section-1.1.1
+    - section-1.1.1.4
     - "1.1.1.4"
     - scored
