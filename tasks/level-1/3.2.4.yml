@@ -1,31 +1,21 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 3.2.4 Ensure suspicious packets are logged
 
 - name: 3.2.4 - Ensure suspicious packets are logged
   sysctl:
-    ignoreerrors: yes
-    name: "{{ item }}"
-    value: 1
-    state: present
-  with_items:
-    - "net.ipv4.conf.all.log_martians"
-    - "net.ipv4.conf.default.log_martians"
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_dict:
+    "net.ipv4.conf.all.log_martians": 1
+    "net.ipv4.conf.default.log_martians": 1
+    "net.ipv4.route.flush": 1
+  when: not in_container
   tags:
     - level-1
     - section-3
-    - "3.2.4"
-    - scored
-
-- name: 3.2.4 - Ensure suspicious packets are logged by active kernel parameters
-  command: "{{ item }}"
-  with_items:
-    - "sysctl -w net.ipv4.conf.all.log_martians=1"
-    - "sysctl -w net.ipv4.conf.default.log_martians=1"
-    - "sysctl -w net.ipv4.route.flush=1"
-  tags:
-    - level-1
-    - section-3
+    - section-3.2
+    - section-3.2.4
     - "3.2.4"
     - scored

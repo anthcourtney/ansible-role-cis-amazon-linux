@@ -1,16 +1,18 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 6.2.5 Ensure root is the only UID 0 account
 
 - name: 6.2.5 - Ensure root is the only UID 0 account
   shell: "cat /etc/passwd | awk -F: '($3 == 0) { print $1 }'"
-  check_mode: no
-  changed_when: False
-  register: cat_6_2_5
+  check_mode: false
+  changed_when: false
+  register: cat
   tags:
     - level-1
     - section-6
+    - section-6.2
+    - section-6.2.5
     - "6.2.5"
     - scored
 
@@ -18,11 +20,13 @@
   fail:
     msg: "root is not the only UID 0 account."
   when:
-    - cat_6_2_5.stdout_lines is defined and (cat_6_2_5.stdout_lines|length > 1 or (cat_6_2_5.stdout_lines|length == 1 and 'root' not in cat_6_2_5.stdout_lines))
+    - cat.stdout_lines is defined and (cat.stdout_lines|length > 1 or (cat.stdout_lines|length == 1 and 'root' not in cat.stdout_lines))
     - fail_on_manual_remediation_actions
   tags:
     - level-1
     - section-6
+    - section-6.2
+    - section-6.2.5
     - "6.2.5"
     - scored
 
@@ -30,10 +34,12 @@
   debug:
     msg: "*** ACTION REQUIRED *** root is not the only UID 0 account"
   when:
-    - cat_6_2_5.stdout_lines is defined and (cat_6_2_5.stdout_lines|length > 1 or (cat_6_2_5.stdout_lines|length == 1 and 'root' not in cat_6_2_5.stdout_lines))
+    - cat.stdout_lines is defined and (cat.stdout_lines|length > 1 or (cat.stdout_lines|length == 1 and 'root' not in cat.stdout_lines))
     - not fail_on_manual_remediation_actions
   tags:
     - level-1
     - section-6
+    - section-6.2
+    - section-6.2.5
     - "6.2.5"
     - scored

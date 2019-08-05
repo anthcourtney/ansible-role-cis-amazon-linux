@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 4.2.2.5  Ensure remote syslog-ng messages are only accepted on designated log hosts
@@ -9,6 +9,9 @@
   tags:
     - level-1
     - section-4
+    - section-4.2
+    - section-4.2.2
+    - section-4.2.2.5
     - "4.2.2.5"
     - not-scored
     - todo

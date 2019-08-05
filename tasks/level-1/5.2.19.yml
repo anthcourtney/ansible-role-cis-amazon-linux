@@ -1,0 +1,29 @@
+# Standards: 1.0.0
+---
+
+# 5.2.19 Ensure SSH warning banner is configured
+
+- include: stat_sshd_config.yml
+  tags:
+    - level-1
+    - section-5
+    - section-5.2
+    - section-5.2.19
+    - "5.2.19"
+    - scored
+
+- name: 5.2.19 - Ensure SSH warning banner is configured
+  lineinfile:
+    regexp: "^Banner\\s+"
+    line: "Banner {{ cis_sshd_banner }}"
+    dest: "/etc/ssh/sshd_config"
+  when: sshd_config.stat.exists
+  notify:
+    - Restart sshd
+  tags:
+    - level-1
+    - section-5
+    - section-5.2
+    - section-5.2.19
+    - "5.2.19"
+    - scored

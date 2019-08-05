@@ -1,20 +1,21 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
-#4.1.8 Ensure login and logout events are collected(Scored)
+# 4.1.8 Ensure login and logout events are collected(Scored)
 
-- name: 4.1.8 Ensure login and logout events are collected(Scored)
-  shell: "grep logins {{ cis_audit_rules_filename }}"
+- name: 4.1.8 - Ensure login and logout events are collected(Scored)
+  command: "grep logins {{ cis_audit_rules_filename }}"
   register: logins
-  changed_when: False
+  changed_when: false
   ignore_errors: true
   tags:
-    - "4.1.8"
     - level-2
     - section-4
+    - section-4.1
+    - section-4.1.8
+    - "4.1.8"
     - scored
 
-
-- name: 4.1.8 Ensure login and logout events are collected (Verify registered output matches)
+- name: 4.1.8 - Ensure login and logout events are collected (Verify registered output matches)
   lineinfile:
     dest: "{{ cis_audit_rules_filename }}"
     line: "{{ item }}"
@@ -22,13 +23,14 @@
     - '# 4.1.8 Ensure login and logout events are collected'
     - '-w /var/log/lastlog -p wa -k logins'
     - '-w /var/run/faillock/ -p wa -k logins'
-  when:
-   ("'-w /var/run/faillock/ -p wa -k logins' not in logins.stdout") or
-   ("'-w /var/log/lastlog -p wa -k logins' not in logins.stdout")
+  when: >
+    ("'-w /var/run/faillock/ -p wa -k logins' not in logins.stdout") or
+    ("'-w /var/log/lastlog -p wa -k logins' not in logins.stdout")
 
   tags:
-    - "4.1.8"
     - level-2
     - section-4
+    - section-4.1
+    - section-4.1.8
+    - "4.1.8"
     - scored
-

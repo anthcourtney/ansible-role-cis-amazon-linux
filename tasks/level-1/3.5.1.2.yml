@@ -1,0 +1,31 @@
+# Standards: 1.0.0
+---
+
+# 3.5.1.2 Ensure loopback traffic is configured
+
+- name: 3.5.1.2 - Ensure loopback traffic is configured
+  iptables:
+    chain: "{{ item.chain }}"
+    in_interface: "{{ item.in_interface | default(omit) }}"
+    out_interface: "{{ item.out_interface | default(omit) }}"
+    source: "{{ item.source | default(omit) }}"
+    jump: "{{ item.jump }}"
+  with_items:
+    - chain: INPUT
+      in_interface: "lo"
+      jump: ACCEPT
+    - chain: OUTPUT
+      out_interface: "lo"
+      jump: ACCEPT
+    - chain: INPUT
+      source: 127.0.0.0/8
+      jump: DROP
+  when: not in_container
+  tags:
+    - level-1
+    - section-3
+    - section-3.5
+    - section-3.5.1
+    - section-3.5.1.2
+    - "3.5.1.2"
+    - scored

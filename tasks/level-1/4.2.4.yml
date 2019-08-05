@@ -1,12 +1,46 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 4.2.4 Ensure permissions on all logfiles are configured
 
 - name: 4.2.4 - Ensure permissions on all logfiles are configured
-  shell: "find /var/log -type f -exec chmod g-wx,o-rwx {} +"
+  command: find /var/log -type f -exec chmod g-wx,o-rwx {} +
   tags:
     - level-1
     - section-4
+    - section-4.2
+    - section-4.2.4
     - "4.2.4"
     - scored
+    - non-idempotent
+    - lint
+
+- name: Replace line of 0664 with 0640 in /etc/logrotate.conf
+  replace:
+      path: /etc/logrotate.conf
+      regexp: '(^\s+create) 0664'
+      replace: '\1 0640'
+
+- name: Add umask 137 to /usr/lib/systemd/rhel-dmesg
+  lineinfile:
+      path: /usr/lib/systemd/rhel-dmesg
+      insertafter: '^#!\/bin\/bash'
+      line: 'umask 137'
+
+- name: Change log files ownership to root
+  file:
+    path: "{{ item }}"
+    owner: root
+    group: root
+  with_items:
+    - /var/log/wtmp
+    - /var/log/btmp
+
+- name: 4.2.4 - Set permissions on all existing log files # Currently, the permissions on /var/log/cloud-init and /var/log/wtmp get reverted, to do!
+  file:
+    path: "{{ item }}"
+    mode: "g-wx,o-rwx"
+  with_items:
+    - /var/log/wtmp
+    - /var/log/cloud-init.log
+    - /var/log/dmesg

@@ -1,7 +1,7 @@
 # Standards: 0.11
 ---
 
-# 6.1.5 Ensure permissions on /etc/gshadow are configured
+ # 6.1.5 Ensure permissions on /etc/gshadow are configured
 
 - name: 6.1.5 - Ensure permissions on /etc/gshadow are configured
   file:
@@ -13,4 +13,4 @@
     - level-1
     - section-6
     - "6.1.5"
-    - scored
+    - scored 

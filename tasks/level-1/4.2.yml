@@ -1,0 +1,16 @@
+# Standards: 1.0.0
+---
+
+# 4.2.1 Configure Logging
+
+- name: 4.2 - Configure Logging
+  fail:
+    msg: At least rsyslog or syslog-ng must be configured, but not both.
+  when: >
+    not (cis_enable_rsyslog or cis_enable_syslog_ng) or
+    cis_enable_rsyslog and cis_enable_syslog_ng
+  tags:
+    - level-1
+    - section-4
+    - section-4.2
+    - "4.2"

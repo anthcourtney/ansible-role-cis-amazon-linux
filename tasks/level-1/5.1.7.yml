@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 5.1.7 Ensure permissions on /etc/cron.d are configured
@@ -13,5 +13,7 @@
   tags:
     - level-1
     - section-5
+    - section-5.1
+    - section-5.1.7
     - "5.1.7"
     - scored

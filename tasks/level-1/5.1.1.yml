@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 5.1.1 Ensure cron daemon is enabled
@@ -6,21 +6,24 @@
 - name: 5.1.1 - Ensure cron is installed
   yum:
     name: cronie
-    state: present
   tags:
     - level-1
     - section-5
+    - section-5.1
+    - section-5.1.1
     - "5.1.1"
     - scored
 
 - name: 5.1.1 - Ensure cron daemon is enabled
-  service:
+  systemd:
     name: "crond"
     enabled: true
     state: started
-  ignore_errors: false
+  when: not in_container
   tags:
     - level-1
     - section-5
+    - section-5.1
+    - section-5.1.1
     - "5.1.1"
     - scored

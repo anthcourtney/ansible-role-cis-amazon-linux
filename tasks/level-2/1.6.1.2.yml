@@ -1,0 +1,17 @@
+# Standards: 1.0.0
+---
+
+# 1.6.1.2. Ensure the SELinux state is enforcing (Scored)
+
+- name: 1.6.1.2 - Ensure the SELinux state is enforcing (Scored)
+  selinux:
+    policy: targeted
+    state: permissive
+  tags:
+    - level-2
+    - section-1
+    - section-1.6
+    - section-1.6.1
+    - section-1.6.1.2
+    - "1.6.1.2"
+    - scored

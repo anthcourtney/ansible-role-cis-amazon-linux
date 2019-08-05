@@ -1,0 +1,16 @@
+# Standards: 1.0.0
+---
+
+# 1.1.6 Ensure separate partition exists for /var (Scored)
+
+- name: 1.1.6 - Ensure separate partition exists for /var
+  debug:
+    msg: "WARNING - This check has not been implemented yet."
+  tags:
+    - level-1
+    - section-1
+    - section-1.1
+    - section-1.1.6
+    - "1.1.6"
+    - scored
+    - todo

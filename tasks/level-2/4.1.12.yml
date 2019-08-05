@@ -1,0 +1,16 @@
+# Standards: 1.0.0
+---
+
+# 4.1.12 Ensure use of privileged commands is collected (Scored)
+
+- name: 4.1.12 - Ensure use of privileged commands is collected
+  debug:
+    msg: "WARNING - This check has not been implemented yet."
+  tags:
+    - level-1
+    - section-4
+    - section-4.1
+    - section-4.1.12
+    - "4.1.12"
+    - scored
+    - todo

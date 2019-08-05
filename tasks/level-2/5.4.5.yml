@@ -1,0 +1,39 @@
+# Standards: 1.0.0
+---
+
+# 5.4.5 Ensure default user shell timeout is 900 seconds or less 
+
+- name: "SCORED | 5.4.5 | PATCH | Ensure default user shell timeout is 900 seconds or less"
+  lineinfile:
+      state: present
+      dest: "{{ item }}" 
+      regexp: '^TMOUT'
+      line: 'TMOUT=600'
+  with_items:
+    - /etc/bashrc
+    - /etc/profile
+    - /etc/profile.d/256term.csh
+    - /etc/profile.d/256term.sh
+    - /etc/profile.d/colorgrep.csh
+    - /etc/profile.d/colorls.sh
+    - /etc/profile.d/lang.csh
+    - /etc/profile.d/less.sh
+    - /etc/profile.d/vim.sh
+    - /etc/profile.d/lang.sh
+    - /etc/profile.d/csh.local
+    - /etc/profile.d/colorgrep.sh
+    - /etc/profile.d/colorls.csh
+    - /etc/profile.d/bash_completion.sh
+    - /etc/profile.d/java.sh
+    - /etc/profile.d/less.csh
+    - /etc/profile.d/vim.csh
+    - /etc/profile.d/sh.local
+    - /etc/profile.d/which2.csh
+    - /etc/profile.d/which2.sh
+  notify: Restart sshd
+  tags:
+    - level-2
+    - section-5
+    - "5.4.5"
+    - scored
+                                          

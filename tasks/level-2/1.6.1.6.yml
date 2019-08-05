@@ -1,0 +1,48 @@
+# Standards: 1.0.0
+---
+
+# 1.6.1.6 Ensure no unconfined daemons exist (Scored)
+
+- name: 1.6.1.6 - Ensure no unconfined daemons exist (Scored)
+  script: "{{ role_path }}/files/audit_1.6.1.6.sh"
+  check_mode: false
+  changed_when: false
+  register: audit
+  tags:
+    - level-2
+    - section-1
+    - section-1.6
+    - section-1.6.1
+    - section-1.6.1.6
+    - "1.6.1.6"
+    - scored
+
+- name: 1.6.1.6 - Ensure no unconfined daemons exist (Scored)
+  fail:
+    msg: "{{ audit.stdout_lines }}"
+  when:
+    - audit.stdout_lines is defined and audit.stdout_lines|length > 0
+    - fail_on_manual_remediation_actions
+  tags:
+    - level-2
+    - section-1
+    - section-1.6
+    - section-1.6.1
+    - section-1.6.1.6
+    - "1.6.1.6"
+    - scored
+
+- name: 1.6.1.6 - Ensure no unconfined daemons exist (Scored)
+  debug:
+    msg: "*** ACTION REQUIRED *** {{ audit.stdout }}"
+  when:
+    - audit.stdout_lines is defined and audit.stdout_lines|length > 0
+    - not fail_on_manual_remediation_actions
+  tags:
+    - level-2
+    - section-1
+    - section-1.6
+    - section-1.6.1
+    - section-1.6.1.6
+    - "1.6.1.6"
+    - scored

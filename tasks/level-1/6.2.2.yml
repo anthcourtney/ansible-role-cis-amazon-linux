@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 6.2.2 Ensure no legacy "+" entries exist in /etc/passwd
@@ -10,5 +10,7 @@
   tags:
     - level-1
     - section-6
+    - section-6.2
+    - section-6.2.2
     - "6.2.2"
     - scored

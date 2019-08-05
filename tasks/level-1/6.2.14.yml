@@ -1,40 +1,45 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 6.2.14 Ensure no users have .rhosts files
 
 - name: 6.2.14 - Audit users'.rhosts files
   script: "{{ role_path }}/files/audit_6.2.14.sh"
-  check_mode: no
-  changed_when: False
-  register: audit_6_2_14
+  check_mode: false
+  changed_when: false
+  register: audit
   tags:
     - level-1
     - section-6
+    - section-6.2
+    - section-6.2.14
     - "6.2.14"
     - scored
 
 - name: 6.2.14 - Ensure no users have .rhosts files
   fail:
-    msg: "{{ audit_6_2_14.stdout_lines }}"
+    msg: "{{ audit.stdout_lines }}"
   when:
-    - audit_6_2_14.stdout_lines is defined and audit_6_2_14.stdout_lines|length > 0
+    - audit.stdout_lines is defined and audit.stdout_lines|length > 0
     - fail_on_manual_remediation_actions
   tags:
     - level-1
     - section-6
+    - section-6.2
+    - section-6.2.14
     - "6.2.14"
     - scored
 
 - name: 6.2.14 - Ensure no users have .rhosts files
   debug:
-    msg: "*** ACTION REQUIRED *** {{ audit_6_2_14.stdout }}"
+    msg: "*** ACTION REQUIRED *** {{ audit.stdout }}"
   when:
-    - audit_6_2_14.stdout_lines is defined and audit_6_2_14.stdout_lines|length > 0
+    - audit.stdout_lines is defined and audit.stdout_lines|length > 0
     - not fail_on_manual_remediation_actions
   tags:
     - level-1
     - section-6
+    - section-6.2
+    - section-6.2.14
     - "6.2.14"
     - scored
-

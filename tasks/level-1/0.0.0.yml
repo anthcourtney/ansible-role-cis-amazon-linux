@@ -1,0 +1,4 @@
+# PingDirectory Helpers
+
+- name: Change permission on newly created /ping/servers
+  command: chmod 750 /ping/servers 

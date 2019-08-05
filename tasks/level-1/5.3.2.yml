@@ -1,80 +1,67 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 5.3.2 Ensure lockout for failed password attempts is configured
 
-- name: 5.3.2 - Ensure lockout for failed password attempts is configured(pam_faillock.so - before)
-  pamd:
-    name: system-auth
-    type: auth
-    control: sufficient
-    module_path: pam_unix.so
-    new_type: auth
-    new_control: required
-    new_module_path: pam_faillock.so
-    module_arguments: 'preauth
-        audit
-        silent
-        deny=5
-        unlock_time=900'
-    state: before
+- name: 5.3.2 - Ensure lockout for failed password attempts is configured
+  replace:
+      path: "{{ item }}"
+      regexp: '^auth        required      pam_env.so'
+      replace: 'auth        required pam_faillock.so preauth audit silent deny=5 unlock_time=900'
+  with_items:
+    - /etc/pam.d/system-auth
+    - /etc/pam.d/password-auth
   tags:
     - level-1
     - section-5
+    - section-5.3
+    - section-5.3.2
     - "5.3.2"
     - scored
 
-- name: 5.3.2 - Ensure lockout for failed password attempts is configured(pam_faillock.so - last)
-  pamd:
-    name: system-auth
-    type: auth
-    control: sufficient
-    module_path: pam_unix.so
-    new_type: auth
-    new_control: sufficient
-    new_module_path: pam_faillock.so
-    module_arguments: 'authsucc
-        audit
-        deny=5
-        unlock_time=900'
-    state: after
+- name: 5.3.2 - Ensure lockout for failed password attempts is configured
+  replace:
+      path: "{{ item }}"
+      regexp: '^auth        required      pam_deny.so'
+      replace: 'auth        [success=1 default=bad] pam_unix.so'
+  with_items:
+    - /etc/pam.d/system-auth
+    - /etc/pam.d/password-auth
   tags:
     - level-1
     - section-5
+    - section-5.3
+    - section-5.3.2
     - "5.3.2"
     - scored
 
-- name: 5.3.2 - Ensure lockout for failed password attempts is configured(pam_faillock.so - after)
-  pamd:
-    name: system-auth
-    type: auth
-    control: sufficient
-    module_path: pam_unix.so
-    new_type: auth
-    new_control: "[default=die]"
-    new_module_path: pam_faillock.so
-    module_arguments: 'authfail
-        audit
-        deny=5
-        unlock_time=900'
-    state: after
+- name: 5.3.2 - Ensure lockout for failed password attempts is configured
+  replace:
+      path: "{{ item }}"
+      regexp: '^auth        sufficient    pam_unix.so try_first_pass nullok'
+      replace: 'auth        sufficient    pam_faillock.so authsucc audit deny=5 unlock_time=900'
+  with_items:
+    - /etc/pam.d/system-auth
+    - /etc/pam.d/password-auth
   tags:
     - level-1
     - section-5
+    - section-5.3
+    - section-5.3.2
     - "5.3.2"
     - scored
 
-- name: 5.3.2 - Ensure lockout for failed password attempts is configured(pam_unix.so)
-  pamd:
-    name: system-auth
-    type: auth
-    control: sufficient
-    module_path: pam_unix.so
-    new_control: '[success=1 default=bad]'
-    module_arguments: ''
-    state: updated
+- name: 5.3.2 - Ensure lockout for failed password attempts is configured
+  lineinfile:
+      dest: "{{ item }}"
+      line: 'auth        [default=die] pam_faillock.so authfail audit deny=5 unlock_time=900'
+  with_items:
+    - /etc/pam.d/system-auth
+    - /etc/pam.d/password-auth
   tags:
     - level-1
     - section-5
+    - section-5.3
+    - section-5.3.2
     - "5.3.2"
     - scored

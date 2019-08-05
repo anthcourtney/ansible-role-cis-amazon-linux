@@ -1,4 +1,4 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
 # 1.8 Ensure updates, patches, and additional security software are installed
@@ -7,9 +7,12 @@
   yum:
     name: "*"
     state: latest
-  tags:
-    - level-1
-    - "1.8"
-    - not-scored
   when:
     - full_upgrade
+  tags:
+    - level-1
+    - section-1
+    - section-1.8
+    - "1.8"
+    - not-scored
+    - lint  # ANSIBLE0010

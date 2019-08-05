@@ -1,0 +1,16 @@
+# Standards: 1.0.0
+---
+
+# 1.6.2 Ensure SELinux is installed (Scored)
+
+- name: 1.6.2 - Ensure SELinux is installed
+  debug:
+    msg: "WARNING - This check has not been implemented yet."
+  tags:
+    - level-2
+    - section-1
+    - section-1.6
+    - section-1.6.2
+    - "1.6.2"
+    - scored
+    - todo

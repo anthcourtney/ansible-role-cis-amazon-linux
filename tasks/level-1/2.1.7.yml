@@ -1,16 +1,23 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
-# 2.1.7 Ensure talk server is not enabled
+# 2.1.7 Ensure NFS and RPC are not enabled
 
-- name: 2.1.7 - Ensure talk server is not enabled
-  service:
-    name: "talk"
+- name: 2.1.7 - Ensure NFS and RPC are not enabled
+  systemd:
+    name: "{{ item }}"
     enabled: false
     state: stopped
-  ignore_errors: true
+  with_items:
+    - nfs
+    - rpcbind
+  register: systemd
+  failed_when: systemd is failed and not 'Could not find the requested service' in systemd.msg
+  when: not in_container
   tags:
     - level-1
     - section-2
+    - section-2.1
+    - section-2.1.7
     - "2.1.7"
     - scored

@@ -1,0 +1,7 @@
+---
+# tasks file for base
+- name: disable IPv6
+  template:
+    src: disableipv6.conf.template
+    dest: /etc/sysctl.d/10-disable-ipv6.conf
+  notify: run sysctl

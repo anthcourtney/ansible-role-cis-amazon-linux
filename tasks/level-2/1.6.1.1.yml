@@ -1,0 +1,43 @@
+# Standards: 1.0.0
+---
+
+# 1.6.1.1 Ensure SELinux is not disabled in bootloader configuration (Scored)
+
+- name: Install the SE Linux requirements - libselinux-python
+  yum:
+    name: libselinux-python
+    state: installed
+  tags:
+    - level-2
+    - section-1
+    - section-1.6
+    - section-1.6.1
+    - section-1.6.1.1
+    - "1.6.1.1"
+    - scored
+
+- name: Install the SE Linux requirements - policycoreutils-python
+  yum:
+    name: policycoreutils-python
+    state: installed
+  tags:
+    - level-2
+    - section-1
+    - section-1.6
+    - section-1.6.1
+    - section-1.6.1.1
+    - "1.6.1.1"
+    - scored
+
+- name: 1.6.1.1 - Ensure SELinux is not disabled in bootloader configuration (Scored)
+  selinux:
+    policy: targeted
+    state: permissive
+  tags:
+    - level-2
+    - section-1
+    - section-1.6
+    - section-1.6.1
+    - section-1.6.1.1
+    - "1.6.1.1"
+    - scored

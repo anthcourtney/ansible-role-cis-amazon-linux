@@ -1,20 +1,25 @@
-# Standards: 0.11
+# Standards: 1.0.0
 ---
 
-# 1.1.17 Ensure noexec option set on /dev/shm partition
+# 1.1.17 Ensure noexec option set on ping partitions
 
-- name: 1.1.17 - Ensure noexec option set on /dev/shm partition
+- name: Debug output
+  debug:
+    msg: "{{ ansible_mounts }}"
+
+- name: 1.1.17 - Ensure noexec option set
   mount:
     name: "{{ item.mount }}"
     state: mounted
     fstype: "{{ item.fstype }}"
     src: "{{ item.device }}"
     opts: "{{ item.options.split(',') | union(['noexec']) | join(',') }}"
-  when: item.mount == '/dev/shm'
+  when: item.mount in [ '/dev/shm', '/ping/backups', '/ping/db' ]
   with_items: "{{ ansible_mounts }}"
   tags:
     - level-1
     - section-1
+    - section-1.1
+    - section-1.1.17
     - "1.1.17"
     - scored
-
