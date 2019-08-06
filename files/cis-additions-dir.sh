@@ -11,21 +11,21 @@ echo "============================"
 
 #5.3.2
 for i in /etc/pam.d/system-auth /etc/pam.d/password-auth; do
-sed -i '/auth\s\+required\s\+pam_deny.so/a\
+sed -i '/auth\s\+required\s\+pam_env.so/c\
 auth        required pam_faillock.so preauth audit silent deny=5 unlock_time=900' $i
-sed -i '/auth\s\+required\s\+pam_deny.so/a\
+sed -i '/auth\s\+required\s\+pam_deny.so/c\
 auth        [success=1 default=bad] pam_unix.so' $i
-sed -i '/auth\s\+required\s\+pam_deny.so/a\
+sed -i '/auth\s\+sufficient\s\+pam_unix.so\s\+try_first_pass\s\+nullok/c\
 auth        sufficient    pam_faillock.so authsucc audit deny=5 unlock_time=900' $i
-sed -i '/auth\s\+required\s\+pam_deny.so/a\
-auth        [default=die] pam_faillock.so authfail audit deny=5 unlock_time=900' $i
+echo "auth        [default=die] pam_faillock.so authfail audit deny=5 unlock_time=900" >> /etc/pam.d/system-auth
+echo "auth        [default=die] pam_faillock.so authfail audit deny=5 unlock_time=900" >> /etc/pam.d/password-auth
 done
 
 #5.3.3
 for i in /etc/pam.d/system-auth /etc/pam.d/password-auth; do
-sed -i 's/password\s\+sufficient\s\+pam_unix.so try_first_pass use_authtok nullok sha512 shadow/\
+sed -i 's/password\s\+sufficient\s\+pam_unix.so try_first_pass use_authtok nullok sha512 shadow/c\
 password    sufficient    pam_unix.so remember=5 try_first_pass use_authtok nullok sha512 shadow/g' $i
-sed -i '/password\s\+required\s\+pam_deny.so/a\
+sed -i '/password\s\+required\s\+pam_deny.so/c\
 password    required      pam_pwhistory.so remember=5' $i
 done
 
