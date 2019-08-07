@@ -41,5 +41,4 @@ Vagrant.configure("2") do |config|
         # upgrade pip
         sudo pip install --upgrade pip
     SCRIPT
-
 end
