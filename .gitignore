@@ -1,7 +1,8 @@
 **/*.retry
 **/*.swp
 **/*.vagrant
-*.output
+**/*.pyc
+**/*.output
 tests/tmp
 tests/roles
 .idea
