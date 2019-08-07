@@ -21,12 +21,6 @@ echo "auth        [default=die] pam_faillock.so authfail audit deny=5 unlock_tim
 echo "auth        [default=die] pam_faillock.so authfail audit deny=5 unlock_time=900" >> /etc/pam.d/password-auth
 done
 
-
-auth required pam_faillock.so preauth audit silent deny=5 unlock_time=900
-auth [success=1 default=bad] pam_unix.so
-auth [default=die] pam_faillock.so authfail audit deny=5 unlock_time=900
-auth sufficient pam_faillock.so authsucc audit deny=5 unlock_time=900
-
 #5.3.3
 for i in /etc/pam.d/system-auth /etc/pam.d/password-auth; do
 sed -i 's/password\s\+sufficient\s\+pam_unix.so try_first_pass use_authtok nullok sha512 shadow/c\
@@ -142,6 +136,7 @@ echo "-a always,exit -F arch=b32 -S clock_settime -k time-change" >> /etc/audit/
 echo "-w /etc/localtime -p wa -k time-change" >> /etc/audit/rules.d/audit.rules
 
 # 4.1.3 Helper
+echo "\n" >> /etc/default/grub
 echo "GRUB_CMDLINE_LINUX=\"audit=1\"" >> /etc/default/grub
 echo "GRUB_CMDLINE_LINUX=\"ipv6.disable=1\"" >> /etc/default/grub
 grub2-mkconfig -o /boot/grub2/grub.cfg
