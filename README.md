@@ -11,7 +11,7 @@ Build | [![Build Status](https://travis-ci.org/anthcourtney/ansible-role-cis-ama
 
 Development
 -------------
-We are going to use "master" branch only for fully tested changes. 
+We are going to use "master" branch only for fully tested changes.
 
 **Going forward please send your pull requests to "build" branch.**
 
@@ -98,10 +98,10 @@ A more advanced example, which includes modifications to the default values used
       - 5.4.4
       - 3.4.2
       - 3.4.3
-      - 6.2.13   
+      - 6.2.13
     cis_pass_max_days: 45
     cis_umask_default: 002
- 
+
   roles:
     - anthcourtney.cis-amazon-linux
 
@@ -192,7 +192,7 @@ The following tests have been flagged but are not yet implemented:
 License
 -------
 
-BSD. 
+MIT.
 
 Author Information
 ------------------
