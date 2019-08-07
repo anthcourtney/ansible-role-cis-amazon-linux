@@ -15,11 +15,17 @@ sed -i '/auth\s\+required\s\+pam_env.so/c\
 auth        required pam_faillock.so preauth audit silent deny=5 unlock_time=900' $i
 sed -i '/auth\s\+required\s\+pam_deny.so/c\
 auth        [success=1 default=bad] pam_unix.so' $i
-sed -i '/auth\s\+sufficient\s\+pam_unix.so\s\+try_first_pass\s\+nullok/c\
+sed -i '/auth\s\+sufficient\s\+pam_unix.so\s\+nullok\s\+try_first_pass/c\
 auth        sufficient    pam_faillock.so authsucc audit deny=5 unlock_time=900' $i
 echo "auth        [default=die] pam_faillock.so authfail audit deny=5 unlock_time=900" >> /etc/pam.d/system-auth
 echo "auth        [default=die] pam_faillock.so authfail audit deny=5 unlock_time=900" >> /etc/pam.d/password-auth
 done
+
+
+auth required pam_faillock.so preauth audit silent deny=5 unlock_time=900
+auth [success=1 default=bad] pam_unix.so
+auth [default=die] pam_faillock.so authfail audit deny=5 unlock_time=900
+auth sufficient pam_faillock.so authsucc audit deny=5 unlock_time=900
 
 #5.3.3
 for i in /etc/pam.d/system-auth /etc/pam.d/password-auth; do
@@ -29,17 +35,13 @@ sed -i '/password\s\+required\s\+pam_deny.so/c\
 password    required      pam_pwhistory.so remember=5' $i
 done
 
-#5.4.4 Ensure default user umask is 027 or more restrictive
-sed -e '/umask 027/d' -i /etc/profile
-echo 'umask 027' >> /etc/profile
-
 #6.1.5 Ensure permissions on /etc/gshadow are configured
 chown root:root /etc/gshadow
 chmod 000 /etc/gshadow
 
 #6.1.9 Ensure permissions on /etc/gshadow- are configured
 chown root:root /etc/gshadow-
-chmod 600 /etc/gshadow-
+chmod 000 /etc/gshadow-
 
 #  install package to provide better iptables functionality
 yum install -y iptables-services
@@ -86,10 +88,6 @@ service ip6tables save
 systemctl enable ip6tables
 systemctl stop ip6tables
 systemctl start ip6tables
-
-# 5.4.4 Ensure default user umask is 027 or more restrictive
-sed -e '/umask 027/d' -i /etc/profile
-echo 'umask 027' >> /etc/profile
 
 # 5.2.15 Ensure that strong Key Exchange algorithms are used
 echo "KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchangesha256" >> /etc/ssh/sshd_config
@@ -142,8 +140,8 @@ echo "-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-ch
 echo "-a always,exit -F arch=b64 -S clock_settime -k time-change" >> /etc/audit/rules.d/audit.rules
 echo "-a always,exit -F arch=b32 -S clock_settime -k time-change" >> /etc/audit/rules.d/audit.rules
 echo "-w /etc/localtime -p wa -k time-change" >> /etc/audit/rules.d/audit.rules
-echo "GRUB_CMDLINE_LINUX=\"audit=1\"" >> /etc/default/grub
-echo "GRUB_CMDLINE_LINUX=\"ipv6.disable=1\"" >> /etc/default/grub
 
 # 4.1.3 Helper
+echo "GRUB_CMDLINE_LINUX=\"audit=1\"" >> /etc/default/grub
+echo "GRUB_CMDLINE_LINUX=\"ipv6.disable=1\"" >> /etc/default/grub
 grub2-mkconfig -o /boot/grub2/grub.cfg

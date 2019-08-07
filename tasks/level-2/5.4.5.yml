@@ -15,3 +15,16 @@
     - section-5
     - "5.4.5"
     - scored
+
+- name: "SCORED | 5.4.5 | PATCH | Ensure default user shell timeout is 900 seconds or less"
+  lineinfile:
+      state: present
+      dest: /etc/profile
+      regexp: '^TMOUT'
+      line: 'TMOUT=600'
+  notify: Restart sshd
+  tags:
+    - level-2
+    - section-5
+    - "5.4.5"
+    - scored
