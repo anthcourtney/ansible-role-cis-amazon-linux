@@ -42,5 +42,5 @@ review:
 	git ls-files tasks/ | xargs ansible-review -c tests/ansible-review/config.ini
 
 lint:
-	@ansible-lint tests/$(ANSIBLE_TEST_PLAYBOOK_FILE)
-	@yamllint -c tests/yamllint.yaml tasks/
+	ansible-lint -x 204 tests/$(ANSIBLE_TEST_PLAYBOOK_FILE) # Ignore Rule 204: Lines should be no longer than 160 chars
+	yamllint -c tests/yamllint.yaml tasks/

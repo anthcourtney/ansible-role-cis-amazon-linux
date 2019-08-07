@@ -4,8 +4,8 @@
 # 2. It will fail to mount as OS need reboot. So run "vagrant reload --provision" to reboot the OS and force provisioning again.
 # 3. Run "vagrant ssh" to login to the system.
 # 4. Run below commands to install ansible and run tasks
-#    a) pip install --upgrade --user setuptools ansible ansible-review 
-#    b) cd /home/vagrant/ansible-role-cis-amazon-linux/tests && ansible-playbook -i localhost, playbook.yml
+#    a) pip install --upgrade --user setuptools ansible ansible-review ansible-lint yamllint
+#    b) cd /home/vagrant/ansible-role-cis-amazon-linux/tests && ansible-playbook -i localhost playbook.yml
 #
 # Manual mount command: sudo mount -t vboxsf -o uid=500,gid=500 vagrant /vagrant
 
@@ -13,10 +13,10 @@
 Vagrant.configure("2") do |config|
     #config.vm.provider "vmware_fusion"
     #config.vm.provider "virtualbox"
-    
+
     config.vm.box = "mvbcoding/awslinux"
 
-    # config.vm.network :forwarded_port, guest: 22, host: 10022, auto_correct: true
+    config.vm.network :forwarded_port, guest: 22, host: 2222, auto_correct: true
 
     config.vm.synced_folder "../", "/home/vagrant/ansible-role-cis-amazon-linux", create: true, group: "vagrant", owner: "vagrant"
 
@@ -31,10 +31,10 @@ Vagrant.configure("2") do |config|
     config.vm.provision "shell", inline: <<-SCRIPT
         echo I am provisioning...
         whoami
-        
+
         # make sure OS is up to date
         sudo yum update -y
-        
+
         # install pip and other required dependencies
         sudo yum install python-pip libffi-devel -y
 

@@ -14,7 +14,7 @@
     - scored
 
 - name: 4.1.3 Inform user to make the required change
-  debug: 
+  debug:
     msg:
       - "*** ACTION REQUIRED ***"
       - "Edit /boot/grub/menu.lst to include audit=1 on all kernel lines."
