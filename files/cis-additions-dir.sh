@@ -143,7 +143,7 @@ echo "-a always,exit -F arch=b32 -S clock_settime -k time-change" >> /etc/audit/
 echo "-w /etc/localtime -p wa -k time-change" >> /etc/audit/rules.d/audit.rules
 
 # 4.1.3 Helper
-echo "\n" >> /etc/default/grub
+echo "" >> /etc/default/grub
 echo "GRUB_CMDLINE_LINUX=\"audit=1\"" >> /etc/default/grub
 echo "GRUB_CMDLINE_LINUX=\"ipv6.disable=1\"" >> /etc/default/grub
 grub2-mkconfig -o /boot/grub2/grub.cfg
