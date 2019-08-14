@@ -1,33 +1,9 @@
-anthcourtney.cis-amazon-linux
-=========
-
-Build Status
-------------
-
-Branch | Status
-| ------------- |:-------------:|
-Master | [![Build Status](https://travis-ci.org/anthcourtney/ansible-role-cis-amazon-linux.svg?branch=master)](https://travis-ci.org/anthcourtney/ansible-role-cis-amazon-linux)
-Build | [![Build Status](https://travis-ci.org/anthcourtney/ansible-role-cis-amazon-linux.svg?branch=build)](https://travis-ci.org/anthcourtney/ansible-role-cis-amazon-linux)
-
-Development
--------------
-We are going to use "master" branch only for fully tested changes. 
-
-**Going forward please send your pull requests to "build" branch.**
-
-We need more community support to make changes and most importantly to test and review changes. If you would like to participate, please send a note to [Anth](https://github.com/anthcourtney) or [Chandan](https://github.com/chandanchowdhury).
-
-The major work to be done are
-* CIS Benchmark v1.0.0
-* Ansible 2.5 and above
-* Amazon Linux 2 LTS
-
 Introduction
 ------------
 
 This ansible role applies v1.0.0 of the CIS Amazon Linux 2 Benchmark. The benchmark document is no longer directly available for download, but can be obtained with e-mail registration from [CIS](https://learn.cisecurity.org/benchmarks)
 
-This role was developed and tested against Amazon Linux 2 (2.0.20190313). It has been tested against Amazon Linux 2 (2.0.20190313) with equal success.
+This role was developed and tested against Amazon Linux 2 (2.0.20190313). It has been tested against Amazon Linux 2 (2.0.20190313) with equal success. Most extensive testing has been done using Ansible 2.6, but any version from 2.5 should work.
 
 Why Would I Use This Role?
 --------------------------
@@ -77,7 +53,7 @@ An example playbook which uses this role is as follows:
   become: yes
 
   roles:
-    - anthcourtney.cis-amazon-linux
+    - ansible-cis-amazon-linux-2
 ```
 
 A more advanced example, which includes modifications to the default values used, as well as the exclusion of some items in the benchmark which are considered unnecessary for a fictional environment, is as follows:
@@ -97,13 +73,21 @@ A more advanced example, which includes modifications to the default values used
       - 3.4.3
       - 6.2.13   
     cis_pass_max_days: 45
-    cis_umask_default: 002
+    cis_umask_default: 027
  
   roles:
-    - anthcourtney.cis-amazon-linux
+    - { role: ansible-cis-amazon-linux-2,
+        in_vm: true,
+        cis_hosts_allowed_ip_range: '10.',
+        cis_umask_default: "027",
+        full_upgrade: true,
+        cis_enable_rsyslog: true,
+        cis_level_1_exclusions: [ 3.5.1.1, 5.3.4 ],
+        cis_level_2_exclusions: [ ]
+      }
 
 ```
-
+either one of `in_vm` or `in_vagrant` must be set (to any value) according to your target/testing environment.
 Note that the use of ```become: yes``` is required as 99% of tasks require privileged access to execute.
 
 Role Variables
@@ -202,8 +186,8 @@ BSD.
 Author Information
 ------------------
 
-This role was developed by [Anth Courtney](https://au.linkedin.com/in/anthcourtney).
-Updated for Amazon Linux 2 CIS Benchmark v1.0.0 by [Alp Ozcan](https://au.linkedin.com/in/gozcan)
+The original role for Amazon Linux 1 was developed by [Anth Courtney](https://au.linkedin.com/in/anthcourtney).
+Amazon Linux 2 CIS Benchmark v1.0.0 compliance and enhancements throughout the role were implemented by [Alp Ozcan](https://au.linkedin.com/in/gozcan)
 
 All feedback, issues and PRs are encouraged and appreciated.
 

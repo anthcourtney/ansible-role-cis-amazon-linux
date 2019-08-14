@@ -4,10 +4,10 @@
 # 5.4.4 Ensure default user umask is 027 or more restrictive
 
 - name: 5.4.4 - Ensure default user umask is 027 or more restrictive
-  lineinfile:
-    regexp: "^umask\\s+"
-    line: "umask {{ cis_umask_default }}"
-    dest: "{{ item }}"
+  replace:
+    regexp: '(^\s*umask) [0-9]{3}'
+    replace: "umask {{ cis_umask_default }} # switched to {{ cis_umask_default }} by 5.4.4 of ansible-cis-amazon-linux-2"
+    path: "{{ item }}"
   with_items: "{{ cis_umask_shell_files }}"
   tags:
     - level-1
@@ -16,10 +16,10 @@
     - scored
 
 - name: 5.4.4 - Ensure default user umask is 027 or more restrictive in files under profile.d/
-  lineinfile:
-    regexp: "^umask\\s+"
-    line: "umask {{ cis_umask_default }}"
-    dest: "{{ item }}"
+  replace:
+    regexp: '(^\s*umask) [0-9]{3}'
+    replace: "umask {{ cis_umask_default }} # switched to {{ cis_umask_default }} by 5.4.4 of ansible-cis-amazon-linux-2"
+    path: "{{ item }}"
   with_fileglob: "{{ cis_umask_shell_additional_files_directory }}/*"
   tags:
     - level-1

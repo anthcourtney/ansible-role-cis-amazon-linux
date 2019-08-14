@@ -25,7 +25,7 @@
   when:
    ("'-w /var/run/faillock/ -p wa -k logins' not in logins.stdout") or
    ("'-w /var/log/lastlog -p wa -k logins' not in logins.stdout")
-
+  notify: Generate auditd rules
   tags:
     - "4.1.8"
     - level-2

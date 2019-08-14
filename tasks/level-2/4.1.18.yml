@@ -24,6 +24,7 @@
     - '-e 2'
   when:
     ("'-e 2' not in immutable.stdout")
+  notify: Generate auditd rules
   tags:
     - "4.1.18"
     - level-2
