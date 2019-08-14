@@ -4,7 +4,7 @@ galaxy_info:
   author: Anth Courtney, Alp Ozcan
   description: Implement CIS Amazon Linux 2 v1.0.0 benchmark remediation
   company: 
-  license: BSD
+  license: MIT
   min_ansible_version: 2.5
   platforms:
   - name: Amazon
