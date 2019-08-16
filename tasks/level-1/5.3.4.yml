@@ -2,7 +2,7 @@
 ---
 
 # 5.3.4 Ensure password hashing algorithm is SHA-512
-- name: 5.3.4 - Ensure password reuse is limited (/etc/pam.d/system-auth)
+- name: 5.3.4 - Ensure password hashing algorithm is SHA-512 (/etc/pam.d/system-auth)
   pamd:
     name: system-auth
     type: password
@@ -17,7 +17,7 @@
     - "5.3.4"
     - scored
 
-- name: 5.3.4 - Ensure password reuse is limited (/etc/pam.d/password-auth)
+- name: 5.3.4 - Ensure password hashing algorithm is SHA-512 (/etc/pam.d/password-auth)
   pamd:
     name: password-auth
     type: password
