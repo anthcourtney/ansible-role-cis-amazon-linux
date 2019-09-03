@@ -3,6 +3,13 @@
 
 # 1.1.17 Ensure noexec option set on /dev/shm partition
 
+- include: all_mounts_facts.yml
+  tags:
+    - level-1
+    - section-1
+    - "1.1.17"
+    - scored
+
 - name: 1.1.17 - Ensure noexec option set on /dev/shm partition
   mount:
     name: "{{ item.mount }}"
@@ -11,10 +18,9 @@
     src: "{{ item.device }}"
     opts: "{{ item.options.split(',') | union(['noexec']) | join(',') }}"
   when: item.mount == '/dev/shm'
-  with_items: "{{ ansible_mounts }}"
+  with_items: "{{ all_mounts.stdout | default('{}') | from_json }}"
   tags:
     - level-1
     - section-1
     - "1.1.17"
     - scored
-

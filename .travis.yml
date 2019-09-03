@@ -4,7 +4,7 @@ branches:
   only:
     - master
     - build
-    
+
 group: stable
 dist: amazonlinux
 
@@ -34,10 +34,13 @@ env:
 # Make sure we have the latest package list and OS
 before_install:
   - sudo apt update
-  
+
 install:
   # Install ansible and ansible-review
-  - pip install ansible==$ANSIBLE_INSTALL_VERSION ansible-review
+  - pip install ansible==$ANSIBLE_INSTALL_VERSION \
+    ansible-review \
+    yamllint \
+    git+https://github.com/ansible/ansible-lint.git
 
   # Check ansible version
   - ansible --version

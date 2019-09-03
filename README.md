@@ -189,6 +189,9 @@ The following tests have been flagged but are not yet implemented:
 
 * Test application of the role against the Vagrant ```mvbcoding/awslinux``` image, using the ansible provisioner.
 
+### Lint
+ Please run ```make lint``` to make sure we are following ansible standards.
+
 License
 -------
 
