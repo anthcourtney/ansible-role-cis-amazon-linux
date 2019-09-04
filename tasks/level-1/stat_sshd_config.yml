@@ -1,3 +1,4 @@
+# Standards: 0.11
 ---
 
 - name: Check if /etc/ssh/sshd_config exists
