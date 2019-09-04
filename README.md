@@ -195,7 +195,7 @@ The following tests have been flagged but are not yet implemented:
 License
 -------
 
-BSD.
+MIT.
 
 Author Information
 ------------------
