@@ -17,7 +17,7 @@
       - audit
       - silent
       - deny=5
-      - unlock_time=900
+      - "unlock_time={{ failed_password_attempt_lockout_time }}"
     state: before
   tags:
     - level-1
@@ -38,7 +38,7 @@
       - authsucc
       - audit
       - deny=5
-      - unlock_time=900
+      - "unlock_time={{ failed_password_attempt_lockout_time }}"
     state: after
   tags:
     - level-1
@@ -59,7 +59,7 @@
       - authfail
       - audit
       - deny=5
-      - unlock_time=900
+      - "unlock_time={{ failed_password_attempt_lockout_time }}"
     state: after
   tags:
     - level-1
