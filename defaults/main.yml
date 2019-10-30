@@ -137,7 +137,7 @@ cis_user_shell_timeout: 600
 
 cis_wheel_group_members: "root"
 
-failed_password_attempt_lockout_time: 900
+failed_password_attempt_lockout_time: 1800
 
 # Section 6
 # 6.1.1 - List of path regex to exclude when conducting filesystem permissions audit
