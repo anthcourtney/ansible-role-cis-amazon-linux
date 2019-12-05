@@ -6,7 +6,7 @@
 - name: 6.2.1 - Identify any accounts without passwords
   shell: "cat /etc/shadow | awk -F: '($2 == \"\" ) { print $1 }'"
   register: accounts_6_2_1
-  always_run: yes
+  check_mode: no
   changed_when: False
   tags:
     - level-1

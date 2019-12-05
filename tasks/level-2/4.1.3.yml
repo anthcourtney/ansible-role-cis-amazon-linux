@@ -1,0 +1,26 @@
+# Standards: 0.11
+---
+
+# 4.1.3 Ensure auditing for processes that start prior to auditd is enabled
+
+- name: 4.1.3 Ensure auditing for processes that start prior to auditd is enabled
+  shell: "grep '^\\s*kernel*audit=1' {{ cis_grub_bootloader_filename }}"
+  register: cis_4_1_3
+  ignore_errors: true
+  tags:
+    - "4.1.3"
+    - level-2
+    - section-4
+    - scored
+
+- name: 4.1.3 Inform user to make the required change
+  debug:
+    msg:
+      - "*** ACTION REQUIRED ***"
+      - "Edit /boot/grub/menu.lst to include audit=1 on all kernel lines."
+  when: cis_4_1_3.rc > 0
+  tags:
+    - "4.1.3"
+    - level-2
+    - section-4
+    - scored
