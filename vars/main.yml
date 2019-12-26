@@ -8,6 +8,7 @@ cis_target_os_versions:
   - "2017.03"
   - "2017.09"
   - "2017.12"
+  - "2018.03"
   - Candidate
 
 cis_modprobe_conf_filename: "/etc/modprobe.d/CIS.conf"
