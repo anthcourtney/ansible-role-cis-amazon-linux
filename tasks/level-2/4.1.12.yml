@@ -5,6 +5,11 @@
 - name: 4.1.12 Populate a list of privileged binaries
   command: find / -xdev \( -perm -4000 -o -perm -2000 \) -type f
   register: privileged_binaries
+    tags:
+    - level-1
+    - section-4
+    - "4.1.12"
+    - scored
 
 - name: 4.1.12 Ensure use of privileged commands is collected (Scored)
   lineinfile:
