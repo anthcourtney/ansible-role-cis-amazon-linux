@@ -2,11 +2,23 @@
 ---
 
 # 2.2.1.2 Ensure ntp is configured
+- name: Check existing ntp -u options
+  command: grep -q '\-u ntp:ntp' /etc/init.d/ntpd
+  register: checkntpconf
+  check_mode: false
+  ignore_errors: true
+  changed_when: false
+  tags:
+    - level-1
+    - "2.2.1.2"
+    - scored
+
 - name: Set Options -u ntp:ntp in /etc/sysconfig/ntpd
   replace:
     path: /etc/sysconfig/ntpd
     regexp: '^OPTIONS=.*$'
     replace: 'OPTIONS="-u ntp:ntp"'
+  when: checkntpconf.rc != 0
   tags:
     - level-1
     - "2.2.1.2"

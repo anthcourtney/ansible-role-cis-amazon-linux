@@ -1,0 +1,9 @@
+---
+
+- name: Gather facts of all mounts, including non-disk mounts
+  script: facts/all_mounts.py
+  args:
+    executable: python
+  changed_when: false
+  check_mode: false
+  register: all_mounts

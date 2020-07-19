@@ -1,0 +1,19 @@
+# Standards: 0.11
+---
+
+# 1.1.2 Ensure separate partition exists for /tmp (Scored)
+
+- name: 1.1.2 - Ensure separate partition exists for /tmp (Scored)
+  mount:
+    name: "{{ item.mountpoint }}"
+    state: present
+    fstype: "{{item.fstype}}"
+    src: "{{item.device}}"
+    opts: "{{item.opts}}"
+  with_items:
+    - { mountpoint: '/tmp', device: 'tmpfs', fstype: 'tmpfs', opts: 'rw,nosuid,nodev,noexec,relatime' }
+  tags:
+      - level-1
+      - section-1
+      - "1.1.2"
+      - scored

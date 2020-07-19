@@ -1,6 +1,30 @@
 anthcourtney.cis-amazon-linux
 =========
 
+Build Status
+------------
+
+Branch | Status
+| ------------- |:-------------:|
+Master | [![Build Status](https://travis-ci.org/anthcourtney/ansible-role-cis-amazon-linux.svg?branch=master)](https://travis-ci.org/anthcourtney/ansible-role-cis-amazon-linux)
+Build | [![Build Status](https://travis-ci.org/anthcourtney/ansible-role-cis-amazon-linux.svg?branch=build)](https://travis-ci.org/anthcourtney/ansible-role-cis-amazon-linux)
+
+Development
+-------------
+We are going to use "master" branch only for fully tested changes.
+
+**Going forward please send your pull requests to "build" branch.**
+
+We need more community support to make changes and most importantly to test and review changes. If you would like to participate, please send a note to [Anth](https://github.com/anthcourtney) or [Chandan](https://github.com/chandanchowdhury).
+
+The major work to be done are
+* CIS Benchmark v2.2.0
+* Ansible 2.5 and above
+* Amazon Linux 2 LTS
+
+Introduction
+------------
+
 This ansible role applies v2.0.0 of the CIS Amazon Linux Benchmark. <https://benchmarks.cisecurity.org/tools2/linux/CIS_Amazon_Linux_Benchmark_v2.0.0.pdf>
 
 This role was developed and tested against Amazon Linux 2016.03. It has been tested against Amazon Linux 2016.09 with equal success.
@@ -22,6 +46,25 @@ Please take the time to familarise yourself with the standard and with the confi
 An examples of items that should be immediately considered for exclusion (or at least, for modification of the related default values) include:
 
 * ```3.4.2``` and ```3.4.3```, which by default effectively limit access to the host (including via ssh) to localhost only.
+
+Amazon Linux and SE Linux
+----------------
+By default SElinux is disabled via grub in amazon linux.
+
+To enable edit ;
+
+```/boot/grub/menu.lst```
+
+Modifiy ```selinux=0  to  selinux=1```
+
+```touch /etc/selinux/config```
+
+Also install the following package to allow the ansible SElinux module to function on the host.
+
+```yum install libselinux-python```
+
+A reboot will be neccessary for the changes to take effect.
+
 
 Example Playbook
 ----------------
@@ -55,10 +98,10 @@ A more advanced example, which includes modifications to the default values used
       - 5.4.4
       - 3.4.2
       - 3.4.3
-      - 6.2.13   
+      - 6.2.13
     cis_pass_max_days: 45
     cis_umask_default: 002
- 
+
   roles:
     - anthcourtney.cis-amazon-linux
 
@@ -125,9 +168,11 @@ Compatibility
 
 This role is compatible with the following versions of ansible:
 
-* 2.0.2
-* 2.1.3
-* 2.2.0
+* 2.3
+* 2.4
+* 2.5
+* 2.6
+* 2.7
 
 This role has not been tested against any other versions of ansible.
 
@@ -144,10 +189,13 @@ The following tests have been flagged but are not yet implemented:
 
 * Test application of the role against the Vagrant ```mvbcoding/awslinux``` image, using the ansible provisioner.
 
+### Lint
+ Please run ```make lint``` to make sure we are following ansible standards.
+
 License
 -------
 
-BSD. 
+MIT.
 
 Author Information
 ------------------

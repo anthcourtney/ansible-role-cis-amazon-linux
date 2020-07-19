@@ -6,7 +6,7 @@
 - name: 5.4.1.1 - Obtain a list of user accounts
   shell: "egrep ^[^:]+:[^\\!*] /etc/shadow | cut -d: -f1"
   register: egrep_5_4_1_1
-  always_run: yes
+  check_mode: no
   changed_when: False
   tags:
     - level-1

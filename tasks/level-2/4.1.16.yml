@@ -1,0 +1,31 @@
+# Standards: 0.11
+---
+
+# 4.1.16 Ensure system administrator actions (sudolog) are collected (Scored)
+
+- name: 4.1.16 Ensure system administrator actions (sudolog) are collected (Scored)
+  shell: "grep scope {{ cis_audit_rules_filename }}"
+  register: scope
+  changed_when: False
+  ignore_errors: true
+  tags:
+    - "4.1.16"
+    - level-2
+    - section-4
+    - scored
+
+
+- name: 4.1.16 Ensure system administrator actions (sudolog) are collected(Verify registered output matches)
+  lineinfile:
+    dest: "{{ cis_audit_rules_filename }}"
+    line: "{{ item }}"
+  with_items:
+    - '# 4.1.16 Ensure system administrator actions (sudolog) are collected'
+    - '-w /var/log/sudo.log -p wa -k actions'
+  when:
+    ("'-w /var/log/sudo.log -p wa -k actions' not in scope.stdout")
+  tags:
+    - "4.1.16"
+    - level-2
+    - section-4
+    - scored
