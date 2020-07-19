@@ -10,6 +10,7 @@
     - "1.1.16"
     - scored
 
+
 - name: 1.1.16 - Ensure nosuid option set on /dev/shm partition
   mount:
     name: "{{ item.mount }}"

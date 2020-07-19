@@ -4,7 +4,11 @@
 # 5.4.4 Ensure default user umask is 027 or more restrictive
 
 - name: 5.4.4 - Ensure default user umask is 027 or more restrictive
-  shell: sed -i -e "s/umask 022/umask {{ cis_umask_default }}/g"  {{ item }}
+  replace:
+    regexp: "umask\\s+\\d+"
+    replace: "umask {{ cis_umask_default }}"
+    dest: "{{ item }}"
+  #shell: sed -i -e "s/umask 022/umask {{ cis_umask_default }}/g"  {{ item }}
   with_items: "{{ cis_umask_shell_files }}"
   tags:
     - level-1
