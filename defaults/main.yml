@@ -57,7 +57,7 @@ cis_enable_ntp: true # Set to true if ntp should be enabled/configured.
 cis_enable_chrony: false # Set to true if chrony should be enabled/configured.
 
 # 2.2.1.3
-cis_chrony_remote_server: "chrony.example.com"
+cis_chrony_remote_server: "chrony.example.invalid"
 
 # 3.4.2
 cis_hosts_allow_all_ips: "127.0.0.1"
@@ -68,7 +68,7 @@ cis_enable_rsyslog: true # Set to true if rsyslog should be enabled/configured.
 cis_enable_syslog_ng: false # Set to true if syslog_ng should be enabled/configured.
 
 # 4.2.1.4
-cis_rsyslog_remote_loghost_address: "loghost.example.com" # Can be a hostname or IP address. If no forwarding should occur, exclude this check.
+cis_rsyslog_remote_loghost_address: "loghost.example.invalid" # Can be a hostname or IP address. If no forwarding should occur, exclude this check.
 
 # 4.2.1.5
 cis_rsyslog_accept_remote_messages: false # Set to true if the host should accept remote syslog messages.
