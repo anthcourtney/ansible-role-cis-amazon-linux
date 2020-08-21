@@ -9,9 +9,8 @@
     state: present
     fstype: "{{item.fstype}}"
     src: "{{item.device}}"
-    opts: "{{item.opts}}"
   with_items:
-    - "{{ fs_mounts | selectattr('mountpoint', 'equalto', '/var') | list }}"
+    - { mountpoint: "{{cis_partition_mnt_var}}", device: "{{cis_partition_dev_var}}", fstype: "{{cis_partition_fs_var}}" }
   tags:
       - level-1
       - section-1

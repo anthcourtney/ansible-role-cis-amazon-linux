@@ -36,17 +36,21 @@ cis_sshd_config_filename: "/etc/ssh/sshd_config"
 # Check specific values which can be overridden
 ###############################################
 # Section 1
-cis_partition_dev_val_log: "/dev/xvda2"
-cis_partition_mnt_val_log: "/var/log"
-cis_partition_fs_val_log: "ext4"
+cis_partition_dev_var_log: "/dev/xvda2"
+cis_partition_mnt_var_log: "/var/log"
+cis_partition_fs_var_log: "ext4"
 
-cis_partition_dev_val_log_audit: "/dev/xvda3"
-cis_partition_mnt_val_log_audit: "/var/log/audit"
-cis_partition_fs_val_log_audit: "ext4"
+cis_partition_dev_var_log_audit: "/dev/xvda3"
+cis_partition_mnt_var_log_audit: "/var/log/audit"
+cis_partition_fs_var_log_audit: "ext4"
 
 cis_partition_dev_home: "/dev/xvda4"
 cis_partition_mnt_home: "/home"
 cis_partition_fs_home: "ext4"
+
+cis_partition_dev_var: "/dev/xvda5"
+cis_partition_mnt_var: "/var"
+cis_partition_fs_var: "ext4"
 
 cis_aide_database_filename: "/var/lib/aide/aide.db.gz"
 cis_aide_src_database_filename: "/var/lib/aide/aide.db.new.gz"
