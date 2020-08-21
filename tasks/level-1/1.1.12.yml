@@ -10,7 +10,7 @@
     fstype: "{{item.fstype}}"
     src: "{{item.device}}"
   with_items:
-    - { mountpoint: "{{cis_partition_mnt_val_log_audit}}", device: "{{cis_partition_dev_val_log_audit}}", fstype: "{{cis_partition_fs_val_log_audit}}" }
+    - { mountpoint: "{{cis_partition_mnt_var_log_audit}}", device: "{{cis_partition_dev_var_log_audit}}", fstype: "{{cis_partition_fs_var_log_audit}}" }
   tags:
       - level-1
       - section-1
