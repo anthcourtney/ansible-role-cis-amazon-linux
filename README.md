@@ -151,6 +151,10 @@ It should work with any point release within Ansible 2.6 major release, and ther
 
 Vagrant version ```2.2.4``` was used during the development & testing of Amazon Linux 2 revision of the role.
 
+This role contains jinja template actions that are only compatiable with jinja2 >= 2.8. Unfortunately Amazon Linux 2 (and upstream) only ship with 2.7. Python 2 is EOL and el7 is sunsetting, there will not be an updated rpm for this. Therefore, getting this role to run succesfully will require something you really shouldn't do - update a Python package installed by RPM using pip. 
+
+You bend it you fix it, ```sudo pip install -U jinja2``` will bring jinja up to a compatiable version.
+
 Testing
 -------
 
