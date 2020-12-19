@@ -8,6 +8,6 @@ galaxy_info:
   min_ansible_version: 2.5
   platforms:
   - name: Amazon
-    versions: [ "(Karoo)" ]
+    versions: [ "(Karoo)", "2"]
   galaxy_tags: ['CIS','Linux','Amazon','hardening','benchmark','PCIDSS','compliance']
 dependencies: []
