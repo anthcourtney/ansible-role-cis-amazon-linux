@@ -21,7 +21,7 @@ cis_level_2_exclusions: []
 fail_on_manual_remediation_actions: false  # True or false.
 
 cis_target_os_distribution: "Amazon"
-cis_target_os_versions: [ "(Karoo)" ]
+cis_target_os_versions: [ "(Karoo)", "2" ]
 
 cis_modprobe_conf_filename: "/etc/modprobe.d/CIS.conf"
 cis_grub_bootloader_filename: "/boot/grub2/grub.cfg"
